@@ -30,9 +30,10 @@ class CocoLab(data.Dataset):
     def __getitem__(self, index):
         """Returns the index-th data item of the dataset.
 
-        Returns:
-            x(torch.Tensor): Perceptual lightness (L*) of the image
-            y(torch.Tensor):(a*b*) of the image
+        Returns: #https://en.wikipedia.org/wiki/CIELAB_color_space,
+            x(torch.Tensor): Perceptual lightness (L*) of the image, values between [0, 100]
+            y(torch.Tensor):(a*b*) of the image, a - theorically unbounded 
+                                                 b - theorically unbounded
         """
         path_i = self.data_paths[index]
 
@@ -43,9 +44,12 @@ class CocoLab(data.Dataset):
         rgb_im = self.transform(im)
         lab_im = transforms.ToTensor()(color.rgb2lab(rgb_im)) # transform
         
-        # Should we normalize between [-1, 1] ? How? https://towardsdatascience.com/colorizing-black-white-images-with-u-net-and-conditional-gan-a-tutorial-81b2df111cd8
-        L = lab_im[0:1, :, :]
-        ab = lab_im[1:3,:, :] 
+        # Should we normalize between [-1, 1]
+        # https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/f13aab8148bd5f15b9eb47b690496df8dadbab0c/data/colorization_dataset.py
+        # Dans le source code divise par 110, mais a,b sont unbounded et souvent on bound à [-127, 128], peut etre compute par rapport à RGB?
+        # Solution ? https://fairyonice.github.io/Color-space-defenitions-in-python-RGB-and-LAB.html [-128, 128]
+        L = lab_im[0:1, :, :] #/ 50 - 1
+        ab = lab_im[1:3,:, :]  #/ 128
         
         return L, ab
 
