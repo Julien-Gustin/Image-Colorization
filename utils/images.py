@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt 
 import numpy as np
 import torch
+import warnings
+warnings.filterwarnings('ignore')
 
 from skimage import  color
 from torchvision import transforms
@@ -12,7 +14,7 @@ def tensor_to_pil(labs:torch.Tensor):
     """
     images = []
     labs[:, [0]] = (labs[:, [0]] + 1)*50
-    labs[:, [1, 2]] = labs[:, [1, 2]]*127
+    labs[:, [1, 2]] = labs[:, [1, 2]]*128
     
     for lab in labs:
         pil_lab = np.array(lab.permute(1, 2, 0))
