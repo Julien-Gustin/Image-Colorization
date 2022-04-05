@@ -1,5 +1,7 @@
 import torch.utils.data as data
 import os
+import torch 
+import numpy as np
 
 from skimage import color
 from PIL import Image, ImageOps
@@ -8,7 +10,7 @@ from glob import glob
 
 class CocoLab(data.Dataset):
     """Coco dataset using L*a*b colorspace"""
-    def __init__(self, root_dir, size, train=True):
+    def __init__(self, root_dir, size=256, train=True):
         """Initializes a dataset containing colored images."""
         super().__init__()
         self.train = train
@@ -40,9 +42,10 @@ class CocoLab(data.Dataset):
         im = Image.open(path_i)
         if im.mode != "RGB":
             im = im.convert('RGB')
-        
+
         rgb_im = self.transform(im)
-        lab_im = transforms.ToTensor()(color.rgb2lab(rgb_im)) # transform
+        # could be interesting to use network in double instead
+        lab_im = transforms.ToTensor()(color.rgb2lab(rgb_im).astype(np.float32)) # transform
         
         # Should we normalize between [-1, 1]
         # https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/f13aab8148bd5f15b9eb47b690496df8dadbab0c/data/colorization_dataset.py
