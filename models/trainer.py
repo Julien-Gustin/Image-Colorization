@@ -24,7 +24,6 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
         train_losses = []
         test_losses = []
         
-        print("Train")
         generator.train()
         for L, ab in trainloader:
             L = L.to(device)
@@ -50,7 +49,7 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
             optimizer.step()
             optimizer.zero_grad()
         
-        print("Test")
+
         with torch.no_grad():   
             generator.eval()
             correct = 0
