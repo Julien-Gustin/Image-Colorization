@@ -101,7 +101,7 @@ class CocoGrayscaleRGB(data.Dataset):
 
 class CocoLab_cpu(data.Dataset):
     """Coco dataset using L*a*b colorspace for debugging our models on CPU"""
-    def __init__(self, root_dir, size=256, train=True):
+    def __init__(self, root_dir, size=256, train=True, dumb=False):
         """Initializes a dataset containing colored images."""
         super().__init__()
         self.train = train
@@ -115,11 +115,16 @@ class CocoLab_cpu(data.Dataset):
         folder_name =  "val2017"
         self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))
 
-        if train:
-            self.data_paths = self.data_paths[:500]
+        if dumb:
+            if train:
+                self.data_paths = self.data_paths[:1]
+            else:
+                self.data_paths = self.data_paths[:1]
         else:
-            self.data_paths = self.data_paths[500:600]
-
+            if train:
+                self.data_paths = self.data_paths[:500]
+            else:
+                self.data_paths = self.data_paths[500:600]
         print("plop len : ", len(self.data_paths))
 
     def __len__(self):
