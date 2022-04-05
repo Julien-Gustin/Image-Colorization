@@ -51,8 +51,8 @@ class CocoLab(data.Dataset):
         # https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/f13aab8148bd5f15b9eb47b690496df8dadbab0c/data/colorization_dataset.py
         # Dans le source code divise par 110, mais a,b sont unbounded et souvent on bound à [-127, 128], peut etre compute par rapport à RGB?
         # Solution ? https://fairyonice.github.io/Color-space-defenitions-in-python-RGB-and-LAB.html [-128, 128]
-        L = lab_im[0:1, :, :] #/ 50 - 1
-        ab = lab_im[1:3,:, :]  #/ 128
+        L = lab_im[0:1, :, :] / 50 - 1
+        ab = lab_im[1:3,:, :] / 128
         
         return L, ab
 
