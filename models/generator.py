@@ -2,6 +2,8 @@ import torch.nn as nn
 
 from models.module import *
 
+# Useful links:
+
 #https://arxiv.org/pdf/1502.03167.pdf
 #https://arxiv.org/pdf/1505.04597.pdf
 #https://arxiv.org/pdf/1611.07004.pdf
@@ -9,6 +11,9 @@ from models.module import *
 #https://madebyollin.github.io/convnet-calculator/ - Using kernel=4, stride=2, padding=1 allow to divide by two at each layer
 
 class UNet(nn.Module):
+    """
+       Implementation of the UNet architecture inspired from https://arxiv.org/pdf/1611.07004.pdf
+    """
     def __init__(self, in_channels, out_channels) -> None:
         super().__init__()
         
@@ -23,7 +28,7 @@ class UNet(nn.Module):
         inner_module = UNetModule(inner_module, 128, 256, 256+256, 128) # 32x32 -> 64x64
         inner_module = UNetModule(inner_module, 64, 128, 128+128, 64) # 64x64 -> 128x128
 
-        last = UNetModule(inner_module, self.in_channels, 64, 64+64, 2, relu=False, batchnorm_down=False, batchnorm_up=False, last=True) # 128 -> 256
+        last = UNetModule(inner_module, self.in_channels, 64, 64+64, 2, relu=False, batchnorm_down=False, batchnorm_up=False, last=True) # 128x128 -> 256x256
         self.model = nn.Sequential(last, nn.Tanh()) # 256x256
 
     def forward(self, x):

@@ -6,27 +6,25 @@ import numpy as np
 
 class UNetModule(nn.Module):
     """
-        (down_in) [down]                                     [up] (up_out)
-            (down_out) |--------- inner_module --------- | (up_in)
+        A module of UNet
 
-    Args:
-        nn (_type_): _description_
+        (down_in) [down]                                 [up] (up_out)
+            (down_out) |--------- inner_module --------- | (up_in)
     """
     def __init__(self, inner_module:nn.Module, down_in_channels:int, down_out_channels:int, up_in_channels:int, up_out_channels:int, dropout:bool=False, batchnorm_down:bool=True, batchnorm_up:bool=True, relu:bool=True, last:bool=False) -> None:
         super().__init__()
         self.inner_module = inner_module
         self.down = Down(down_in_channels, down_out_channels, batchnorm=batchnorm_down, relu=relu)
         self.up = Up(up_in_channels, up_out_channels, dropout=dropout, batchnorm=batchnorm_up, bias=last == True)
-        self.last = last
+        self.last = last # outermost layer
         
-        if self.inner_module is not None:
+        if self.inner_module is not None: 
             self.model = nn.Sequential(self.down, self.inner_module, self.up)
         
-        else:
+        else: # innermost (bottleneck 1x1 layer)
             self.model = nn.Sequential(self.down, self.up)
 
     def forward(self, x):
-        print(x.shape, self.model(x).shape)
         if self.last: # no skip connection at the outermost layer
             return self.model(x)
 
@@ -34,6 +32,9 @@ class UNetModule(nn.Module):
 
 
 class Down(nn.Module):
+    """
+       Encoder block that downsample the input by a factor of 2
+    """
     def __init__(self, in_channels:int, out_channels:int, kernel_size:int=4, stride:int=2, padding:int=1, batchnorm:bool=True, relu:bool=True) -> None:
         super().__init__()
         down = []
@@ -57,7 +58,10 @@ class Down(nn.Module):
 # Choisir entre ?
 # Upsampling = interpolation
 # ConvTranspose = trainable kernels
-class Up(nn.Module):
+class Up(nn.Module):    
+    """
+       Decoder block that upsample the input by a factor of 2
+    """
     def __init__(self, in_channels:int, out_channels:int, kernel_size:int=4, stride:int=2, padding:int=1, dropout:bool=False, batchnorm:bool=True, bias:bool=True) -> None:
         super().__init__()
         up = [nn.ReLU(True), 
