@@ -8,7 +8,7 @@ import torch.utils.data as data
 from PIL import Image
 from torchvision import datasets, transforms, utils
 
-LEARNING_RATE = 0.1
+LEARNING_RATE = 0.01
 
 def train_G_L1(num_epochs, generator, trainloader, testloader):
     criterion = nn.L1Loss()
@@ -25,6 +25,7 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
         test_losses = []
         
         print("Train")
+        generator.train()
         for L, ab in trainloader:
             L = L.to(device)
             ab = ab.to(device)
@@ -32,16 +33,16 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
             pred = generator(L)
             loss = criterion(pred, ab)
 
-            print("pred.shape: ")
-            print(pred.shape)
-            print("pred")
-            print(pred)   
-            print("ab.shape: ")
-            print(ab.shape)
-            print("pred")
-            print(ab)
-            print("loss")
-            print(loss)
+            # print("pred.shape: ")
+            # print(pred.shape)
+            # print("pred")
+            # print(pred)   
+            # print("ab.shape: ")
+            # print(ab.shape)
+            # print("pred")
+            # print(ab)
+            # print("loss")
+            # print(loss)
 
             train_losses.append(loss.detach())
             loss.backward()
@@ -51,6 +52,7 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
         
         print("Test")
         with torch.no_grad():   
+            generator.eval()
             correct = 0
             total = 0
 
