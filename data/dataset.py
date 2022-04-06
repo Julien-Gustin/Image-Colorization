@@ -10,7 +10,7 @@ from glob import glob
 
 class CocoLab(data.Dataset):
     """Coco dataset using L*a*b colorspace"""
-    def __init__(self, root_dir, size=256, train=True):
+    def __init__(self, root_dir:str, version:str="2017", size:int=256, train:bool=True):
         """Initializes a dataset containing colored images."""
         super().__init__()
         self.train = train
@@ -21,7 +21,7 @@ class CocoLab(data.Dataset):
         else:
             self.transform = transforms.Compose([transforms.Resize((size, size))])
 
-        folder_name = "train2017" if train else "val2017"
+        folder_name = "train{}".format(version) if train else "val{}".format(version)
         self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))
 
     def __len__(self):
