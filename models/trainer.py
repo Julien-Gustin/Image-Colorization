@@ -17,8 +17,7 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
     train_avg_loss = []
     test_avg_loss = []
 
-    #device = 'cuda'
-    device = 'cpu'
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     for i in range(num_epochs):
         train_losses = []
@@ -32,17 +31,6 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
             pred = generator(L)
             loss = criterion(pred, ab)
 
-            # print("pred.shape: ")
-            # print(pred.shape)
-            # print("pred")
-            # print(pred)   
-            # print("ab.shape: ")
-            # print(ab.shape)
-            # print("pred")
-            # print(ab)
-            # print("loss")
-            # print(loss)
-
             train_losses.append(loss.detach())
             loss.backward()
 
@@ -52,7 +40,6 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
 
         with torch.no_grad():   
             generator.eval()
-            correct = 0
             total = 0
 
             for L, ab in testloader:
