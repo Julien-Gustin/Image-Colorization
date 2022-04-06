@@ -17,7 +17,7 @@ def train_G_L1(num_epochs, generator, trainloader, testloader):
     train_avg_loss = []
     test_avg_loss = []
 
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     for i in range(num_epochs):
         train_losses = []
