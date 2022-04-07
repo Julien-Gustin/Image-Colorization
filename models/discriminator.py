@@ -20,11 +20,11 @@ class PatchGAN(nn.Module):
         self.model = nn.Sequential(*self.model)
     
     def C_block(self, in_channels, out_channels, batch=True, relu=True):
-                self.model += [nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=4, stride=2, padding=1)]
-                if batch:
-                    self.model += [nn.BatchNorm2d(out_channels)]
-                if relu:
-                    self.model += [nn.LeakyReLU(0.2, True)]
+            self.model += [nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=4, stride=2, padding=1)]
+            if batch:
+                self.model += [nn.BatchNorm2d(out_channels)]
+            if relu:
+                self.model += [nn.LeakyReLU(0.2, True)]
 
     def forward(self, x):
         """
