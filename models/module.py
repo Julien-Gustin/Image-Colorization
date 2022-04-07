@@ -1,7 +1,5 @@
-from turtle import forward
 import torch 
 import torch.nn as nn
-import numpy as np
 
 
 class UNetModule(nn.Module):

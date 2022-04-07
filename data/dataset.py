@@ -16,7 +16,7 @@ class CocoLab(data.Dataset):
         self.train = train
 
         if self.train: # data augmentation?
-            self.transform = transforms.Compose([transforms.Resize((size, size))])
+            self.transform = transforms.Compose([transforms.Resize((size, size)), transforms.RandomHorizontalFlip()])
 
         else:
             self.transform = transforms.Compose([transforms.Resize((size, size))])
@@ -52,7 +52,7 @@ class CocoLab(data.Dataset):
         # Dans le source code divise par 110, mais a,b sont unbounded et souvent on bound à [-127, 128], peut etre compute par rapport à RGB?
         # Solution ? https://fairyonice.github.io/Color-space-defenitions-in-python-RGB-and-LAB.html [-128, 128]
         L = lab_im[0:1, :, :] / 50 - 1
-        ab = lab_im[1:3,:, :] / 128  #[-127, 128]
+        ab = lab_im[1:3,:, :] / 110  #[-127, 128]
         
         return L, ab
 

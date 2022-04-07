@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from models.module import *
+from models.module import UNetModule
 
 # Useful links:
 
