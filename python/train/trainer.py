@@ -90,6 +90,7 @@ def train(num_epochs, generator:nn.Module, discriminator:nn.Module, trainloader,
             train_d_losses.append(d_loss.detach())        
 
         with torch.no_grad():   
+            # Do not set .eval()
             for L, ab in testloader:
                 L = L.to(device)
                 ab = ab.to(device)
