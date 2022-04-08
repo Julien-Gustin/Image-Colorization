@@ -26,14 +26,13 @@ class PatchGAN(nn.Module):
             if relu:
                 self.model += [nn.LeakyReLU(0.2, True)]
 
-    def forward(self, x):
+    def forward(self, src, target):
         """
         x must be a pair (src, target) where
         
         src.shape == target.shape 
         The number of channels of an image must be equal to the number provided when instantiating this class.
         """
-        src, target = x
         #If an image is of size 256x256x3, this operation provided an image of size 256x256x6
         x = torch.cat((src, target), axis=1)
         print(x.shape)
