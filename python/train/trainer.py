@@ -17,7 +17,7 @@ class GanTrain():
         self.optimizer_G = torch.optim.Adam(generator.parameters(), lr=0.0002, betas=(0.5, 0.999))
         self.optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=0.0002, betas=(0.5, 0.999))
 
-        self.gamma = 0.5
+        self.gamma = 100
 
     def set_requires_grad(self, model:nn.Module, requires_grad:bool):
         for param in model.parameters():
