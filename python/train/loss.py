@@ -38,3 +38,21 @@ class cGANLoss(_Loss): #jsp pq les loss héritent de Module : https://pytorch.or
         labels = labels.expand_as(preds) # on en fait un tensor de la même taille que preds full de 1 ou 0
         return self.loss(preds, labels) # attention au - ici
 
+class R1(_Loss): 
+    # https://arxiv.org/pdf/1801.04406.pdf
+    # https://ai.stackexchange.com/questions/25458/can-someone-explain-r1-regularization-function-in-simple-terms
+    # https://github.com/ChristophReich1996/Dirac-GAN/blob/decb8283d919640057c50ff5a1ba01b93ed86332/dirac_gan/loss.py
+    def __init__(self, gamma=1):
+        super().__init__()
+        self.gamma = gamma
+
+    
+    def forward(self, prediction_real: torch.Tensor, real_sample: torch.Tensor) -> torch.Tensor:
+        # gradient
+        grad_real = torch.autograd.grad(outputs=prediction_real.sum(), inputs=real_sample, create_graph=True)[0]
+        # regularization
+        R1_loss = self.gamma * 0.5 * (grad_real.view(grad_real.shape[0], -1).norm(2, dim=1) ** 2).mean()
+        return R1_loss
+
+
+    
