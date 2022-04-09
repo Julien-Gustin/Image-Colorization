@@ -26,8 +26,7 @@ class GanTrain():
     def generator_loss(self, L:torch.Tensor, ab_reel:torch.Tensor):
         """ Compute the loss of the generator according to a weighted sum of L1 loss and GAN loss """
         ab_fake = self.generator(L)
-        Lab_fake = torch.cat((L, ab_fake), axis=1)
-        discriminator_confidence = self.discriminator(Lab_fake)
+        discriminator_confidence = self.discriminator(L, ab_fake)
 
         l1_loss = self.l1_loss(ab_fake, ab_reel)
         gan_loss = self.cgan_loss(discriminator_confidence, True) # trick
@@ -46,15 +45,36 @@ class GanTrain():
 
         return loss
 
+    def generate_fake_samples(self, L:torch.Tensor):
+        with torch.no_grad():
+            fake_ab = self.generator(L)
+        return fake_ab 
+    
+    def discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
+        #Compute the loss when samples are real images
+        loss_over_real_img = self.cgan_loss(self.discriminator(L, real_ab), True)
+        
+        #Compute the loss when samples are fake images
+        loss_over_fake_img = self.cgan_loss(self.discriminator(L, fake_ab), False)
+        
+        #Take the mean of the losses, necessary?
+        loss = (loss_over_real_img + loss_over_fake_img)/2
+        
+        return loss
 
-    def discriminator_backward(self):
-        # Houyon TODO
-        pass
-
+    def discriminator_step(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
+        loss = self.discriminator_loss(L, real_ab, fake_ab)
+        loss.backwards()
+        
+        self.optimizer_D.step()
+        self.optimizer_D.zero_grad()
+        
+        return loss 
+        
     def step(self, L:nn.Module, ab_reel:nn.Module):
-        # Houyon TODO
-
-        d_loss = self.discriminator_backward()
+        #generate ab outputs from the generator
+        fake_ab = self.generate_fake_samples(L)
+        d_loss = self.discriminator_step(L, ab_reel, fake_ab)
 
         # Julien
         self.set_requires_grad(self.discriminator, False)

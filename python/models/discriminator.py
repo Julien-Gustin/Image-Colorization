@@ -6,8 +6,9 @@ class PatchGAN(nn.Module):
     def __init__(self, channels) -> None:
         super().__init__()
         self.model = []
+        self.patch_size = 70
         #Blocks of the architecture
-        self.C_block(2*channels, 64, False)
+        self.C_block(channels, 64, False)
         self.C_block(64, 128)
         self.C_block(128, 256)
         self.C_block(256, 512)
@@ -26,16 +27,8 @@ class PatchGAN(nn.Module):
             if relu:
                 self.model += [nn.LeakyReLU(0.2, True)]
 
-    def forward(self, src, target):
-        """
-        x must be a pair (src, target) where
-        
-        src.shape == target.shape 
-        The number of channels of an image must be equal to the number provided when instantiating this class.
-        """
-        #If an image is of size 256x256x3, this operation provided an image of size 256x256x6
-        x = torch.cat((src, target), axis=1)
-        print(x.shape)
+    def forward(self, l, ab):
+        x = torch.cat((l, ab), axis=1)
         return self.model(x)
         
         
