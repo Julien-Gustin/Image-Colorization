@@ -20,7 +20,7 @@ class CocoLab(data.Dataset):
         else:
             self.transform = transforms.Compose([transforms.Resize((size, size))])
 
-        folder_name = "train{}".format(version) if train else "test{}".format(version)
+        folder_name = "train{}".format(version) if train else "val{}".format(version)
         self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))
 
     def __len__(self):

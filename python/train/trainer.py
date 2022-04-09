@@ -6,7 +6,7 @@ from .loss import cGANLoss, R1Loss
 
 # https://arxiv.org/pdf/1406.2661.pdf (train GAN)
 class GanTrain():   
-    def __init__(self, generator:nn.Module, discriminator:nn.Module) -> None:
+    def __init__(self, generator:nn.Module, discriminator:nn.Module, reg_R1:bool=False) -> None:
         self.generator = generator
         self.discriminator = discriminator
 
@@ -18,6 +18,8 @@ class GanTrain():
         self.optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=0.0002, betas=(0.5, 0.999))
 
         self.gamma = 100
+        self.reg_R1 = reg_R1
+        self.r1_loss = R1Loss(gamma=1)
 
     def set_requires_grad(self, model:nn.Module, requires_grad:bool):
         for param in model.parameters():
@@ -49,19 +51,14 @@ class GanTrain():
             fake_ab = self.generator(L)
         return fake_ab 
     
-    def discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor, reg_R1:bool=False):
+    def discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
         #Compute the loss when samples are real images
-        loss_over_real_img = 0
+        pred_D_real = self.discriminator(L, real_ab)
+        loss_over_real_img = self.cgan_loss(pred_D_real, True)
 
-        if reg_R1:
+        if self.reg_R1:
             L.requires_grad_()
-            pred_D_real = self.discriminator(L, real_ab)
-            R1 = R1Loss(gamma=1) 
-            loss_over_real_img += R1(pred_D_real, L)
-        else:
-            pred_D_real = self.discriminator(L, real_ab)
-        
-        loss_over_real_img += self.cgan_loss(pred_D_real, True)
+            loss_over_real_img += self.r1_loss(pred_D_real, L)
         
         #Compute the loss when samples are fake images
         pred_D_fake = self.discriminator(L, fake_ab)
@@ -71,8 +68,8 @@ class GanTrain():
         
         return loss
 
-    def discriminator_step(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor, reg_R1:bool=False):
-        loss = self.discriminator_loss(L, real_ab, fake_ab, reg_R1)
+    def discriminator_step(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
+        loss = self.discriminator_loss(L, real_ab, fake_ab)
         loss.backward()
         
         self.optimizer_D.step()
@@ -80,12 +77,12 @@ class GanTrain():
         
         return loss 
         
-    def step(self, L:nn.Module, reel_ab:nn.Module, reg_R1:bool=False):
+    def step(self, L:nn.Module, reel_ab:nn.Module):
         #generate ab outputs from the generator
         fake_ab = self.generator(L)
 
         self.set_requires_grad(self.discriminator, True)
-        d_loss = self.discriminator_step(L, reel_ab, fake_ab.detach(), reg_R1)
+        d_loss = self.discriminator_step(L, reel_ab, fake_ab.detach())
 
         # Julien
         self.set_requires_grad(self.discriminator, False)
