@@ -56,7 +56,6 @@ class GanTrain():
         #Compute the loss when samples are fake images
         loss_over_fake_img = self.cgan_loss(self.discriminator(L, fake_ab), False)
         
-        #Take the mean of the losses, necessary?
         loss = (loss_over_real_img + loss_over_fake_img)/2
         
         return loss

@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.nn.modules.loss import _Loss
 
-
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class cGANLoss(_Loss): #jsp pq les loss héritent de Module : https://pytorch.org/docs/stable/_modules/torch/nn/modules/loss.html#L1Loss
     ## a la respondabilité de gérer les labels des true/fake prediction et de calculer la loss de prédiction labelisée
@@ -35,6 +35,6 @@ class cGANLoss(_Loss): #jsp pq les loss héritent de Module : https://pytorch.or
     """
     def __call__(self, preds, target_is_real):
         labels = self.real_label if target_is_real else self.fake_label
-        labels = labels.expand_as(preds) # on en fait un tensor de la même taille que preds full de 1 ou 0
+        labels = labels.expand_as(preds).to(device) # on en fait un tensor de la même taille que preds full de 1 ou 0
         return self.loss(preds, labels) # attention au - ici
 
