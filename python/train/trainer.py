@@ -23,22 +23,21 @@ class GanTrain():
         for param in model.parameters():
             param.requires_grad = requires_grad 
 
-    def generator_loss(self, L:torch.Tensor, ab_reel:torch.Tensor):
+    def generator_loss(self, L:torch.Tensor, reel_ab:torch.Tensor, fake_ab):
         """ Compute the loss of the generator according to a weighted sum of L1 loss and GAN loss """
-        ab_fake = self.generator(L)
-        discriminator_confidence = self.discriminator(L, ab_fake)
+        discriminator_confidence = self.discriminator(L, fake_ab)
 
-        l1_loss = self.l1_loss(ab_fake, ab_reel)
+        l1_loss = self.l1_loss(fake_ab, reel_ab)
         gan_loss = self.cgan_loss(discriminator_confidence, True) # trick
 
         loss = l1_loss * self.gamma + gan_loss
 
         return loss
 
-    def generator_step(self, L:torch.Tensor, ab_reel:torch.Tensor):
+    def generator_step(self, L:torch.Tensor, reel_ab:torch.Tensor, fake_ab:torch.Tensor):
         """ Perform a one step generator training """
-        loss = self.generator_loss(L, ab_reel)
-        loss.backwards()
+        loss = self.generator_loss(L, reel_ab, fake_ab)
+        loss.backward()
 
         self.optimizer_G.step()
         self.optimizer_G.zero_grad()
@@ -64,22 +63,23 @@ class GanTrain():
 
     def discriminator_step(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
         loss = self.discriminator_loss(L, real_ab, fake_ab)
-        loss.backwards()
+        loss.backward()
         
         self.optimizer_D.step()
         self.optimizer_D.zero_grad()
         
         return loss 
         
-    def step(self, L:nn.Module, ab_reel:nn.Module):
+    def step(self, L:nn.Module, reel_ab:nn.Module):
         #generate ab outputs from the generator
-        fake_ab = self.generate_fake_samples(L)
-        d_loss = self.discriminator_step(L, ab_reel, fake_ab)
+        fake_ab = self.generator(L)
+
+        self.set_requires_grad(self.discriminator, True)
+        d_loss = self.discriminator_step(L, reel_ab, fake_ab.detach())
 
         # Julien
         self.set_requires_grad(self.discriminator, False)
-        g_loss = self.generator_step(L, ab_reel)
-        self.set_requires_grad(self.discriminator, True)
+        g_loss = self.generator_step(L, reel_ab, fake_ab)
 
         return d_loss.detach(), g_loss.detach()
 
@@ -114,9 +114,9 @@ def train(num_epochs, generator:nn.Module, discriminator:nn.Module, trainloader,
             for L, ab in testloader:
                 L = L.to(device)
                 ab = ab.to(device)
-
-                g_loss = gan_train.generator_loss(L, ab)
-                d_loss = gan_train.discriminator_loss(L, ab)
+                fake_ab = generator(L)
+                g_loss = gan_train.generator_loss(L, ab, fake_ab)
+                d_loss = gan_train.discriminator_loss(L, ab, fake_ab)
                 
                 test_g_losses.append(g_loss.detach())
                 test_d_losses.append(g_loss.detach())
