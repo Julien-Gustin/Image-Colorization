@@ -51,16 +51,20 @@ class GanTrain():
     
     def discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor, reg_R1:bool=False):
         #Compute the loss when samples are real images
-        pred_D_real = self.discriminator(L, real_ab)
-        pred_D_fake = self.discriminator(L, fake_ab)
-
-        loss_over_real_img = self.cgan_loss(pred_D_real, True)
+        loss_over_real_img = 0
 
         if reg_R1:
+            L.requires_grad_()
+            pred_D_real = self.discriminator(L, real_ab)
             R1 = R1Loss(gamma=1) 
-            loss_over_real_img += R1(pred_D_real, torch.concat((L, real_ab), 1))
+            loss_over_real_img += R1(pred_D_real, L)
+        else:
+            pred_D_real = self.discriminator(L, real_ab)
+        
+        loss_over_real_img += self.cgan_loss(pred_D_real, True)
         
         #Compute the loss when samples are fake images
+        pred_D_fake = self.discriminator(L, fake_ab)
         loss_over_fake_img = self.cgan_loss(pred_D_fake, False)
         
         #Take the mean of the losses, necessary?

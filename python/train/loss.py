@@ -38,7 +38,7 @@ class cGANLoss(_Loss): #jsp pq les loss héritent de Module : https://pytorch.or
         labels = labels.expand_as(preds) # on en fait un tensor de la même taille que preds full de 1 ou 0
         return self.loss(preds, labels) # attention au - ici
 
-class R1(_Loss): 
+class R1Loss(_Loss): 
     # https://arxiv.org/pdf/1801.04406.pdf
     # https://ai.stackexchange.com/questions/25458/can-someone-explain-r1-regularization-function-in-simple-terms
     # https://github.com/ChristophReich1996/Dirac-GAN/blob/decb8283d919640057c50ff5a1ba01b93ed86332/dirac_gan/loss.py
