@@ -2,7 +2,7 @@ from matplotlib.pyplot import axis
 import torch
 import torch.nn as nn
 
-from .loss import cGANLoss
+from .loss import cGANLoss, R1Loss
 
 # https://arxiv.org/pdf/1406.2661.pdf (train GAN)
 class GanTrain():   
@@ -49,19 +49,30 @@ class GanTrain():
             fake_ab = self.generator(L)
         return fake_ab 
     
-    def discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
+    def discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor, reg_R1:bool=False):
         #Compute the loss when samples are real images
-        loss_over_real_img = self.cgan_loss(self.discriminator(L, real_ab), True)
+        loss_over_real_img = 0
+
+        if reg_R1:
+            L.requires_grad_()
+            pred_D_real = self.discriminator(L, real_ab)
+            R1 = R1Loss(gamma=1) 
+            loss_over_real_img += R1(pred_D_real, L)
+        else:
+            pred_D_real = self.discriminator(L, real_ab)
+        
+        loss_over_real_img += self.cgan_loss(pred_D_real, True)
         
         #Compute the loss when samples are fake images
-        loss_over_fake_img = self.cgan_loss(self.discriminator(L, fake_ab), False)
+        pred_D_fake = self.discriminator(L, fake_ab)
+        loss_over_fake_img = self.cgan_loss(pred_D_fake, False)
         
         loss = (loss_over_real_img + loss_over_fake_img)/2
         
         return loss
 
-    def discriminator_step(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
-        loss = self.discriminator_loss(L, real_ab, fake_ab)
+    def discriminator_step(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor, reg_R1:bool=False):
+        loss = self.discriminator_loss(L, real_ab, fake_ab, reg_R1)
         loss.backward()
         
         self.optimizer_D.step()
@@ -69,12 +80,12 @@ class GanTrain():
         
         return loss 
         
-    def step(self, L:nn.Module, reel_ab:nn.Module):
+    def step(self, L:nn.Module, reel_ab:nn.Module, reg_R1:bool=False):
         #generate ab outputs from the generator
         fake_ab = self.generator(L)
 
         self.set_requires_grad(self.discriminator, True)
-        d_loss = self.discriminator_step(L, reel_ab, fake_ab.detach())
+        d_loss = self.discriminator_step(L, reel_ab, fake_ab.detach(), reg_R1)
 
         # Julien
         self.set_requires_grad(self.discriminator, False)
@@ -83,7 +94,7 @@ class GanTrain():
         return d_loss.detach(), g_loss.detach()
 
 
-def train(num_epochs, generator:nn.Module, discriminator:nn.Module, trainloader, testloader):
+def train(num_epochs, generator:nn.Module, discriminator:nn.Module, trainloader, testloader, reg_R1:bool):
     gan_train = GanTrain(generator, discriminator)
 
     train_g_avg_loss = []
@@ -103,7 +114,7 @@ def train(num_epochs, generator:nn.Module, discriminator:nn.Module, trainloader,
             L = L.to(device)
             ab = ab.to(device)
 
-            g_loss, d_loss = gan_train.step(L, ab)
+            g_loss, d_loss = gan_train.step(L, ab, reg_R1)
 
             train_g_losses.append(g_loss.detach())
             train_d_losses.append(d_loss.detach())        
