@@ -29,7 +29,6 @@ class UNet(nn.Module):
 
         last = UNetModule(inner_module, self.in_channels, 64, 64+64, 2, relu=False, batchnorm_down=False, batchnorm_up=False, last=True) # 128x128 -> 256x256
         self.model = nn.Sequential(last, nn.Tanh()) # 256x256
-        self.model.apply(nn.init(nn.init.normal_(self.model.weight.data, 0.0, 0.02))) # init weights with a gaussian distribution centered at 0, and std=0.02
 
     def forward(self, x):
         return self.model(x)
