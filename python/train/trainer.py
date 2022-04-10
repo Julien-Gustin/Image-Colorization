@@ -4,6 +4,7 @@ import torch.nn as nn
 
 from .loss import cGANLoss, R1Loss
 
+# https://arxiv.org/pdf/1803.05400.pdf train + explication
 # https://arxiv.org/pdf/1406.2661.pdf (train GAN)
 class GanTrain():   
     def __init__(self, generator:nn.Module, discriminator:nn.Module, reg_R1:bool=False) -> None:
@@ -152,61 +153,61 @@ def train(num_epochs, generator:nn.Module, discriminator:nn.Module, trainloader,
 
 
 
-LEARNING_RATE = 0.01
+# LEARNING_RATE = 0.01
 
 
 
-def train_G_L1(num_epochs, generator, trainloader, testloader):
-    criterion = nn.L1Loss()
-    optimizer = torch.optim.Adam(generator.parameters(), lr=LEARNING_RATE)
+# def train_G_L1(num_epochs, generator, trainloader, testloader):
+#     criterion = nn.L1Loss()
+#     optimizer = torch.optim.Adam(generator.parameters(), lr=LEARNING_RATE)
 
-    train_avg_loss = []
-    test_avg_loss = []
+#     train_avg_loss = []
+#     test_avg_loss = []
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    for i in range(num_epochs):
-        train_losses = []
-        test_losses = []
+#     for i in range(num_epochs):
+#         train_losses = []
+#         test_losses = []
         
-        generator.train()
-        for L, ab in trainloader:
-            L = L.to(device)
-            ab = ab.to(device)
+#         generator.train()
+#         for L, ab in trainloader:
+#             L = L.to(device)
+#             ab = ab.to(device)
 
-            pred = generator(L)
-            loss = criterion(pred, ab)
+#             pred = generator(L)
+#             loss = criterion(pred, ab)
 
-            train_losses.append(loss.detach())
-            loss.backward()
+#             train_losses.append(loss.detach())
+#             loss.backward()
 
-            optimizer.step()
-            optimizer.zero_grad()
+#             optimizer.step()
+#             optimizer.zero_grad()
         
 
-        with torch.no_grad():   
-            generator.eval()
-            total = 0
+#         with torch.no_grad():   
+#             generator.eval()
+#             total = 0
 
-            for L, ab in testloader:
-                L = L.to(device)
-                ab = ab.to(device)
+#             for L, ab in testloader:
+#                 L = L.to(device)
+#                 ab = ab.to(device)
                 
-                pred = generator(L)
-                loss = criterion(pred, ab)
-                test_losses.append(loss.detach())
+#                 pred = generator(L)
+#                 loss = criterion(pred, ab)
+#                 test_losses.append(loss.detach())
 
-                total += len(pred)
+#                 total += len(pred)
 
-            print(total)
+#             print(total)
 
-            train_avg_loss.append(torch.mean(torch.Tensor(train_losses)))
-            test_avg_loss.append(torch.mean(torch.Tensor(test_losses)))
+#             train_avg_loss.append(torch.mean(torch.Tensor(train_losses)))
+#             test_avg_loss.append(torch.mean(torch.Tensor(test_losses)))
 
-            print('[Epoch {}/{}] '.format(i+1, num_epochs) +
-                  'train_loss: {:.4f} - '.format(train_avg_loss[-1]) +
-                  'test_loss: {:.4f}'.format(test_avg_loss[-1]))
+#             print('[Epoch {}/{}] '.format(i+1, num_epochs) +
+#                   'train_loss: {:.4f} - '.format(train_avg_loss[-1]) +
+#                   'test_loss: {:.4f}'.format(test_avg_loss[-1]))
 
-    return train_avg_loss, test_avg_loss
+#     return train_avg_loss, test_avg_loss
 
 
