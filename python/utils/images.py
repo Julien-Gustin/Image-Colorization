@@ -8,6 +8,8 @@ from skimage import  color
 from torchvision import transforms
 from PIL import Image
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 def tensor_to_pil(labs:torch.Tensor):
     """
        Transform tensors using lab colorspace to a RGB PIL image
@@ -26,16 +28,16 @@ def show_images(img):
     plt.imshow(transforms.functional.to_pil_image(img))
     plt.show()
 
-def multi_plot(loader, generator, file_name, columns=5):
+def multi_plot(loader, generator, file_name, columns=4):
     L, real_ab = next(iter(loader))
+
     real_Lab = torch.concat((L, real_ab), 1)
     real_img = tensor_to_pil(torch.Tensor(real_Lab))
-
 
     gray_Lab = torch.concat((L, real_ab*0), 1)
     gray_img = tensor_to_pil(torch.Tensor(gray_Lab))
 
-    fake_ab = generator(L).detach()
+    fake_ab = generator(L.to(device)).detach().to("cpu")
     fake_Lab = torch.cat([L, fake_ab], axis=1)
     fake_img_L1 = tensor_to_pil(fake_Lab)
 
@@ -43,9 +45,9 @@ def multi_plot(loader, generator, file_name, columns=5):
 
     plt.figure(figsize=(30,20))
     for i, img in enumerate(imgs):
-        # plt.tick_params(down = False)
-        ax = plt.subplot(len(imgs) / columns + 1, columns, i + 1)
+        ax = plt.subplot(int(len(imgs) / columns + 1), columns, i + 1)
         ax.axes.xaxis.set_visible(False)
         ax.axes.yaxis.set_visible(False)
+        plt.imshow(img)
         
     plt.savefig(file_name)
