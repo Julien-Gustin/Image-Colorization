@@ -21,7 +21,7 @@ class CocoLab(data.Dataset):
             self.transform = transforms.Compose([transforms.Resize((size, size))])
 
         folder_name = "train{}".format(version) if train else "val{}".format(version)
-        self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))[:4]
+        self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))
 
     def __len__(self):
         """Returns the size of the dataset."""
