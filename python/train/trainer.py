@@ -35,17 +35,17 @@ class GanTrain():
 
         loss = l1_loss * self.gamma + gan_loss
 
-        return loss
+        return loss, l1_loss, gan_loss
 
     def generator_step(self, L:torch.Tensor, reel_ab:torch.Tensor, fake_ab:torch.Tensor):
         """ Perform a one step generator training """
-        loss = self.generator_loss(L, reel_ab, fake_ab)
+        loss, l1_loss, gan_loss = self.generator_loss(L, reel_ab, fake_ab)
         loss.backward()
 
         self.optimizer_G.step()
         self.optimizer_G.zero_grad()
 
-        return loss
+        return loss, l1_loss, gan_loss
 
     def generate_fake_samples(self, L:torch.Tensor):
         with torch.no_grad():
@@ -87,9 +87,9 @@ class GanTrain():
 
         # Julien
         self.set_requires_grad(self.discriminator, False)
-        g_loss = self.generator_step(L, reel_ab, fake_ab)
+        g_loss, l1_loss, gan_loss = self.generator_step(L, reel_ab, fake_ab)
 
-        return d_loss.detach(), g_loss.detach()
+        return d_loss.detach(), (g_loss.detach(), l1_loss.detach(), gan_loss.detach())
 
 
 def train(num_epochs, generator:nn.Module, discriminator:nn.Module, trainloader, testloader, reg_R1:bool):
