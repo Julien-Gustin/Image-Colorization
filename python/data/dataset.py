@@ -113,11 +113,11 @@ class CocoLab_cpu(data.Dataset):
             self.transform = transforms.Compose([transforms.Resize((size, size))])
 
         folder_name = "val{}".format(version)
-        self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))
-        if train:
-            self.data_paths = [self.data_paths[1]]
-        else:
-            self.data_paths = [self.data_paths[1]]
+        self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))[:4]
+        # if train:
+        #     self.data_paths = [self.data_paths[1]]
+        # else:
+        #     self.data_paths = [self.data_paths[1]]
 
     def __len__(self):
         """Returns the size of the dataset."""

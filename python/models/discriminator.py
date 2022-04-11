@@ -15,7 +15,6 @@ class PatchGAN(nn.Module):
         self.C_block(512, 1, False, False)
         
         #Activation function
-        self.model += [nn.Sigmoid()]
         self.model = nn.Sequential(*self.model)
     
     def C_block(self, in_channels, out_channels, batch=True, relu=True):

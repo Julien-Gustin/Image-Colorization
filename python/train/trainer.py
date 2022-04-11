@@ -31,7 +31,7 @@ class GanTrain():
         discriminator_confidence = self.discriminator(L, fake_ab)
 
         l1_loss = self.l1_loss(fake_ab, reel_ab)
-        gan_loss = self.cgan_loss(discriminator_confidence, True) # trick
+        gan_loss = self.cgan_loss(discriminator_confidence, True) # trick | comme BCE
 
         loss = l1_loss * self.gamma + gan_loss
 
@@ -54,6 +54,7 @@ class GanTrain():
     
     def discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
         #Compute the loss when samples are real images
+        real_ab.requires_grad_(True)
         pred_D_real = self.discriminator(L, real_ab)
         loss_over_real_img = self.cgan_loss(pred_D_real, True)
 

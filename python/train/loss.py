@@ -10,7 +10,7 @@ class cGANLoss(_Loss): #jsp pq les loss héritent de Module : https://pytorch.or
         super().__init__()
         self.real_label=torch.tensor(real_label)
         self.fake_label=torch.tensor(fake_label)
-        self.loss = nn.BCELoss() # nn.BCEWithLogitsLoss() si on retire la sigmoide du discriminator
+        self.loss = nn.BCEWithLogitsLoss()
     
 
 

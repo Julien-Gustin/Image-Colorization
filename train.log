@@ -1,12 +1,6 @@
-[Epoch 1/2] 
+[Epoch 1/20] 
 --- Generator ---
-	Train: loss: 16.7856 - L1 loss: 0.1535 - Discriminator Fake-True: 1.4307 - 
-	Test: loss: 20.5312 - L1 loss: 0.1977 - Discriminator Fake-True: 0.7572 - 
+	Train: loss: 10.9565 - L1 loss: 0.0951 - Discriminator Fake-True: 1.4480
+	Test: loss: 11.0450 - L1 loss: 0.0974 - Discriminator Fake-True: 1.3055
 --- Discriminator ---
-	train_loss: 1.2976 - test_loss: 1.3391
-[Epoch 2/2] 
---- Generator ---
-	Train: loss: 14.4326 - L1 loss: 0.1364 - Discriminator Fake-True: 0.7949 - 
-	Test: loss: 18.6051 - L1 loss: 0.1800 - Discriminator Fake-True: 0.6046 - 
---- Discriminator ---
-	train_loss: 1.4411 - test_loss: 1.0130
+	train_loss: 0.5414 - test_loss: 0.3399
