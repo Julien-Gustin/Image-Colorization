@@ -4,3 +4,9 @@
 	Test: loss: 11.0450 - L1 loss: 0.0974 - Discriminator Fake-True: 1.3055
 --- Discriminator ---
 	train_loss: 0.5414 - test_loss: 0.3399
+[Epoch 1/25] train_loss: 0.2244 - test_loss: 0.1733
+[Epoch 2/25] train_loss: 0.1753 - test_loss: 0.2043
+[Epoch 3/25] train_loss: 0.1768 - test_loss: 0.1384
+[Epoch 1/1] train_loss: 0.1513 - test_loss: 0.1654
+[Epoch 1/2] train_loss: 0.1214 - test_loss: 0.1301
+[Epoch 2/2] train_loss: 0.1750 - test_loss: 0.1387

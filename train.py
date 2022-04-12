@@ -13,7 +13,7 @@ np.random.seed(SEED)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-dataset = "data/Coco"
+dataset = "data/Coco-full"
 version = "2017"
 
 def init_weight(m): # https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/models/networks.py
