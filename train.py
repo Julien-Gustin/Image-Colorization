@@ -37,15 +37,17 @@ if __name__ == "__main__":
 
     print("\rSetup the networks...", end="\r")
         
-    generator = UNet(1, 2).to(device)
+    
     discriminator = PatchGAN(3).to(device)
 
     if args.load_generator:
+        generator = UNet(1, 2, stochastic=False).to(device)
         generator.load_state_dict(torch.load(args.load_generator, map_location=device))
 
     else:
+        generator = UNet(1, 2).to(device)
         generator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
-        
+
     discriminator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
 
 
