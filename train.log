@@ -2849,3 +2849,294 @@ Plop - beg
 	Test: loss: 5.1545 - L1 loss: 0.0446 - cGan loss: 0.6922
 --- Discriminator ---
 	train_loss: 1.3953 - test_loss: 0.7033
+-------Start-------
++++ R1 loss in training : tensor(1401.4270, grad_fn=<AddBackward0>)
+[Epoch 1/10] 
+--- Generator ---
+	Train: loss: 19.6554 - L1 loss: 0.1868 - cGan loss: 0.9763
+	Test: loss: 17.0023 - L1 loss: 0.1622 - cGan loss: 0.7777
+--- Discriminator ---
+	train_loss: 701.5791 - test_loss: 0.9188
+-------Start-------
++++ R1 loss in training : tensor(1064.6858, grad_fn=<AddBackward0>)
+[Epoch 1/10] 
+--- Generator ---
+	Train: loss: 22.0921 - L1 loss: 0.2131 - cGan loss: 0.7825
+	Test: loss: 18.6037 - L1 loss: 0.1801 - cGan loss: 0.5942
+--- Discriminator ---
+	train_loss: 533.1570 - test_loss: 0.9353
++++ R1 loss in training : tensor(358.6010, grad_fn=<AddBackward0>)
+[Epoch 2/10] 
+--- Generator ---
+	Train: loss: 18.6668 - L1 loss: 0.1798 - cGan loss: 0.6823
+	Test: loss: 16.4645 - L1 loss: 0.1584 - cGan loss: 0.6238
+--- Discriminator ---
+	train_loss: 180.2493 - test_loss: 0.9105
++++ R1 loss in training : tensor(143.6157, grad_fn=<AddBackward0>)
+[Epoch 3/10] 
+--- Generator ---
+	Train: loss: 16.4324 - L1 loss: 0.1578 - cGan loss: 0.6536
+	Test: loss: 14.6783 - L1 loss: 0.1403 - cGan loss: 0.6510
+--- Discriminator ---
+	train_loss: 72.7215 - test_loss: 0.8809
++++ R1 loss in training : tensor(71.2573, grad_fn=<AddBackward0>)
+[Epoch 4/10] 
+--- Generator ---
+	Train: loss: 14.6827 - L1 loss: 0.1401 - cGan loss: 0.6697
+	Test: loss: 13.2494 - L1 loss: 0.1257 - cGan loss: 0.6781
+--- Discriminator ---
+	train_loss: 36.4988 - test_loss: 0.8426
++++ R1 loss in training : tensor(42.2240, grad_fn=<AddBackward0>)
+[Epoch 5/10] 
+--- Generator ---
+	Train: loss: 13.2842 - L1 loss: 0.1259 - cGan loss: 0.6971
+	Test: loss: 12.1636 - L1 loss: 0.1147 - cGan loss: 0.6971
+--- Discriminator ---
+	train_loss: 21.9467 - test_loss: 0.8189
++++ R1 loss in training : tensor(28.2789, grad_fn=<AddBackward0>)
+[Epoch 6/10] 
+--- Generator ---
+	Train: loss: 12.1705 - L1 loss: 0.1146 - cGan loss: 0.7088
+	Test: loss: 11.4521 - L1 loss: 0.1074 - cGan loss: 0.7126
+--- Discriminator ---
+	train_loss: 14.9553 - test_loss: 0.8044
++++ R1 loss in training : tensor(21.2136, grad_fn=<AddBackward0>)
+[Epoch 7/10] 
+--- Generator ---
+	Train: loss: 11.4436 - L1 loss: 0.1072 - cGan loss: 0.7198
+	Test: loss: 10.9799 - L1 loss: 0.1026 - cGan loss: 0.7188
+--- Discriminator ---
+	train_loss: 11.4067 - test_loss: 0.7926
++++ R1 loss in training : tensor(16.9658, grad_fn=<AddBackward0>)
+[Epoch 8/10] 
+--- Generator ---
+	Train: loss: 10.9948 - L1 loss: 0.1028 - cGan loss: 0.7198
+	Test: loss: 10.5203 - L1 loss: 0.0980 - cGan loss: 0.7246
+--- Discriminator ---
+	train_loss: 9.2771 - test_loss: 0.7854
++++ R1 loss in training : tensor(14.2184, grad_fn=<AddBackward0>)
+[Epoch 9/10] 
+--- Generator ---
+	Train: loss: 10.5304 - L1 loss: 0.0981 - cGan loss: 0.7246
+	Test: loss: 10.0852 - L1 loss: 0.0936 - cGan loss: 0.7268
+--- Discriminator ---
+	train_loss: 7.8958 - test_loss: 0.7763
++++ R1 loss in training : tensor(12.2825, grad_fn=<AddBackward0>)
+[Epoch 10/10] 
+--- Generator ---
+	Train: loss: 10.1629 - L1 loss: 0.0943 - cGan loss: 0.7313
+	Test: loss: 9.8367 - L1 loss: 0.0911 - cGan loss: 0.7286
+--- Discriminator ---
+	train_loss: 6.9134 - test_loss: 0.7713
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+-------Start-------
++++ R1 loss in training : tensor(1145.7538, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 22.4052 - L1 loss: 0.2123 - cGan loss: 1.1797
+	Test: loss: 18.8961 - L1 loss: 0.1806 - cGan loss: 0.8314
+--- Discriminator ---
+	train_loss: 573.7608 - test_loss: 0.9778
++++ R1 loss in training : tensor(390.6939, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 18.9940 - L1 loss: 0.1803 - cGan loss: 0.9659
+	Test: loss: 16.6863 - L1 loss: 0.1584 - cGan loss: 0.8430
+--- Discriminator ---
+	train_loss: 196.3497 - test_loss: 0.9890
++++ R1 loss in training : tensor(156.8336, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.8300 - L1 loss: 0.1586 - cGan loss: 0.9672
+	Test: loss: 14.8117 - L1 loss: 0.1390 - cGan loss: 0.9074
+--- Discriminator ---
+	train_loss: 79.4133 - test_loss: 0.9768
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+-------Start-------
++++ R1 loss in training : tensor(1374.5051, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 20.8624 - L1 loss: 0.2005 - cGan loss: 0.8119
+	Test: loss: 17.8513 - L1 loss: 0.1727 - cGan loss: 0.5789
+--- Discriminator ---
+	train_loss: 688.0896 - test_loss: 0.9412
++++ R1 loss in training : tensor(521.5716, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 17.9094 - L1 loss: 0.1729 - cGan loss: 0.6233
+	Test: loss: 15.8675 - L1 loss: 0.1532 - cGan loss: 0.5460
+--- Discriminator ---
+	train_loss: 261.7390 - test_loss: 0.9326
++++ R1 loss in training : tensor(227.9698, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 15.9172 - L1 loss: 0.1529 - cGan loss: 0.6288
+	Test: loss: 14.2716 - L1 loss: 0.1370 - cGan loss: 0.5751
+--- Discriminator ---
+	train_loss: 114.9170 - test_loss: 0.8892
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+-------Start-------
++++ R1 loss in training : tensor(1230.9814, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 20.9339 - L1 loss: 0.1972 - cGan loss: 1.2096
+	Test: loss: 18.0182 - L1 loss: 0.1707 - cGan loss: 0.9463
+--- Discriminator ---
+	train_loss: 616.3523 - test_loss: 0.9502
++++ R1 loss in training : tensor(425.7638, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 18.0209 - L1 loss: 0.1703 - cGan loss: 0.9954
+	Test: loss: 16.1216 - L1 loss: 0.1515 - cGan loss: 0.9739
+--- Discriminator ---
+	train_loss: 213.8405 - test_loss: 0.9167
++++ R1 loss in training : tensor(176.3895, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.0994 - L1 loss: 0.1509 - cGan loss: 1.0044
+	Test: loss: 14.5234 - L1 loss: 0.1352 - cGan loss: 1.0061
+--- Discriminator ---
+	train_loss: 89.1200 - test_loss: 0.8896
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+-------Start-------
++++ R1 loss in training : tensor(1242.4834, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 21.7843 - L1 loss: 0.2084 - cGan loss: 0.9461
+	Test: loss: 18.3206 - L1 loss: 0.1770 - cGan loss: 0.6241
+--- Discriminator ---
+	train_loss: 622.0627 - test_loss: 0.9379
++++ R1 loss in training : tensor(416.6836, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 18.5172 - L1 loss: 0.1773 - cGan loss: 0.7822
+	Test: loss: 16.3764 - L1 loss: 0.1573 - cGan loss: 0.6431
+--- Discriminator ---
+	train_loss: 209.2710 - test_loss: 0.9222
++++ R1 loss in training : tensor(170.7737, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.4402 - L1 loss: 0.1571 - cGan loss: 0.7292
+	Test: loss: 14.7658 - L1 loss: 0.1405 - cGan loss: 0.7167
+--- Discriminator ---
+	train_loss: 86.3182 - test_loss: 0.8787
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+-------Start-------
++++ R1 loss in training : tensor(1259.3027, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 22.5915 - L1 loss: 0.2199 - cGan loss: 0.6045
+	Test: loss: 19.1677 - L1 loss: 0.1875 - cGan loss: 0.4185
+--- Discriminator ---
+	train_loss: 630.5524 - test_loss: 1.0301
++++ R1 loss in training : tensor(450.6362, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 19.2704 - L1 loss: 0.1877 - cGan loss: 0.4971
+	Test: loss: 16.9620 - L1 loss: 0.1649 - cGan loss: 0.4679
+--- Discriminator ---
+	train_loss: 226.3283 - test_loss: 0.9638
++++ R1 loss in training : tensor(190.7327, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.9567 - L1 loss: 0.1646 - cGan loss: 0.4977
+	Test: loss: 15.1919 - L1 loss: 0.1468 - cGan loss: 0.5073
+--- Discriminator ---
+	train_loss: 96.3330 - test_loss: 0.9210
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+torch.Size([2, 8, 256, 256])
+a shape : torch.Size([8, 256, 256])
+tensor(1.3489)
+b shape :  torch.Size([8, 256, 256])
+tensor(10.8189)
+524288
+[-127.  -116.8 -106.6  -96.4  -86.2  -76.   -65.8  -55.6  -45.4  -35.2
+  -25.   -14.8   -4.6    5.6   15.8   26.    36.2   46.4   56.6   66.8
+   77.    87.2   97.4  107.6  117.8  128. ]
+[2476 9744 3745 1403  980 1775 1204 3051 1487 1406 1058 1564 5973  920
+ 1130 1545 1435 1390 1186  967  935 1316 1063  901 1074]
+[0.0047226  0.01858521 0.00714302 0.00267601 0.0018692  0.00338554
+ 0.00229645 0.00581932 0.00283623 0.00268173 0.00201797 0.00298309
+ 0.01139259 0.00175476 0.0021553  0.00294685 0.00273705 0.00265121
+ 0.00226212 0.00184441 0.00178337 0.00251007 0.00202751 0.00171852
+ 0.00204849]
+a shape : torch.Size([640, 256, 256])
+b shape :  torch.Size([640, 256, 256])
+Predictions are not computed !
+0
+a shape : torch.Size([64, 256, 256])
+b shape :  torch.Size([64, 256, 256])
+preds[i+1].shape torch.Size([64, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 64, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+torch.Size([2, 64, 256, 256])
+a shape : torch.Size([64, 256, 256])
+tensor(1.6978)
+b shape :  torch.Size([64, 256, 256])
+tensor(5.9592)
+4194304
+[-127.  -116.8 -106.6  -96.4  -86.2  -76.   -65.8  -55.6  -45.4  -35.2
+  -25.   -14.8   -4.6    5.6   15.8   26.    36.2   46.4   56.6   66.8
+   77.    87.2   97.4  107.6  117.8  128. ]
+[ 28014  24507  24014  13500  14338  13748  13355  21245  17029  16540
+  10380  15021 577358  12402  10362  22563  15866  18434  11835  14012
+  18478  14980  15384  20070  20785]
+[0.00667906 0.00584292 0.00572538 0.00321865 0.00341845 0.00327778
+ 0.00318408 0.0050652  0.00406003 0.00394344 0.00247478 0.00358129
+ 0.13765287 0.00295687 0.00247049 0.00537944 0.00378275 0.00439501
+ 0.00282168 0.00334072 0.0044055  0.00357151 0.00366783 0.00478506
+ 0.00495553]
+torch.Size([64, 2, 256, 256])
+a shape : torch.Size([2, 256, 256])
+tensor(15.0742)
+b shape :  torch.Size([2, 256, 256])
+tensor(10.2972)
+131072
+[-127.  -116.8 -106.6  -96.4  -86.2  -76.   -65.8  -55.6  -45.4  -35.2
+  -25.   -14.8   -4.6    5.6   15.8   26.    36.2   46.4   56.6   66.8
+   77.    87.2   97.4  107.6  117.8  128. ]
+[227 255 243 228 261 284 262 311 256 298 296 241 354 329 370 352 405 378
+ 381 466 380 454 476 443 413]
+[5.41210175e-05 6.07967377e-05 5.79357147e-05 5.43594360e-05
+ 6.22272491e-05 6.77108765e-05 6.24656677e-05 7.41481781e-05
+ 6.10351562e-05 7.10487366e-05 7.05718994e-05 5.74588776e-05
+ 8.44001770e-05 7.84397125e-05 8.82148743e-05 8.39233398e-05
+ 9.65595245e-05 9.01222229e-05 9.08374786e-05 1.11103058e-04
+ 9.05990601e-05 1.08242035e-04 1.13487244e-04 1.05619431e-04
+ 9.84668732e-05]

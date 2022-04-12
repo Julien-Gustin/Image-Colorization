@@ -101,7 +101,7 @@ class CocoGrayscaleRGB(data.Dataset):
 ## for testing on cpu : to be removed
 class CocoLab_cpu(data.Dataset):
     """Coco dataset using L*a*b colorspace"""
-    def __init__(self, root_dir:str, version:str="2017", size:int=256, train:bool=True):
+    def __init__(self, root_dir:str, version:str="2017", size:int=256, train:bool=True, nbr_im=4):
         """Initializes a dataset containing colored images."""
         super().__init__()
         self.train = train
@@ -113,7 +113,7 @@ class CocoLab_cpu(data.Dataset):
             self.transform = transforms.Compose([transforms.Resize((size, size))])
 
         folder_name = "val{}".format(version)
-        self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))[:4]
+        self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))[:nbr_im]
         #self.data_paths = [glob(os.path.join(root_dir, folder_name, "*.jpg"))[1]]
         # if train:
         #     self.data_paths = [self.data_paths[1]]
