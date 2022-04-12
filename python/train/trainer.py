@@ -46,7 +46,6 @@ class Pretrain(Trainer):
                 self.optimizer_G.zero_grad()
                 loss.backward()
                 self.optimizer_G.step()
-                break
 
 
             with torch.no_grad():   
@@ -58,7 +57,6 @@ class Pretrain(Trainer):
                     pred = self.generator(L)
                     loss = self.L1_loss(pred, ab)
                     test_losses.append(loss.detach().to("cpu"))
-                    break
 
                 self.train_avg_loss.append(torch.mean(torch.Tensor(train_losses)))
                 self.test_avg_loss.append(torch.mean(torch.Tensor(test_losses)))
@@ -206,7 +204,6 @@ class GanTrain(Trainer):
                 train_d_losses.append(d_loss.detach().to("cpu"))  
                 train_L1_loss.append(L1_loss.detach().to("cpu"))
                 train_gan_loss.append(gan_loss.detach().to("cpu"))
-                break
 
             with torch.no_grad():   
                 # Do not set .eval()
@@ -221,7 +218,6 @@ class GanTrain(Trainer):
                     test_d_losses.append(d_loss.detach().to("cpu"))
                     test_L1_loss.append(L1_loss.detach().to("cpu"))
                     test_gan_loss.append(gan_loss.detach().to("cpu"))
-                    break
 
                 self.train_g_avg_loss.append(torch.mean(torch.Tensor(train_g_losses)).to("cpu"))
                 self.train_d_avg_loss.append(torch.mean(torch.Tensor(train_d_losses)).to("cpu"))
