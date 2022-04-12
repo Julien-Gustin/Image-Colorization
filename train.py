@@ -103,12 +103,13 @@ for epoch in range(num_epochs):
         train_gan_avg_loss.append(torch.mean(torch.Tensor(train_gan_loss)).to("cpu"))
         test_gan_avg_loss.append(torch.mean(torch.Tensor(test_gan_loss)).to("cpu"))
 
+
         print('[Epoch {}/{}] '.format(epoch+1, num_epochs) + "\n--- Generator ---\n" +
-                '\tTrain: loss: {:.4f} - '.format(train_g_avg_loss[-1]) +'L1 loss: {:.4F} - '.format(train_l1_avg_loss[-1]) +'Discriminator Fake-True: {:.4F}'.format(train_gan_avg_loss[-1]) +
-                '\n\tTest: loss: {:.4f} - '.format(test_g_avg_loss[-1]) +'L1 loss: {:.4F} - '.format(test_l1_avg_loss[-1]) +'Discriminator Fake-True: {:.4F}'.format(test_gan_avg_loss[-1]) +       
-                    "\n--- Discriminator ---\n" +
-                '\ttrain_loss: {:.4f} - '.format(train_d_avg_loss[-1]) +
-                'test_loss: {:.4f}'.format(test_d_avg_loss[-1]))
+                    '\tTrain: loss: {:.4f} - '.format(train_g_avg_loss[-1]) +'L1 loss: {:.4F} - '.format(train_l1_avg_loss[-1]) +'cGan loss: {:.4F}'.format(train_gan_avg_loss[-1]) +
+                    '\n\tTest: loss: {:.4f} - '.format(test_g_avg_loss[-1]) +'L1 loss: {:.4F} - '.format(test_l1_avg_loss[-1]) +'cGan loss: {:.4F}'.format(test_gan_avg_loss[-1]) +       
+                     "\n--- Discriminator ---\n" +
+                    '\ttrain_loss: {:.4f} - '.format(train_d_avg_loss[-1]) +
+                    'test_loss: {:.4f}'.format(test_d_avg_loss[-1]))
 
         multi_plot(testloader, generator, "figures/epoch_{}.png".format(epoch+1), columns=4)
         torch.save(generator.state_dict(), "saved_models/generator")
@@ -136,17 +137,17 @@ plt.ylabel('Loss')
 plt.savefig("figures/discriminator_losses.png")
 
 plt.figure(figsize=(16, 6))
-plt.title('Generator - Discriminator Fake-True losses')
+plt.title('Generator - cGan loss')
 plt.plot(train_gan_avg_loss)
 plt.plot(test_gan_avg_loss)
 plt.grid()
 plt.legend(['Train', 'Test'])
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
-plt.savefig("figures/generator_fake_true.png")
+plt.savefig("figures/generator_cGan.png")
 
 plt.figure(figsize=(16, 6))
-plt.title('Generator vs Discriminator')
+plt.title('Generator vs Discriminator - cGan loss')
 plt.plot(test_gan_avg_loss)
 plt.plot(test_d_avg_loss)
 plt.grid()
@@ -157,11 +158,10 @@ plt.savefig("figures/generator_vs_discriminator.png")
 
 plt.figure(figsize=(16, 6))
 plt.title('Generator test losses')
-plt.plot(test_g_avg_loss)
 plt.plot(test_l1_avg_loss)
 plt.plot(test_gan_avg_loss)
 plt.grid()
-plt.legend(['100 * L1 + Fake-True loss','L1', 'Fake-True loss'])
+plt.legend(['L1', 'cGan loss'])
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.savefig("figures/Generator_testlosses.png")
