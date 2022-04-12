@@ -1,8 +1,7 @@
-import enum
-import numpy as np
-from matplotlib import pyplot as plt
 import torch
-import torch.utils.data as data
+import numpy as np
+
+from matplotlib import pyplot as plt
 
 class Histogrammer():
     def __init__(self, L, ab, models, batch_size, bins=25) -> None:

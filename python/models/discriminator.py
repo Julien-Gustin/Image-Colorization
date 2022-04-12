@@ -1,6 +1,6 @@
 import torch 
-from torch import nn 
 
+from torch import nn 
 
 class PatchGAN(nn.Module):
     def __init__(self, channels) -> None:

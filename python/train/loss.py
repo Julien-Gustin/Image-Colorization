@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+
 from torch.nn.modules.loss import _Loss
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

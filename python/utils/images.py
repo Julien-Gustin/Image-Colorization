@@ -28,7 +28,7 @@ def show_images(img):
     plt.imshow(transforms.functional.to_pil_image(img))
     plt.show()
 
-def multi_plot(loader, generator, file_name, columns=4):
+def multi_plot(loader, generator, file_name=None, columns=4):
     L, real_ab = next(iter(loader))
 
     real_Lab = torch.concat((L, real_ab), 1)
@@ -49,5 +49,6 @@ def multi_plot(loader, generator, file_name, columns=4):
         ax.axes.xaxis.set_visible(False)
         ax.axes.yaxis.set_visible(False)
         plt.imshow(img)
-        
-    plt.savefig(file_name)
+
+    if file_name is not None:
+        plt.savefig(file_name)

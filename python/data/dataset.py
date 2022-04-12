@@ -1,6 +1,6 @@
-import torch.utils.data as data
 import os
 import numpy as np
+import torch.utils.data as data
 
 from skimage import color
 from PIL import Image, ImageOps

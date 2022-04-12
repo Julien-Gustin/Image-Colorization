@@ -1,6 +1,5 @@
-import torch.nn as nn
 import torch 
-
+import torch.nn as nn
 # Useful links:
 
 #https://arxiv.org/pdf/1502.03167.pdf
