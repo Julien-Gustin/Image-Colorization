@@ -4,293 +4,3139 @@
 	Test: loss: 11.0450 - L1 loss: 0.0974 - Discriminator Fake-True: 1.3055
 --- Discriminator ---
 	train_loss: 0.5414 - test_loss: 0.3399
-[Epoch 1/25] train_loss: 0.2244 - test_loss: 0.1733
-[Epoch 2/25] train_loss: 0.1753 - test_loss: 0.2043
-[Epoch 3/25] train_loss: 0.1768 - test_loss: 0.1384
-[Epoch 1/1] train_loss: 0.1513 - test_loss: 0.1654
-[Epoch 1/2] train_loss: 0.1214 - test_loss: 0.1301
-[Epoch 2/2] train_loss: 0.1750 - test_loss: 0.1387
-Looking in indexes: https://pypi.org/simple, https://packagecloud.io/cytomine-uliege/Cytomine-python-client/pypi/simple
-Requirement already satisfied: scikit-image in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (0.16.2)
-Requirement already satisfied: scipy>=0.19.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from scikit-image) (1.7.3)
-Requirement already satisfied: matplotlib!=3.0.0,>=2.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from scikit-image) (3.5.1)
-Requirement already satisfied: networkx>=2.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from scikit-image) (2.7.1)
-Requirement already satisfied: pillow>=4.3.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from scikit-image) (8.4.0)
-Requirement already satisfied: imageio>=2.3.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from scikit-image) (2.9.0)
-Requirement already satisfied: PyWavelets>=0.4.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from scikit-image) (1.1.1)
-Requirement already satisfied: numpy in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from imageio>=2.3.0->scikit-image) (1.21.2)
-Requirement already satisfied: packaging>=20.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib!=3.0.0,>=2.0.0->scikit-image) (21.3)
-Requirement already satisfied: python-dateutil>=2.7 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib!=3.0.0,>=2.0.0->scikit-image) (2.8.2)
-Requirement already satisfied: kiwisolver>=1.0.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib!=3.0.0,>=2.0.0->scikit-image) (1.3.2)
-Requirement already satisfied: fonttools>=4.22.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib!=3.0.0,>=2.0.0->scikit-image) (4.25.0)
-Requirement already satisfied: pyparsing>=2.2.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib!=3.0.0,>=2.0.0->scikit-image) (3.0.4)
-Requirement already satisfied: cycler>=0.10 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib!=3.0.0,>=2.0.0->scikit-image) (0.11.0)
-Requirement already satisfied: six>=1.5 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from python-dateutil>=2.7->matplotlib!=3.0.0,>=2.0.0->scikit-image) (1.16.0)
-Looking in indexes: https://pypi.org/simple, https://packagecloud.io/cytomine-uliege/Cytomine-python-client/pypi/simple
-Requirement already satisfied: IProgress in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (0.4)
-Requirement already satisfied: six in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from IProgress) (1.16.0)
-Looking in indexes: https://pypi.org/simple, https://packagecloud.io/cytomine-uliege/Cytomine-python-client/pypi/simple
-Requirement already satisfied: jupyter in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (1.0.0)
-Requirement already satisfied: ipykernel in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter) (6.9.1)
-Requirement already satisfied: ipywidgets in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter) (7.6.5)
-Requirement already satisfied: qtconsole in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter) (5.2.2)
-Requirement already satisfied: notebook in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter) (6.4.8)
-Requirement already satisfied: nbconvert in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter) (6.3.0)
-Requirement already satisfied: jupyter-console in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter) (6.4.0)
-Requirement already satisfied: debugpy<2.0,>=1.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel->jupyter) (1.5.1)
-Requirement already satisfied: matplotlib-inline<0.2.0,>=0.1.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel->jupyter) (0.1.3)
-Requirement already satisfied: traitlets<6.0,>=5.1.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel->jupyter) (5.1.1)
-Requirement already satisfied: jupyter-client<8.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel->jupyter) (7.1.2)
-Requirement already satisfied: ipython>=7.23.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel->jupyter) (8.0.1)
-Requirement already satisfied: tornado<7.0,>=4.2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel->jupyter) (6.1)
-Requirement already satisfied: nest-asyncio in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel->jupyter) (1.5.4)
-Requirement already satisfied: pexpect>4.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (4.8.0)
-Requirement already satisfied: setuptools>=18.5 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (58.0.4)
-Requirement already satisfied: stack-data in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.2.0)
-Requirement already satisfied: backcall in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.2.0)
-Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (3.0.27)
-Requirement already satisfied: jedi>=0.16 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.18.1)
-Requirement already satisfied: pickleshare in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.7.5)
-Requirement already satisfied: pygments in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (2.11.2)
-Requirement already satisfied: black in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (22.3.0)
-Requirement already satisfied: decorator in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (5.1.1)
-Requirement already satisfied: parso<0.9.0,>=0.8.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jedi>=0.16->ipython>=7.23.1->ipykernel->jupyter) (0.8.3)
-Requirement already satisfied: python-dateutil>=2.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel->jupyter) (2.8.2)
-Requirement already satisfied: jupyter-core>=4.6.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel->jupyter) (4.9.2)
-Requirement already satisfied: entrypoints in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel->jupyter) (0.4)
-Requirement already satisfied: pyzmq>=13 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel->jupyter) (22.3.0)
-Requirement already satisfied: ptyprocess>=0.5 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pexpect>4.3->ipython>=7.23.1->ipykernel->jupyter) (0.7.0)
-Requirement already satisfied: wcwidth in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=7.23.1->ipykernel->jupyter) (0.2.5)
-Requirement already satisfied: six>=1.5 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from python-dateutil>=2.1->jupyter-client<8.0->ipykernel->jupyter) (1.16.0)
-Requirement already satisfied: pathspec>=0.9.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=7.23.1->ipykernel->jupyter) (0.9.0)
-Requirement already satisfied: mypy-extensions>=0.4.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=7.23.1->ipykernel->jupyter) (0.4.3)
-Requirement already satisfied: typing-extensions>=3.10.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=7.23.1->ipykernel->jupyter) (3.10.0.2)
-Requirement already satisfied: tomli>=1.1.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=7.23.1->ipykernel->jupyter) (2.0.1)
-Requirement already satisfied: platformdirs>=2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=7.23.1->ipykernel->jupyter) (2.5.1)
-Requirement already satisfied: click>=8.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=7.23.1->ipykernel->jupyter) (8.1.2)
-Requirement already satisfied: nbformat>=4.2.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets->jupyter) (5.1.3)
-Requirement already satisfied: widgetsnbextension~=3.5.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets->jupyter) (3.5.2)
-Requirement already satisfied: ipython-genutils~=0.2.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets->jupyter) (0.2.0)
-Requirement already satisfied: jupyterlab-widgets>=1.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets->jupyter) (1.0.0)
-Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbformat>=4.2.0->ipywidgets->jupyter) (3.2.0)
-Requirement already satisfied: pyrsistent>=0.14.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->jupyter) (0.18.0)
-Requirement already satisfied: attrs>=17.4.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->jupyter) (21.4.0)
-Requirement already satisfied: Send2Trash>=1.8.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook->jupyter) (1.8.0)
-Requirement already satisfied: prometheus-client in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook->jupyter) (0.13.1)
-Requirement already satisfied: argon2-cffi in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook->jupyter) (21.3.0)
-Requirement already satisfied: terminado>=0.8.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook->jupyter) (0.13.1)
-Requirement already satisfied: jinja2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook->jupyter) (3.0.2)
-Requirement already satisfied: argon2-cffi-bindings in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from argon2-cffi->notebook->jupyter) (21.2.0)
-Requirement already satisfied: cffi>=1.0.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from argon2-cffi-bindings->argon2-cffi->notebook->jupyter) (1.15.0)
-Requirement already satisfied: pycparser in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi->notebook->jupyter) (2.21)
-Requirement already satisfied: MarkupSafe>=2.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jinja2->notebook->jupyter) (2.0.1)
-Requirement already satisfied: jupyterlab-pygments in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->jupyter) (0.1.2)
-Requirement already satisfied: mistune<2,>=0.8.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->jupyter) (0.8.4)
-Requirement already satisfied: pandocfilters>=1.4.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->jupyter) (1.5.0)
-Requirement already satisfied: bleach in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->jupyter) (4.1.0)
-Requirement already satisfied: nbclient<0.6.0,>=0.5.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->jupyter) (0.5.11)
-Requirement already satisfied: defusedxml in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->jupyter) (0.7.1)
-Requirement already satisfied: testpath in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->jupyter) (0.5.0)
-Requirement already satisfied: webencodings in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from bleach->nbconvert->jupyter) (0.5.1)
-Requirement already satisfied: packaging in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from bleach->nbconvert->jupyter) (21.3)
-Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from packaging->bleach->nbconvert->jupyter) (3.0.4)
-Requirement already satisfied: qtpy in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from qtconsole->jupyter) (1.11.2)
-Requirement already satisfied: asttokens in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (2.0.5)
-Requirement already satisfied: executing in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (0.8.2)
-Requirement already satisfied: pure-eval in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (0.2.2)
-Looking in indexes: https://pypi.org/simple, https://packagecloud.io/cytomine-uliege/Cytomine-python-client/pypi/simple
-Requirement already satisfied: ipywidgets in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (7.6.5)
-Requirement already satisfied: widgetsnbextension in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (3.5.2)
-Requirement already satisfied: pandas-profiling in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (3.1.0)
-Requirement already satisfied: ipykernel>=4.5.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets) (6.9.1)
-Requirement already satisfied: jupyterlab-widgets>=1.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets) (1.0.0)
-Requirement already satisfied: traitlets>=4.3.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets) (5.1.1)
-Requirement already satisfied: nbformat>=4.2.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets) (5.1.3)
-Requirement already satisfied: ipython-genutils~=0.2.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets) (0.2.0)
-Requirement already satisfied: ipython>=4.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipywidgets) (8.0.1)
-Requirement already satisfied: notebook>=4.4.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from widgetsnbextension) (6.4.8)
-Requirement already satisfied: pydantic>=1.8.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (1.9.0)
-Requirement already satisfied: phik>=0.11.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (0.12.2)
-Requirement already satisfied: matplotlib>=3.2.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (3.5.1)
-Requirement already satisfied: tangled-up-in-unicode==0.1.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (0.1.0)
-Requirement already satisfied: jinja2>=2.11.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (3.0.2)
-Requirement already satisfied: tqdm>=4.48.2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (4.64.0)
-Requirement already satisfied: PyYAML>=5.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (6.0)
-Requirement already satisfied: htmlmin>=0.1.12 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (0.1.12)
-Requirement already satisfied: markupsafe~=2.0.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (2.0.1)
-Requirement already satisfied: visions[type_image_path]==0.7.4 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (0.7.4)
-Requirement already satisfied: seaborn>=0.10.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (0.11.2)
-Requirement already satisfied: multimethod>=1.4 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (1.8)
-Requirement already satisfied: numpy>=1.16.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (1.21.2)
-Requirement already satisfied: requests>=2.24.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (2.27.1)
-Requirement already satisfied: missingno>=0.4.2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (0.5.1)
-Requirement already satisfied: pandas!=1.0.0,!=1.0.1,!=1.0.2,!=1.1.0,>=0.25.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (1.4.2)
-Requirement already satisfied: scipy>=1.4.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (1.7.3)
-Requirement already satisfied: joblib~=1.0.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas-profiling) (1.0.1)
-Requirement already satisfied: networkx>=2.4 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from visions[type_image_path]==0.7.4->pandas-profiling) (2.7.1)
-Requirement already satisfied: attrs>=19.3.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from visions[type_image_path]==0.7.4->pandas-profiling) (21.4.0)
-Requirement already satisfied: Pillow in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from visions[type_image_path]==0.7.4->pandas-profiling) (8.4.0)
-Requirement already satisfied: imagehash in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from visions[type_image_path]==0.7.4->pandas-profiling) (4.2.1)
-Requirement already satisfied: jupyter-client<8.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel>=4.5.1->ipywidgets) (7.1.2)
-Requirement already satisfied: matplotlib-inline<0.2.0,>=0.1.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel>=4.5.1->ipywidgets) (0.1.3)
-Requirement already satisfied: debugpy<2.0,>=1.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel>=4.5.1->ipywidgets) (1.5.1)
-Requirement already satisfied: tornado<7.0,>=4.2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel>=4.5.1->ipywidgets) (6.1)
-Requirement already satisfied: nest-asyncio in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipykernel>=4.5.1->ipywidgets) (1.5.4)
-Requirement already satisfied: setuptools>=18.5 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (58.0.4)
-Requirement already satisfied: stack-data in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (0.2.0)
-Requirement already satisfied: pygments in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (2.11.2)
-Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (3.0.27)
-Requirement already satisfied: pexpect>4.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (4.8.0)
-Requirement already satisfied: decorator in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (5.1.1)
-Requirement already satisfied: black in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (22.3.0)
-Requirement already satisfied: backcall in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (0.2.0)
-Requirement already satisfied: jedi>=0.16 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (0.18.1)
-Requirement already satisfied: pickleshare in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from ipython>=4.0.0->ipywidgets) (0.7.5)
-Requirement already satisfied: parso<0.9.0,>=0.8.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jedi>=0.16->ipython>=4.0.0->ipywidgets) (0.8.3)
-Requirement already satisfied: pyzmq>=13 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel>=4.5.1->ipywidgets) (22.3.0)
-Requirement already satisfied: entrypoints in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel>=4.5.1->ipywidgets) (0.4)
-Requirement already satisfied: jupyter-core>=4.6.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel>=4.5.1->ipywidgets) (4.9.2)
-Requirement already satisfied: python-dateutil>=2.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jupyter-client<8.0->ipykernel>=4.5.1->ipywidgets) (2.8.2)
-Requirement already satisfied: fonttools>=4.22.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib>=3.2.0->pandas-profiling) (4.25.0)
-Requirement already satisfied: cycler>=0.10 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib>=3.2.0->pandas-profiling) (0.11.0)
-Requirement already satisfied: kiwisolver>=1.0.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib>=3.2.0->pandas-profiling) (1.3.2)
-Requirement already satisfied: packaging>=20.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib>=3.2.0->pandas-profiling) (21.3)
-Requirement already satisfied: pyparsing>=2.2.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from matplotlib>=3.2.0->pandas-profiling) (3.0.4)
-Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbformat>=4.2.0->ipywidgets) (3.2.0)
-Requirement already satisfied: pyrsistent>=0.14.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets) (0.18.0)
-Requirement already satisfied: six>=1.11.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets) (1.16.0)
-Requirement already satisfied: prometheus-client in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook>=4.4.1->widgetsnbextension) (0.13.1)
-Requirement already satisfied: Send2Trash>=1.8.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook>=4.4.1->widgetsnbextension) (1.8.0)
-Requirement already satisfied: nbconvert in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook>=4.4.1->widgetsnbextension) (6.3.0)
-Requirement already satisfied: argon2-cffi in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook>=4.4.1->widgetsnbextension) (21.3.0)
-Requirement already satisfied: terminado>=0.8.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from notebook>=4.4.1->widgetsnbextension) (0.13.1)
-Requirement already satisfied: pytz>=2020.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pandas!=1.0.0,!=1.0.1,!=1.0.2,!=1.1.0,>=0.25.3->pandas-profiling) (2022.1)
-Requirement already satisfied: ptyprocess>=0.5 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pexpect>4.3->ipython>=4.0.0->ipywidgets) (0.7.0)
-Requirement already satisfied: wcwidth in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0->ipywidgets) (0.2.5)
-Requirement already satisfied: typing-extensions>=3.7.4.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from pydantic>=1.8.1->pandas-profiling) (3.10.0.2)
-Requirement already satisfied: certifi>=2017.4.17 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from requests>=2.24.0->pandas-profiling) (2021.10.8)
-Requirement already satisfied: charset-normalizer~=2.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from requests>=2.24.0->pandas-profiling) (2.0.12)
-Requirement already satisfied: urllib3<1.27,>=1.21.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from requests>=2.24.0->pandas-profiling) (1.26.8)
-Requirement already satisfied: idna<4,>=2.5 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from requests>=2.24.0->pandas-profiling) (3.3)
-Requirement already satisfied: argon2-cffi-bindings in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from argon2-cffi->notebook>=4.4.1->widgetsnbextension) (21.2.0)
-Requirement already satisfied: cffi>=1.0.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from argon2-cffi-bindings->argon2-cffi->notebook>=4.4.1->widgetsnbextension) (1.15.0)
-Requirement already satisfied: pycparser in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi->notebook>=4.4.1->widgetsnbextension) (2.21)
-Requirement already satisfied: pathspec>=0.9.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=4.0.0->ipywidgets) (0.9.0)
-Requirement already satisfied: tomli>=1.1.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=4.0.0->ipywidgets) (2.0.1)
-Requirement already satisfied: mypy-extensions>=0.4.3 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=4.0.0->ipywidgets) (0.4.3)
-Requirement already satisfied: platformdirs>=2 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=4.0.0->ipywidgets) (2.5.1)
-Requirement already satisfied: click>=8.0.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from black->ipython>=4.0.0->ipywidgets) (8.1.2)
-Requirement already satisfied: PyWavelets in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from imagehash->visions[type_image_path]==0.7.4->pandas-profiling) (1.1.1)
-Requirement already satisfied: mistune<2,>=0.8.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension) (0.8.4)
-Requirement already satisfied: bleach in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension) (4.1.0)
-Requirement already satisfied: nbclient<0.6.0,>=0.5.0 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension) (0.5.11)
-Requirement already satisfied: testpath in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension) (0.5.0)
-Requirement already satisfied: defusedxml in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension) (0.7.1)
-Requirement already satisfied: pandocfilters>=1.4.1 in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension) (1.5.0)
-Requirement already satisfied: jupyterlab-pygments in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension) (0.1.2)
-Requirement already satisfied: webencodings in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from bleach->nbconvert->notebook>=4.4.1->widgetsnbextension) (0.5.1)
-Requirement already satisfied: executing in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from stack-data->ipython>=4.0.0->ipywidgets) (0.8.2)
-Requirement already satisfied: asttokens in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from stack-data->ipython>=4.0.0->ipywidgets) (2.0.5)
-Requirement already satisfied: pure-eval in /home/julien/miniconda3/envs/deep_learning/lib/python3.9/site-packages (from stack-data->ipython>=4.0.0->ipywidgets) (0.2.2)
-Enabling notebook extension jupyter-js-widgets/extension...
-      - Validating: [32mOK[0m
-UNet2(
-  (last): Up(
-    (up): Sequential(
-      (0): ReLU(inplace=True)
-      (1): ConvTranspose2d(128, 2, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
-    )
-  )
-)
-UNet2(
-  (last): Up(
-    (up): Sequential(
-      (0): ReLU(inplace=True)
-      (1): ConvTranspose2d(128, 2, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
-    )
-  )
-)
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-              ReLU-1        [-1, 128, 128, 128]               0
-   ConvTranspose2d-2          [-1, 2, 256, 256]           4,098
-                Up-3          [-1, 2, 256, 256]               0
-================================================================
-Total params: 4,098
-Trainable params: 4,098
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.25
-Forward/backward pass size (MB): 18.00
-Params size (MB): 0.02
-Estimated Total Size (MB): 18.27
-----------------------------------------------------------------
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-              ReLU-1        [-1, 128, 128, 128]               0
-   ConvTranspose2d-2          [-1, 2, 256, 256]           4,098
-                Up-3          [-1, 2, 256, 256]               0
-================================================================
-Total params: 4,098
-Trainable params: 4,098
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.25
-Forward/backward pass size (MB): 18.00
-Params size (MB): 0.02
-Estimated Total Size (MB): 18.27
-----------------------------------------------------------------
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-            Conv2d-1            [-1, 1, 16, 16]              10
-              ReLU-2            [-1, 1, 16, 16]               0
-            Conv2d-3            [-1, 1, 28, 28]              10
-              ReLU-4            [-1, 1, 28, 28]               0
-================================================================
-Total params: 20
-Trainable params: 20
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.77
-Forward/backward pass size (MB): 0.02
-Params size (MB): 0.00
-Estimated Total Size (MB): 0.78
-----------------------------------------------------------------
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-            Conv2d-1            [-1, 1, 16, 16]              10
-              ReLU-2            [-1, 1, 16, 16]               0
-            Conv2d-3            [-1, 1, 28, 28]              10
-              ReLU-4            [-1, 1, 28, 28]               0
-================================================================
-Total params: 20
-Trainable params: 20
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.77
-Forward/backward pass size (MB): 0.02
-Params size (MB): 0.00
-Estimated Total Size (MB): 0.78
-----------------------------------------------------------------
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-            Conv2d-1            [-1, 1, 16, 16]              10
-              ReLU-2            [-1, 1, 16, 16]               0
-            Conv2d-3            [-1, 1, 28, 28]              10
-              ReLU-4            [-1, 1, 28, 28]               0
-================================================================
-Total params: 20
-Trainable params: 20
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.77
-Forward/backward pass size (MB): 0.02
-Params size (MB): 0.00
-Estimated Total Size (MB): 0.78
-----------------------------------------------------------------
-None
+[Epoch 1/100] 
+--- Generator ---
+	Train: loss: 24.0764 - L1 loss: 0.2211 - cGan loss: 1.9712
+	Test: loss: 20.3106 - L1 loss: 0.1925 - cGan loss: 1.0597
+--- Discriminator ---
+	train_loss: 0.8531 - test_loss: 1.6753
+[Epoch 1/100] 
+--- Generator ---
+	Train: loss: 21.9697 - L1 loss: 0.2045 - cGan loss: 1.5201
+	Test: loss: 18.0061 - L1 loss: 0.1738 - cGan loss: 0.6220
+--- Discriminator ---
+	train_loss: 0.8533 - test_loss: 1.1670
+[Epoch 2/100] 
+--- Generator ---
+	Train: loss: 18.2478 - L1 loss: 0.1739 - cGan loss: 0.8590
+	Test: loss: 15.7659 - L1 loss: 0.1534 - cGan loss: 0.4304
+--- Discriminator ---
+	train_loss: 1.1697 - test_loss: 1.0681
+[Epoch 3/100] 
+--- Generator ---
+	Train: loss: 16.5255 - L1 loss: 0.1537 - cGan loss: 1.1554
+	Test: loss: 14.2912 - L1 loss: 0.1365 - cGan loss: 0.6394
+--- Discriminator ---
+	train_loss: 1.0657 - test_loss: 1.0283
+[Epoch 4/100] 
+--- Generator ---
+	Train: loss: 15.0492 - L1 loss: 0.1364 - cGan loss: 1.4050
+	Test: loss: 13.3976 - L1 loss: 0.1236 - cGan loss: 1.0413
+--- Discriminator ---
+	train_loss: 0.9959 - test_loss: 1.0650
+[Epoch 5/100] 
+--- Generator ---
+	Train: loss: 13.7313 - L1 loss: 0.1241 - cGan loss: 1.3194
+	Test: loss: 12.2142 - L1 loss: 0.1138 - cGan loss: 0.8325
+--- Discriminator ---
+	train_loss: 1.0761 - test_loss: 0.8991
+[Epoch 6/100] 
+--- Generator ---
+	Train: loss: 12.2967 - L1 loss: 0.1139 - cGan loss: 0.9033
+	Test: loss: 11.4303 - L1 loss: 0.1071 - cGan loss: 0.7182
+--- Discriminator ---
+	train_loss: 0.9133 - test_loss: 0.8219
+[Epoch 7/100] 
+--- Generator ---
+	Train: loss: 11.5825 - L1 loss: 0.1068 - cGan loss: 0.8987
+	Test: loss: 11.0668 - L1 loss: 0.1031 - cGan loss: 0.7565
+--- Discriminator ---
+	train_loss: 0.8190 - test_loss: 0.7819
+[Epoch 8/100] 
+--- Generator ---
+	Train: loss: 11.2563 - L1 loss: 0.1029 - cGan loss: 0.9703
+	Test: loss: 10.6909 - L1 loss: 0.0991 - cGan loss: 0.7841
+--- Discriminator ---
+	train_loss: 0.7787 - test_loss: 0.7475
+[Epoch 9/100] 
+--- Generator ---
+	Train: loss: 10.7658 - L1 loss: 0.0984 - cGan loss: 0.9219
+	Test: loss: 10.3327 - L1 loss: 0.0954 - cGan loss: 0.7963
+--- Discriminator ---
+	train_loss: 0.7170 - test_loss: 0.7058
+[Epoch 10/100] 
+--- Generator ---
+	Train: loss: 10.4640 - L1 loss: 0.0952 - cGan loss: 0.9433
+	Test: loss: 10.0309 - L1 loss: 0.0927 - cGan loss: 0.7640
+--- Discriminator ---
+	train_loss: 0.6900 - test_loss: 0.6841
+[Epoch 11/100] 
+--- Generator ---
+	Train: loss: 10.1782 - L1 loss: 0.0927 - cGan loss: 0.9094
+	Test: loss: 9.8560 - L1 loss: 0.0906 - cGan loss: 0.7921
+--- Discriminator ---
+	train_loss: 0.6866 - test_loss: 0.6595
+[Epoch 12/100] 
+--- Generator ---
+	Train: loss: 10.1502 - L1 loss: 0.0907 - cGan loss: 1.0838
+	Test: loss: 9.8622 - L1 loss: 0.0897 - cGan loss: 0.8944
+--- Discriminator ---
+	train_loss: 0.6643 - test_loss: 0.7334
+[Epoch 13/100] 
+--- Generator ---
+	Train: loss: 10.0396 - L1 loss: 0.0897 - cGan loss: 1.0705
+	Test: loss: 9.7782 - L1 loss: 0.0885 - cGan loss: 0.9294
+--- Discriminator ---
+	train_loss: 0.7279 - test_loss: 0.7255
+[Epoch 14/100] 
+--- Generator ---
+	Train: loss: 9.8449 - L1 loss: 0.0879 - cGan loss: 1.0509
+	Test: loss: 9.4847 - L1 loss: 0.0864 - cGan loss: 0.8456
+--- Discriminator ---
+	train_loss: 0.6877 - test_loss: 0.6394
+[Epoch 15/100] 
+--- Generator ---
+	Train: loss: 9.6276 - L1 loss: 0.0864 - cGan loss: 0.9865
+	Test: loss: 9.2534 - L1 loss: 0.0839 - cGan loss: 0.8654
+--- Discriminator ---
+	train_loss: 0.6449 - test_loss: 0.5878
+[Epoch 16/100] 
+--- Generator ---
+	Train: loss: 9.3345 - L1 loss: 0.0836 - cGan loss: 0.9728
+	Test: loss: 9.1457 - L1 loss: 0.0831 - cGan loss: 0.8344
+--- Discriminator ---
+	train_loss: 0.5878 - test_loss: 0.5839
+[Epoch 17/100] 
+--- Generator ---
+	Train: loss: 9.3199 - L1 loss: 0.0831 - cGan loss: 1.0055
+	Test: loss: 9.0550 - L1 loss: 0.0819 - cGan loss: 0.8689
+--- Discriminator ---
+	train_loss: 0.5937 - test_loss: 0.5941
+[Epoch 18/100] 
+--- Generator ---
+	Train: loss: 9.2653 - L1 loss: 0.0822 - cGan loss: 1.0459
+	Test: loss: 8.8961 - L1 loss: 0.0805 - cGan loss: 0.8418
+--- Discriminator ---
+	train_loss: 0.5622 - test_loss: 0.5598
+[Epoch 19/100] 
+--- Generator ---
+	Train: loss: 9.1641 - L1 loss: 0.0807 - cGan loss: 1.0950
+	Test: loss: 8.9438 - L1 loss: 0.0798 - cGan loss: 0.9624
+--- Discriminator ---
+	train_loss: 0.5607 - test_loss: 0.5426
+[Epoch 20/100] 
+--- Generator ---
+	Train: loss: 8.9833 - L1 loss: 0.0782 - cGan loss: 1.1597
+	Test: loss: 8.7975 - L1 loss: 0.0782 - cGan loss: 0.9804
+--- Discriminator ---
+	train_loss: 0.5404 - test_loss: 0.5824
+[Epoch 21/100] 
+--- Generator ---
+	Train: loss: 8.8757 - L1 loss: 0.0774 - cGan loss: 1.1362
+	Test: loss: 8.7024 - L1 loss: 0.0772 - cGan loss: 0.9788
+--- Discriminator ---
+	train_loss: 0.5881 - test_loss: 0.6255
+[Epoch 22/100] 
+--- Generator ---
+	Train: loss: 8.8085 - L1 loss: 0.0766 - cGan loss: 1.1448
+	Test: loss: 8.6866 - L1 loss: 0.0772 - cGan loss: 0.9668
+--- Discriminator ---
+	train_loss: 0.5988 - test_loss: 0.5729
+[Epoch 23/100] 
+--- Generator ---
+	Train: loss: 8.7673 - L1 loss: 0.0761 - cGan loss: 1.1597
+	Test: loss: 8.7683 - L1 loss: 0.0770 - cGan loss: 1.0639
+--- Discriminator ---
+	train_loss: 0.5471 - test_loss: 0.5204
+[Epoch 24/100] 
+--- Generator ---
+	Train: loss: 8.9037 - L1 loss: 0.0771 - cGan loss: 1.1974
+	Test: loss: 8.9750 - L1 loss: 0.0795 - cGan loss: 1.0291
+--- Discriminator ---
+	train_loss: 0.4902 - test_loss: 0.5299
+[Epoch 25/100] 
+--- Generator ---
+	Train: loss: 9.0292 - L1 loss: 0.0783 - cGan loss: 1.2027
+	Test: loss: 8.7942 - L1 loss: 0.0767 - cGan loss: 1.1246
+--- Discriminator ---
+	train_loss: 0.4782 - test_loss: 0.5000
+[Epoch 26/100] 
+--- Generator ---
+	Train: loss: 8.7432 - L1 loss: 0.0756 - cGan loss: 1.1787
+	Test: loss: 8.4856 - L1 loss: 0.0749 - cGan loss: 0.9959
+--- Discriminator ---
+	train_loss: 0.4932 - test_loss: 0.5064
+[Epoch 27/100] 
+--- Generator ---
+	Train: loss: 8.5295 - L1 loss: 0.0732 - cGan loss: 1.2067
+	Test: loss: 8.0815 - L1 loss: 0.0705 - cGan loss: 1.0340
+--- Discriminator ---
+	train_loss: 0.4802 - test_loss: 0.4920
+[Epoch 28/100] 
+--- Generator ---
+	Train: loss: 8.1772 - L1 loss: 0.0698 - cGan loss: 1.2016
+	Test: loss: 7.7072 - L1 loss: 0.0673 - cGan loss: 0.9788
+--- Discriminator ---
+	train_loss: 0.4800 - test_loss: 0.4968
+[Epoch 29/100] 
+--- Generator ---
+	Train: loss: 8.1426 - L1 loss: 0.0694 - cGan loss: 1.2021
+	Test: loss: 8.2048 - L1 loss: 0.0710 - cGan loss: 1.1025
+--- Discriminator ---
+	train_loss: 0.4977 - test_loss: 0.4738
+[Epoch 30/100] 
+--- Generator ---
+	Train: loss: 8.2989 - L1 loss: 0.0710 - cGan loss: 1.1993
+	Test: loss: 7.5433 - L1 loss: 0.0662 - cGan loss: 0.9228
+--- Discriminator ---
+	train_loss: 0.4741 - test_loss: 0.5324
+[Epoch 31/100] 
+--- Generator ---
+	Train: loss: 8.0701 - L1 loss: 0.0675 - cGan loss: 1.3188
+	Test: loss: 7.8412 - L1 loss: 0.0659 - cGan loss: 1.2507
+--- Discriminator ---
+	train_loss: 0.5404 - test_loss: 0.5581
+[Epoch 32/100] 
+--- Generator ---
+	Train: loss: 7.9258 - L1 loss: 0.0658 - cGan loss: 1.3410
+	Test: loss: 7.4652 - L1 loss: 0.0640 - cGan loss: 1.0637
+--- Discriminator ---
+	train_loss: 0.5578 - test_loss: 0.6084
+[Epoch 33/100] 
+--- Generator ---
+	Train: loss: 7.7442 - L1 loss: 0.0661 - cGan loss: 1.1326
+	Test: loss: 7.5792 - L1 loss: 0.0651 - cGan loss: 1.0742
+--- Discriminator ---
+	train_loss: 0.6197 - test_loss: 0.5955
+[Epoch 34/100] 
+--- Generator ---
+	Train: loss: 7.6737 - L1 loss: 0.0648 - cGan loss: 1.1904
+	Test: loss: 7.1179 - L1 loss: 0.0615 - cGan loss: 0.9634
+--- Discriminator ---
+	train_loss: 0.6061 - test_loss: 0.5716
+[Epoch 35/100] 
+--- Generator ---
+	Train: loss: 7.3568 - L1 loss: 0.0607 - cGan loss: 1.2819
+	Test: loss: 6.8688 - L1 loss: 0.0570 - cGan loss: 1.1735
+--- Discriminator ---
+	train_loss: 0.5664 - test_loss: 0.5339
+[Epoch 36/100] 
+--- Generator ---
+	Train: loss: 6.8568 - L1 loss: 0.0579 - cGan loss: 1.0634
+	Test: loss: 6.5665 - L1 loss: 0.0560 - cGan loss: 0.9663
+--- Discriminator ---
+	train_loss: 0.5446 - test_loss: 0.5596
+[Epoch 37/100] 
+--- Generator ---
+	Train: loss: 6.7044 - L1 loss: 0.0561 - cGan loss: 1.0909
+	Test: loss: 6.7653 - L1 loss: 0.0586 - cGan loss: 0.9038
+--- Discriminator ---
+	train_loss: 0.5515 - test_loss: 0.5891
+[Epoch 38/100] 
+--- Generator ---
+	Train: loss: 7.0387 - L1 loss: 0.0591 - cGan loss: 1.1278
+	Test: loss: 8.4242 - L1 loss: 0.0700 - cGan loss: 1.4270
+--- Discriminator ---
+	train_loss: 0.5780 - test_loss: 0.5364
+[Epoch 39/100] 
+--- Generator ---
+	Train: loss: 8.1449 - L1 loss: 0.0711 - cGan loss: 1.0323
+	Test: loss: 6.3552 - L1 loss: 0.0564 - cGan loss: 0.7195
+--- Discriminator ---
+	train_loss: 0.5216 - test_loss: 0.5956
+[Epoch 40/100] 
+--- Generator ---
+	Train: loss: 6.7318 - L1 loss: 0.0567 - cGan loss: 1.0615
+	Test: loss: 6.2958 - L1 loss: 0.0547 - cGan loss: 0.8238
+--- Discriminator ---
+	train_loss: 0.5813 - test_loss: 0.6012
+[Epoch 41/100] 
+--- Generator ---
+	Train: loss: 6.6575 - L1 loss: 0.0547 - cGan loss: 1.1919
+	Test: loss: 6.2554 - L1 loss: 0.0520 - cGan loss: 1.0556
+--- Discriminator ---
+	train_loss: 0.6063 - test_loss: 0.6306
+[Epoch 42/100] 
+--- Generator ---
+	Train: loss: 6.1397 - L1 loss: 0.0522 - cGan loss: 0.9158
+	Test: loss: 6.4733 - L1 loss: 0.0555 - cGan loss: 0.9249
+--- Discriminator ---
+	train_loss: 0.6215 - test_loss: 0.6171
+[Epoch 43/100] 
+--- Generator ---
+	Train: loss: 6.3562 - L1 loss: 0.0546 - cGan loss: 0.8966
+	Test: loss: 5.9365 - L1 loss: 0.0513 - cGan loss: 0.8092
+--- Discriminator ---
+	train_loss: 0.6092 - test_loss: 0.5948
+[Epoch 44/100] 
+--- Generator ---
+	Train: loss: 6.0841 - L1 loss: 0.0508 - cGan loss: 1.0063
+	Test: loss: 6.0251 - L1 loss: 0.0516 - cGan loss: 0.8652
+--- Discriminator ---
+	train_loss: 0.5933 - test_loss: 0.6091
+[Epoch 45/100] 
+--- Generator ---
+	Train: loss: 5.9920 - L1 loss: 0.0502 - cGan loss: 0.9712
+	Test: loss: 6.1220 - L1 loss: 0.0514 - cGan loss: 0.9800
+--- Discriminator ---
+	train_loss: 0.5987 - test_loss: 0.5754
+[Epoch 46/100] 
+--- Generator ---
+	Train: loss: 5.9460 - L1 loss: 0.0507 - cGan loss: 0.8713
+	Test: loss: 5.7863 - L1 loss: 0.0494 - cGan loss: 0.8429
+--- Discriminator ---
+	train_loss: 0.5807 - test_loss: 0.5934
+[Epoch 47/100] 
+--- Generator ---
+	Train: loss: 6.0236 - L1 loss: 0.0500 - cGan loss: 1.0254
+	Test: loss: 5.6772 - L1 loss: 0.0472 - cGan loss: 0.9555
+--- Discriminator ---
+	train_loss: 0.5934 - test_loss: 0.5934
+[Epoch 48/100] 
+--- Generator ---
+	Train: loss: 5.8853 - L1 loss: 0.0482 - cGan loss: 1.0635
+	Test: loss: 5.9767 - L1 loss: 0.0499 - cGan loss: 0.9908
+--- Discriminator ---
+	train_loss: 0.6011 - test_loss: 0.5816
+[Epoch 49/100] 
+--- Generator ---
+	Train: loss: 5.7949 - L1 loss: 0.0491 - cGan loss: 0.8828
+	Test: loss: 6.0064 - L1 loss: 0.0507 - cGan loss: 0.9319
+--- Discriminator ---
+	train_loss: 0.5912 - test_loss: 0.5511
+[Epoch 50/100] 
+--- Generator ---
+	Train: loss: 6.1069 - L1 loss: 0.0501 - cGan loss: 1.0926
+	Test: loss: 6.1483 - L1 loss: 0.0515 - cGan loss: 0.9947
+--- Discriminator ---
+	train_loss: 0.5738 - test_loss: 0.6006
+[Epoch 51/100] 
+--- Generator ---
+	Train: loss: 6.3381 - L1 loss: 0.0531 - cGan loss: 1.0279
+	Test: loss: 7.0402 - L1 loss: 0.0585 - cGan loss: 1.1926
+--- Discriminator ---
+	train_loss: 0.6007 - test_loss: 0.5174
+[Epoch 52/100] 
+--- Generator ---
+	Train: loss: 6.6380 - L1 loss: 0.0565 - cGan loss: 0.9853
+	Test: loss: 6.0560 - L1 loss: 0.0517 - cGan loss: 0.8881
+--- Discriminator ---
+	train_loss: 0.5319 - test_loss: 0.5468
+[Epoch 53/100] 
+--- Generator ---
+	Train: loss: 6.2791 - L1 loss: 0.0523 - cGan loss: 1.0467
+	Test: loss: 5.8584 - L1 loss: 0.0487 - cGan loss: 0.9836
+--- Discriminator ---
+	train_loss: 0.5588 - test_loss: 0.5502
+[Epoch 54/100] 
+--- Generator ---
+	Train: loss: 5.9042 - L1 loss: 0.0478 - cGan loss: 1.1272
+	Test: loss: 5.7216 - L1 loss: 0.0461 - cGan loss: 1.1139
+--- Discriminator ---
+	train_loss: 0.5468 - test_loss: 0.5423
+[Epoch 55/100] 
+--- Generator ---
+	Train: loss: 5.6751 - L1 loss: 0.0470 - cGan loss: 0.9719
+	Test: loss: 5.3786 - L1 loss: 0.0446 - cGan loss: 0.9151
+--- Discriminator ---
+	train_loss: 0.5448 - test_loss: 0.5551
+[Epoch 56/100] 
+--- Generator ---
+	Train: loss: 5.4996 - L1 loss: 0.0441 - cGan loss: 1.0912
+	Test: loss: 5.6056 - L1 loss: 0.0460 - cGan loss: 1.0060
+--- Discriminator ---
+	train_loss: 0.5375 - test_loss: 0.5540
+[Epoch 57/100] 
+--- Generator ---
+	Train: loss: 5.5192 - L1 loss: 0.0445 - cGan loss: 1.0659
+	Test: loss: 5.7022 - L1 loss: 0.0461 - cGan loss: 1.0919
+--- Discriminator ---
+	train_loss: 0.5443 - test_loss: 0.5395
+[Epoch 58/100] 
+--- Generator ---
+	Train: loss: 5.4579 - L1 loss: 0.0444 - cGan loss: 1.0206
+	Test: loss: 5.4804 - L1 loss: 0.0454 - cGan loss: 0.9386
+--- Discriminator ---
+	train_loss: 0.5105 - test_loss: 0.5538
+[Epoch 59/100] 
+--- Generator ---
+	Train: loss: 5.6201 - L1 loss: 0.0459 - cGan loss: 1.0297
+	Test: loss: 5.2896 - L1 loss: 0.0433 - cGan loss: 0.9627
+--- Discriminator ---
+	train_loss: 0.5650 - test_loss: 0.5696
+[Epoch 60/100] 
+--- Generator ---
+	Train: loss: 5.4153 - L1 loss: 0.0426 - cGan loss: 1.1520
+	Test: loss: 5.3360 - L1 loss: 0.0430 - cGan loss: 1.0394
+--- Discriminator ---
+	train_loss: 0.5745 - test_loss: 0.5750
+[Epoch 61/100] 
+--- Generator ---
+	Train: loss: 5.4303 - L1 loss: 0.0440 - cGan loss: 1.0280
+	Test: loss: 5.2999 - L1 loss: 0.0438 - cGan loss: 0.9161
+--- Discriminator ---
+	train_loss: 0.5709 - test_loss: 0.5798
+[Epoch 62/100] 
+--- Generator ---
+	Train: loss: 5.3771 - L1 loss: 0.0430 - cGan loss: 1.0755
+	Test: loss: 5.5816 - L1 loss: 0.0458 - cGan loss: 0.9976
+--- Discriminator ---
+	train_loss: 0.5819 - test_loss: 0.5669
+[Epoch 63/100] 
+--- Generator ---
+	Train: loss: 5.7577 - L1 loss: 0.0455 - cGan loss: 1.2110
+	Test: loss: 5.7563 - L1 loss: 0.0466 - cGan loss: 1.0973
+--- Discriminator ---
+	train_loss: 0.5644 - test_loss: 0.5875
+[Epoch 64/100] 
+--- Generator ---
+	Train: loss: 5.5456 - L1 loss: 0.0453 - cGan loss: 1.0183
+	Test: loss: 5.5625 - L1 loss: 0.0461 - cGan loss: 0.9510
+--- Discriminator ---
+	train_loss: 0.5834 - test_loss: 0.5803
+[Epoch 65/100] 
+--- Generator ---
+	Train: loss: 5.5442 - L1 loss: 0.0452 - cGan loss: 1.0205
+	Test: loss: 5.1417 - L1 loss: 0.0427 - cGan loss: 0.8677
+--- Discriminator ---
+	train_loss: 0.5678 - test_loss: 0.5669
+[Epoch 66/100] 
+--- Generator ---
+	Train: loss: 5.4314 - L1 loss: 0.0419 - cGan loss: 1.2415
+	Test: loss: 5.2702 - L1 loss: 0.0418 - cGan loss: 1.0943
+--- Discriminator ---
+	train_loss: 0.5361 - test_loss: 0.5400
+[Epoch 67/100] 
+--- Generator ---
+	Train: loss: 5.1267 - L1 loss: 0.0408 - cGan loss: 1.0465
+	Test: loss: 5.1107 - L1 loss: 0.0422 - cGan loss: 0.8938
+--- Discriminator ---
+	train_loss: 0.5134 - test_loss: 0.5586
+[Epoch 68/100] 
+--- Generator ---
+	Train: loss: 5.2749 - L1 loss: 0.0418 - cGan loss: 1.0903
+	Test: loss: 5.2041 - L1 loss: 0.0426 - cGan loss: 0.9404
+--- Discriminator ---
+	train_loss: 0.5429 - test_loss: 0.5268
+[Epoch 69/100] 
+--- Generator ---
+	Train: loss: 5.3059 - L1 loss: 0.0412 - cGan loss: 1.1905
+	Test: loss: 5.3024 - L1 loss: 0.0430 - cGan loss: 1.0068
+--- Discriminator ---
+	train_loss: 0.4996 - test_loss: 0.5415
+[Epoch 70/100] 
+--- Generator ---
+	Train: loss: 5.1357 - L1 loss: 0.0408 - cGan loss: 1.0523
+	Test: loss: 5.4074 - L1 loss: 0.0440 - cGan loss: 1.0043
+--- Discriminator ---
+	train_loss: 0.5152 - test_loss: 0.5138
+[Epoch 71/100] 
+--- Generator ---
+	Train: loss: 5.3375 - L1 loss: 0.0424 - cGan loss: 1.0937
+	Test: loss: 5.4183 - L1 loss: 0.0450 - cGan loss: 0.9180
+--- Discriminator ---
+	train_loss: 0.5005 - test_loss: 0.5591
+[Epoch 72/100] 
+--- Generator ---
+	Train: loss: 5.5858 - L1 loss: 0.0442 - cGan loss: 1.1660
+	Test: loss: 5.3876 - L1 loss: 0.0436 - cGan loss: 1.0271
+--- Discriminator ---
+	train_loss: 0.5296 - test_loss: 0.5488
+[Epoch 73/100] 
+--- Generator ---
+	Train: loss: 5.5002 - L1 loss: 0.0425 - cGan loss: 1.2465
+	Test: loss: 5.2308 - L1 loss: 0.0414 - cGan loss: 1.0919
+--- Discriminator ---
+	train_loss: 0.5483 - test_loss: 0.5932
+[Epoch 74/100] 
+--- Generator ---
+	Train: loss: 5.1314 - L1 loss: 0.0407 - cGan loss: 1.0601
+	Test: loss: 4.9121 - L1 loss: 0.0404 - cGan loss: 0.8744
+--- Discriminator ---
+	train_loss: 0.5697 - test_loss: 0.5705
+[Epoch 75/100] 
+--- Generator ---
+	Train: loss: 5.1418 - L1 loss: 0.0404 - cGan loss: 1.1044
+	Test: loss: 5.1435 - L1 loss: 0.0423 - cGan loss: 0.9139
+--- Discriminator ---
+	train_loss: 0.5773 - test_loss: 0.5524
+[Epoch 76/100] 
+--- Generator ---
+	Train: loss: 5.4191 - L1 loss: 0.0423 - cGan loss: 1.1875
+	Test: loss: 5.4442 - L1 loss: 0.0438 - cGan loss: 1.0638
+--- Discriminator ---
+	train_loss: 0.5476 - test_loss: 0.5172
+[Epoch 77/100] 
+--- Generator ---
+	Train: loss: 5.5165 - L1 loss: 0.0435 - cGan loss: 1.1672
+	Test: loss: 5.1708 - L1 loss: 0.0420 - cGan loss: 0.9703
+--- Discriminator ---
+	train_loss: 0.5160 - test_loss: 0.5950
+[Epoch 78/100] 
+--- Generator ---
+	Train: loss: 5.4006 - L1 loss: 0.0412 - cGan loss: 1.2786
+	Test: loss: 5.3440 - L1 loss: 0.0424 - cGan loss: 1.0995
+--- Discriminator ---
+	train_loss: 0.5971 - test_loss: 0.6275
+[Epoch 79/100] 
+--- Generator ---
+	Train: loss: 5.4068 - L1 loss: 0.0416 - cGan loss: 1.2455
+	Test: loss: 5.1143 - L1 loss: 0.0398 - cGan loss: 1.1378
+--- Discriminator ---
+	train_loss: 0.6197 - test_loss: 0.6459
+[Epoch 80/100] 
+--- Generator ---
+	Train: loss: 5.2354 - L1 loss: 0.0414 - cGan loss: 1.0944
+	Test: loss: 4.9015 - L1 loss: 0.0398 - cGan loss: 0.9232
+--- Discriminator ---
+	train_loss: 0.6430 - test_loss: 0.6509
+[Epoch 81/100] 
+--- Generator ---
+	Train: loss: 5.2362 - L1 loss: 0.0398 - cGan loss: 1.2527
+	Test: loss: 5.0097 - L1 loss: 0.0393 - cGan loss: 1.0785
+--- Discriminator ---
+	train_loss: 0.6376 - test_loss: 0.5684
+[Epoch 82/100] 
+--- Generator ---
+	Train: loss: 5.2122 - L1 loss: 0.0405 - cGan loss: 1.1599
+	Test: loss: 4.9526 - L1 loss: 0.0392 - cGan loss: 1.0315
+--- Discriminator ---
+	train_loss: 0.5619 - test_loss: 0.5261
+[Epoch 83/100] 
+--- Generator ---
+	Train: loss: 5.0862 - L1 loss: 0.0399 - cGan loss: 1.0958
+	Test: loss: 4.7966 - L1 loss: 0.0399 - cGan loss: 0.8065
+--- Discriminator ---
+	train_loss: 0.5340 - test_loss: 0.5679
+[Epoch 84/100] 
+--- Generator ---
+	Train: loss: 5.1144 - L1 loss: 0.0388 - cGan loss: 1.2310
+	Test: loss: 5.0030 - L1 loss: 0.0399 - cGan loss: 1.0085
+--- Discriminator ---
+	train_loss: 0.5389 - test_loss: 0.5575
+[Epoch 85/100] 
+--- Generator ---
+	Train: loss: 5.2553 - L1 loss: 0.0401 - cGan loss: 1.2410
+	Test: loss: 5.0300 - L1 loss: 0.0388 - cGan loss: 1.1455
+--- Discriminator ---
+	train_loss: 0.5767 - test_loss: 0.5736
+[Epoch 86/100] 
+--- Generator ---
+	Train: loss: 4.9779 - L1 loss: 0.0381 - cGan loss: 1.1714
+	Test: loss: 4.9851 - L1 loss: 0.0393 - cGan loss: 1.0586
+--- Discriminator ---
+	train_loss: 0.5539 - test_loss: 0.5582
+[Epoch 87/100] 
+--- Generator ---
+	Train: loss: 4.9507 - L1 loss: 0.0387 - cGan loss: 1.0791
+	Test: loss: 5.1339 - L1 loss: 0.0426 - cGan loss: 0.8738
+--- Discriminator ---
+	train_loss: 0.5368 - test_loss: 0.5563
+[Epoch 88/100] 
+--- Generator ---
+	Train: loss: 5.5757 - L1 loss: 0.0426 - cGan loss: 1.3169
+	Test: loss: 5.6598 - L1 loss: 0.0444 - cGan loss: 1.2216
+--- Discriminator ---
+	train_loss: 0.5622 - test_loss: 0.5090
+[Epoch 89/100] 
+--- Generator ---
+	Train: loss: 5.5128 - L1 loss: 0.0433 - cGan loss: 1.1858
+	Test: loss: 4.9212 - L1 loss: 0.0397 - cGan loss: 0.9501
+--- Discriminator ---
+	train_loss: 0.5183 - test_loss: 0.5440
+[Epoch 90/100] 
+--- Generator ---
+	Train: loss: 4.8888 - L1 loss: 0.0378 - cGan loss: 1.1060
+	Test: loss: 4.7292 - L1 loss: 0.0392 - cGan loss: 0.8096
+--- Discriminator ---
+	train_loss: 0.5249 - test_loss: 0.5877
+[Epoch 91/100] 
+--- Generator ---
+	Train: loss: 5.2472 - L1 loss: 0.0390 - cGan loss: 1.3484
+	Test: loss: 5.0644 - L1 loss: 0.0390 - cGan loss: 1.1656
+--- Discriminator ---
+	train_loss: 0.5950 - test_loss: 0.5232
+[Epoch 92/100] 
+--- Generator ---
+	Train: loss: 5.1007 - L1 loss: 0.0396 - cGan loss: 1.1417
+	Test: loss: 5.0908 - L1 loss: 0.0422 - cGan loss: 0.8669
+--- Discriminator ---
+	train_loss: 0.5110 - test_loss: 0.5270
+[Epoch 93/100] 
+--- Generator ---
+	Train: loss: 5.4467 - L1 loss: 0.0414 - cGan loss: 1.3025
+	Test: loss: 5.1712 - L1 loss: 0.0413 - cGan loss: 1.0447
+--- Discriminator ---
+	train_loss: 0.5015 - test_loss: 0.4911
+[Epoch 94/100] 
+--- Generator ---
+	Train: loss: 5.4637 - L1 loss: 0.0415 - cGan loss: 1.3136
+	Test: loss: 4.8105 - L1 loss: 0.0384 - cGan loss: 0.9696
+--- Discriminator ---
+	train_loss: 0.4977 - test_loss: 0.5262
+[Epoch 95/100] 
+--- Generator ---
+	Train: loss: 5.0650 - L1 loss: 0.0392 - cGan loss: 1.1459
+	Test: loss: 4.8134 - L1 loss: 0.0385 - cGan loss: 0.9616
+--- Discriminator ---
+	train_loss: 0.5187 - test_loss: 0.5087
+[Epoch 96/100] 
+--- Generator ---
+	Train: loss: 5.3274 - L1 loss: 0.0401 - cGan loss: 1.3171
+	Test: loss: 5.0746 - L1 loss: 0.0405 - cGan loss: 1.0281
+--- Discriminator ---
+	train_loss: 0.5081 - test_loss: 0.5142
+[Epoch 97/100] 
+--- Generator ---
+	Train: loss: 5.2690 - L1 loss: 0.0400 - cGan loss: 1.2672
+	Test: loss: 4.9427 - L1 loss: 0.0407 - cGan loss: 0.8737
+--- Discriminator ---
+	train_loss: 0.4776 - test_loss: 0.5486
+[Epoch 98/100] 
+--- Generator ---
+	Train: loss: 5.5446 - L1 loss: 0.0412 - cGan loss: 1.4219
+	Test: loss: 4.8934 - L1 loss: 0.0368 - cGan loss: 1.2087
+--- Discriminator ---
+	train_loss: 0.5771 - test_loss: 0.5328
+[Epoch 99/100] 
+--- Generator ---
+	Train: loss: 4.9797 - L1 loss: 0.0376 - cGan loss: 1.2180
+	Test: loss: 4.6458 - L1 loss: 0.0372 - cGan loss: 0.9273
+--- Discriminator ---
+	train_loss: 0.5331 - test_loss: 0.5184
+[Epoch 100/100] 
+--- Generator ---
+	Train: loss: 5.0481 - L1 loss: 0.0367 - cGan loss: 1.3780
+	Test: loss: 4.6290 - L1 loss: 0.0359 - cGan loss: 1.0350
+--- Discriminator ---
+	train_loss: 0.5181 - test_loss: 0.5154
+Plop - beg
+Plop - end
+Plop - beg
+Plop - beg
+Plop - middle
+Plop - end
+Plop - beg
+Plop - middle
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Test
+100
+num_epochs
+num_epochs
+num_epochs
+num_epochs
+num_epochs
+{"CocoGrayscaleRGB": "type", "CocoLab": "type", "CocoLab_cpu": "type", "GanTrain": "type", "Image": "module", "ImageOps": "module", "L": "Tensor", "PatchGAN": "type", "R1Loss": "type", "SEED": "int", "UNet": "type", "a": "str", "ab": "Tensor", "axis": "function", "builtins": "module", "cGANLoss": "type", "color": "module", "d_loss": "Tensor", "data": "module", "dataset": "str", "dataset_test": "CocoLab_cpu", "dataset_train": "CocoLab_cpu", "device": "device", "discriminator": "PatchGAN", "epoch": "int", "fake_ab": "Tensor", "g_loss": "Tensor", "gan_loss": "Tensor", "gan_train": "GanTrain", "generator": "UNet", "glob": "function", "init_weight": "function", "l1_loss": "Tensor", "log": "TextIOWrapper", "multi_plot": "function", "nn": "module", "np": "module", "num_epochs": "int", "os": "module", "plt": "module", "show_images": "function", "site": "module", "sys": "module", "tensor_to_pil": "function", "tepoch": "tqdm_notebook", "test_d_avg_loss": "list", "test_d_losses": "list", "test_g_avg_loss": "list", "test_g_losses": "list", "test_gan_avg_loss": "list", "test_gan_loss": "list", "test_l1_avg_loss": "list", "test_l1_loss": "list", "testloader": "DataLoader", "torch": "module", "tqdm": "type", "train": "function", "train_d_avg_loss": "list", "train_d_losses": "list", "train_g_avg_loss": "list", "train_g_losses": "list", "train_gan_avg_loss": "list", "train_gan_loss": "list", "train_l1_avg_loss": "list", "train_l1_loss": "list", "trainloader": "DataLoader", "transforms": "module", "version": "str", "warnings": "module"}
+{"CocoGrayscaleRGB": "type", "CocoLab": "type", "CocoLab_cpu": "type", "GanTrain": "type", "Image": "module", "ImageOps": "module", "L": "Tensor", "PatchGAN": "type", "R1Loss": "type", "SEED": "int", "UNet": "type", "a": "str", "ab": "Tensor", "axis": "function", "builtins": "module", "cGANLoss": "type", "color": "module", "d_loss": "Tensor", "data": "module", "dataset": "str", "dataset_test": "CocoLab_cpu", "dataset_train": "CocoLab_cpu", "device": "device", "discriminator": "PatchGAN", "epoch": "int", "fake_ab": "Tensor", "g_loss": "Tensor", "gan_loss": "Tensor", "gan_train": "GanTrain", "generator": "UNet", "glob": "function", "init_weight": "function", "l1_loss": "Tensor", "log": "TextIOWrapper", "multi_plot": "function", "nn": "module", "np": "module", "num_epochs": "int", "os": "module", "plt": "module", "show_images": "function", "site": "module", "sys": "module", "tensor_to_pil": "function", "tepoch": "tqdm_notebook", "test_d_avg_loss": "list", "test_d_losses": "list", "test_g_avg_loss": "list", "test_g_losses": "list", "test_gan_avg_loss": "list", "test_gan_loss": "list", "test_l1_avg_loss": "list", "test_l1_loss": "list", "testloader": "DataLoader", "torch": "module", "tqdm": "type", "train": "function", "train_d_avg_loss": "list", "train_d_losses": "list", "train_g_avg_loss": "list", "train_g_losses": "list", "train_gan_avg_loss": "list", "train_gan_loss": "list", "train_l1_avg_loss": "list", "train_l1_loss": "list", "trainloader": "DataLoader", "transforms": "module", "version": "str", "warnings": "module"}
+{"CocoGrayscaleRGB": "type", "CocoLab": "type", "CocoLab_cpu": "type", "GanTrain": "type", "Image": "module", "ImageOps": "module", "L": "Tensor", "PatchGAN": "type", "R1Loss": "type", "SEED": "int", "UNet": "type", "a": "str", "ab": "Tensor", "axis": "function", "builtins": "module", "cGANLoss": "type", "color": "module", "d_loss": "Tensor", "data": "module", "dataset": "str", "dataset_test": "CocoLab_cpu", "dataset_train": "CocoLab_cpu", "device": "device", "discriminator": "PatchGAN", "epoch": "int", "fake_ab": "Tensor", "g_loss": "Tensor", "gan_loss": "Tensor", "gan_train": "GanTrain", "generator": "UNet", "glob": "function", "init_weight": "function", "l1_loss": "Tensor", "log": "TextIOWrapper", "multi_plot": "function", "nn": "module", "np": "module", "num_epochs": "int", "os": "module", "plt": "module", "show_images": "function", "site": "module", "sys": "module", "tensor_to_pil": "function", "tepoch": "tqdm_notebook", "test_d_avg_loss": "list", "test_d_losses": "list", "test_g_avg_loss": "list", "test_g_losses": "list", "test_gan_avg_loss": "list", "test_gan_loss": "list", "test_l1_avg_loss": "list", "test_l1_loss": "list", "testloader": "DataLoader", "torch": "module", "tqdm": "type", "train": "function", "train_d_avg_loss": "list", "train_d_losses": "list", "train_g_avg_loss": "list", "train_g_losses": "list", "train_gan_avg_loss": "list", "train_gan_loss": "list", "train_l1_avg_loss": "list", "train_l1_loss": "list", "trainloader": "DataLoader", "transforms": "module", "version": "str", "warnings": "module"}
+num_epochs
+{"CocoGrayscaleRGB": "type", "CocoLab": "type", "CocoLab_cpu": "type", "GanTrain": "type", "Image": "module", "ImageOps": "module", "L": "Tensor", "PatchGAN": "type", "R1Loss": "type", "SEED": "int", "UNet": "type", "a": "str", "ab": "Tensor", "axis": "function", "builtins": "module", "cGANLoss": "type", "color": "module", "d_loss": "Tensor", "data": "module", "dataset": "str", "dataset_test": "CocoLab_cpu", "dataset_train": "CocoLab_cpu", "device": "device", "discriminator": "PatchGAN", "epoch": "int", "fake_ab": "Tensor", "g_loss": "Tensor", "gan_loss": "Tensor", "gan_train": "GanTrain", "generator": "UNet", "glob": "function", "init_weight": "function", "l1_loss": "Tensor", "log": "TextIOWrapper", "multi_plot": "function", "nn": "module", "np": "module", "num_epochs": "int", "os": "module", "plt": "module", "show_images": "function", "site": "module", "sys": "module", "tensor_to_pil": "function", "tepoch": "tqdm_notebook", "test_d_avg_loss": "list", "test_d_losses": "list", "test_g_avg_loss": "list", "test_g_losses": "list", "test_gan_avg_loss": "list", "test_gan_loss": "list", "test_l1_avg_loss": "list", "test_l1_loss": "list", "testloader": "DataLoader", "torch": "module", "tqdm": "type", "train": "function", "train_d_avg_loss": "list", "train_d_losses": "list", "train_g_avg_loss": "list", "train_g_losses": "list", "train_gan_avg_loss": "list", "train_gan_loss": "list", "train_l1_avg_loss": "list", "train_l1_loss": "list", "trainloader": "DataLoader", "transforms": "module", "version": "str", "warnings": "module"}
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+[Epoch 1/100] 
+--- Generator ---
+	Train: loss: 24.2589 - L1 loss: 0.2234 - cGan loss: 1.9155
+	Test: loss: 20.2272 - L1 loss: 0.1944 - cGan loss: 0.7823
+--- Discriminator ---
+	train_loss: 0.9405 - test_loss: 1.6103
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Test
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Test
+Plop
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+1
+Plop
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 2, 256, 256])
+Plop - end
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 1, 256, 256])
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 1, 256, 256])
+torch.Size([4, 2, 256, 256])
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - middle
+torch.Size([4, 1, 256, 256])
+torch.Size([4, 2, 256, 256])
+Plop - end
+Plop - beg
+Plop - middle
+torch.Size([4, 1, 256, 256])
+torch.Size([4, 2, 256, 256])
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - beg
+Test
+0
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Test
+0
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - beg
+a
+Test
+0
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+a
+Test
+0
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - beg
+a
+Test
+0
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - beg
+a
+Test
+0
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - beg
+a
+Test
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - beg
+a
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([4, 2, 256, 256])
+Plop - beg
+torch.Size([4, 2, 256, 256])
+a
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 2, 256, 256])
+Plop - beg
+torch.Size([1, 2, 256, 256])
+a
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+-------Start-------
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 1/100] 
+--- Generator ---
+	Train: loss: 24.2384 - L1 loss: 0.2346 - cGan loss: 0.7795
+	Test: loss: 19.9535 - L1 loss: 0.1943 - cGan loss: 0.5219
+--- Discriminator ---
+	train_loss: 267.8827 - test_loss: 78.3598
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 2/100] 
+--- Generator ---
+	Train: loss: 20.0215 - L1 loss: 0.1945 - cGan loss: 0.5746
+	Test: loss: 17.3054 - L1 loss: 0.1683 - cGan loss: 0.4763
+--- Discriminator ---
+	train_loss: 78.3623 - test_loss: 31.0678
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 3/100] 
+--- Generator ---
+	Train: loss: 17.6885 - L1 loss: 0.1707 - cGan loss: 0.6139
+	Test: loss: 15.4711 - L1 loss: 0.1494 - cGan loss: 0.5350
+--- Discriminator ---
+	train_loss: 32.8571 - test_loss: 15.7217
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 4/100] 
+--- Generator ---
+	Train: loss: 15.5368 - L1 loss: 0.1494 - cGan loss: 0.5994
+	Test: loss: 13.8415 - L1 loss: 0.1326 - cGan loss: 0.5837
+--- Discriminator ---
+	train_loss: 16.1671 - test_loss: 9.7514
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 5/100] 
+--- Generator ---
+	Train: loss: 13.7141 - L1 loss: 0.1310 - cGan loss: 0.6184
+	Test: loss: 12.4545 - L1 loss: 0.1184 - cGan loss: 0.6173
+--- Discriminator ---
+	train_loss: 9.7610 - test_loss: 7.0375
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 6/100] 
+--- Generator ---
+	Train: loss: 12.1925 - L1 loss: 0.1155 - cGan loss: 0.6380
+	Test: loss: 11.4131 - L1 loss: 0.1077 - cGan loss: 0.6417
+--- Discriminator ---
+	train_loss: 6.8972 - test_loss: 5.6054
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 7/100] 
+--- Generator ---
+	Train: loss: 11.4125 - L1 loss: 0.1076 - cGan loss: 0.6494
+	Test: loss: 10.3736 - L1 loss: 0.0973 - cGan loss: 0.6484
+--- Discriminator ---
+	train_loss: 5.6073 - test_loss: 4.7306
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 8/100] 
+--- Generator ---
+	Train: loss: 10.1685 - L1 loss: 0.0950 - cGan loss: 0.6703
+	Test: loss: 9.7200 - L1 loss: 0.0906 - cGan loss: 0.6596
+--- Discriminator ---
+	train_loss: 4.5956 - test_loss: 4.1572
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 9/100] 
+--- Generator ---
+	Train: loss: 9.7306 - L1 loss: 0.0907 - cGan loss: 0.6625
+	Test: loss: 8.9388 - L1 loss: 0.0827 - cGan loss: 0.6647
+--- Discriminator ---
+	train_loss: 4.1581 - test_loss: 3.7180
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+torch.Size([1, 1, 256, 256])
+Plop - beg
+torch.Size([1, 1, 256, 256])
+[Epoch 10/100] 
+--- Generator ---
+	Train: loss: 8.8163 - L1 loss: 0.0813 - cGan loss: 0.6899
+	Test: loss: 8.3383 - L1 loss: 0.0767 - cGan loss: 0.6706
+--- Discriminator ---
+	train_loss: 3.6292 - test_loss: 3.4109
+-------Start-------
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+-------Start-------
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1258.6039, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(407.5156, grad_fn=<AddBackward0>)
+[Epoch 1/10] 
+--- Generator ---
+	Train: loss: 25.4447 - L1 loss: 0.2476 - cGan loss: 0.6837
+	Test: loss: 21.4145 - L1 loss: 0.2097 - cGan loss: 0.4405
+--- Discriminator ---
+	train_loss: 630.1005 - test_loss: 204.6912
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(407.5156, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(159.9370, grad_fn=<AddBackward0>)
+[Epoch 2/10] 
+--- Generator ---
+	Train: loss: 21.4662 - L1 loss: 0.2095 - cGan loss: 0.5160
+	Test: loss: 18.5252 - L1 loss: 0.1810 - cGan loss: 0.4250
+--- Discriminator ---
+	train_loss: 204.6868 - test_loss: 80.8838
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(159.9370, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(77.9627, grad_fn=<AddBackward0>)
+[Epoch 3/10] 
+--- Generator ---
+	Train: loss: 18.6009 - L1 loss: 0.1811 - cGan loss: 0.4939
+	Test: loss: 16.2537 - L1 loss: 0.1580 - cGan loss: 0.4529
+--- Discriminator ---
+	train_loss: 80.8793 - test_loss: 39.8757
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(80.9009, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(45.8739, grad_fn=<AddBackward0>)
+[Epoch 4/10] 
+--- Generator ---
+	Train: loss: 16.6554 - L1 loss: 0.1610 - cGan loss: 0.5572
+	Test: loss: 14.4635 - L1 loss: 0.1395 - cGan loss: 0.5179
+--- Discriminator ---
+	train_loss: 41.3089 - test_loss: 23.7873
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(45.8739, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(31.2675, grad_fn=<AddBackward0>)
+[Epoch 5/10] 
+--- Generator ---
+	Train: loss: 14.4879 - L1 loss: 0.1395 - cGan loss: 0.5390
+	Test: loss: 12.7721 - L1 loss: 0.1223 - cGan loss: 0.5409
+--- Discriminator ---
+	train_loss: 23.7911 - test_loss: 16.4736
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(32.1625, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(23.5378, grad_fn=<AddBackward0>)
+[Epoch 6/10] 
+--- Generator ---
+	Train: loss: 12.9606 - L1 loss: 0.1240 - cGan loss: 0.5632
+	Test: loss: 11.4603 - L1 loss: 0.1089 - cGan loss: 0.5671
+--- Discriminator ---
+	train_loss: 16.9101 - test_loss: 12.5940
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(23.5378, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(18.9446, grad_fn=<AddBackward0>)
+[Epoch 7/10] 
+--- Generator ---
+	Train: loss: 11.4839 - L1 loss: 0.1091 - cGan loss: 0.5777
+	Test: loss: 10.3994 - L1 loss: 0.0982 - cGan loss: 0.5752
+--- Discriminator ---
+	train_loss: 12.5936 - test_loss: 10.2882
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(18.9446, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(16.0224, grad_fn=<AddBackward0>)
+[Epoch 8/10] 
+--- Generator ---
+	Train: loss: 10.4023 - L1 loss: 0.0982 - cGan loss: 0.5844
+	Test: loss: 9.7133 - L1 loss: 0.0913 - cGan loss: 0.5877
+--- Discriminator ---
+	train_loss: 10.2869 - test_loss: 8.8155
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(16.0224, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(13.9648, grad_fn=<AddBackward0>)
+[Epoch 9/10] 
+--- Generator ---
+	Train: loss: 9.7217 - L1 loss: 0.0913 - cGan loss: 0.5952
+	Test: loss: 8.8335 - L1 loss: 0.0824 - cGan loss: 0.5923
+--- Discriminator ---
+	train_loss: 8.8154 - test_loss: 7.7799
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(14.3476, grad_fn=<AddBackward0>)
+Plop - beg
+++++++++++++++R1 LOSS : tensor(12.4337, grad_fn=<AddBackward0>)
+[Epoch 10/10] 
+--- Generator ---
+	Train: loss: 9.1062 - L1 loss: 0.0852 - cGan loss: 0.5884
+	Test: loss: 8.0044 - L1 loss: 0.0740 - cGan loss: 0.6023
+--- Discriminator ---
+	train_loss: 7.9616 - test_loss: 7.0056
+-------Start-------
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1382.8872, grad_fn=<AddBackward0>)
+Plop - beg
+-------Start-------
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1041.9524, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 1/100] 
+--- Generator ---
+	Train: loss: 26.5968 - L1 loss: 0.2602 - cGan loss: 0.5779
+	Test: loss: 22.8975 - L1 loss: 0.2247 - cGan loss: 0.4323
+--- Discriminator ---
+	train_loss: 521.8568 - test_loss: 0.8801
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(299.4044, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 2/100] 
+--- Generator ---
+	Train: loss: 22.9874 - L1 loss: 0.2248 - cGan loss: 0.5101
+	Test: loss: 20.1913 - L1 loss: 0.1978 - cGan loss: 0.4109
+--- Discriminator ---
+	train_loss: 150.5738 - test_loss: 0.9210
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(105.9839, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 3/100] 
+--- Generator ---
+	Train: loss: 20.2609 - L1 loss: 0.1980 - cGan loss: 0.4632
+	Test: loss: 17.8931 - L1 loss: 0.1745 - cGan loss: 0.4392
+--- Discriminator ---
+	train_loss: 53.9123 - test_loss: 0.9087
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(49.8759, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 4/100] 
+--- Generator ---
+	Train: loss: 17.9349 - L1 loss: 0.1746 - cGan loss: 0.4723
+	Test: loss: 15.9562 - L1 loss: 0.1549 - cGan loss: 0.4662
+--- Discriminator ---
+	train_loss: 25.8431 - test_loss: 0.8865
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(30.6924, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 5/100] 
+--- Generator ---
+	Train: loss: 16.2732 - L1 loss: 0.1572 - cGan loss: 0.5552
+	Test: loss: 14.3504 - L1 loss: 0.1386 - cGan loss: 0.4945
+--- Discriminator ---
+	train_loss: 16.2349 - test_loss: 0.8692
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(20.6029, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 6/100] 
+--- Generator ---
+	Train: loss: 14.3790 - L1 loss: 0.1388 - cGan loss: 0.5011
+	Test: loss: 12.9708 - L1 loss: 0.1247 - cGan loss: 0.5019
+--- Discriminator ---
+	train_loss: 11.1679 - test_loss: 0.8528
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(15.9424, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 7/100] 
+--- Generator ---
+	Train: loss: 12.9814 - L1 loss: 0.1247 - cGan loss: 0.5074
+	Test: loss: 11.6918 - L1 loss: 0.1118 - cGan loss: 0.5086
+--- Discriminator ---
+	train_loss: 8.8241 - test_loss: 0.8396
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(13.1198, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 8/100] 
+--- Generator ---
+	Train: loss: 11.6796 - L1 loss: 0.1117 - cGan loss: 0.5095
+	Test: loss: 10.4215 - L1 loss: 0.0991 - cGan loss: 0.5135
+--- Discriminator ---
+	train_loss: 7.3995 - test_loss: 0.8273
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(11.2616, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 9/100] 
+--- Generator ---
+	Train: loss: 10.4204 - L1 loss: 0.0991 - cGan loss: 0.5131
+	Test: loss: 9.4048 - L1 loss: 0.0889 - cGan loss: 0.5168
+--- Discriminator ---
+	train_loss: 6.4573 - test_loss: 0.8165
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(9.9842, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 10/100] 
+--- Generator ---
+	Train: loss: 9.3883 - L1 loss: 0.0887 - cGan loss: 0.5166
+	Test: loss: 8.6097 - L1 loss: 0.0809 - cGan loss: 0.5188
+--- Discriminator ---
+	train_loss: 5.8089 - test_loss: 0.8063
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(9.4066, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 11/100] 
+--- Generator ---
+	Train: loss: 9.0931 - L1 loss: 0.0852 - cGan loss: 0.5720
+	Test: loss: 7.8732 - L1 loss: 0.0735 - cGan loss: 0.5206
+--- Discriminator ---
+	train_loss: 5.5301 - test_loss: 0.7959
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(8.5792, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 12/100] 
+--- Generator ---
+	Train: loss: 8.2378 - L1 loss: 0.0767 - cGan loss: 0.5715
+	Test: loss: 7.3290 - L1 loss: 0.0681 - cGan loss: 0.5230
+--- Discriminator ---
+	train_loss: 5.1039 - test_loss: 0.7874
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(7.8360, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 13/100] 
+--- Generator ---
+	Train: loss: 7.5379 - L1 loss: 0.0697 - cGan loss: 0.5694
+	Test: loss: 6.9838 - L1 loss: 0.0646 - cGan loss: 0.5242
+--- Discriminator ---
+	train_loss: 4.7253 - test_loss: 0.7793
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(7.1996, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 14/100] 
+--- Generator ---
+	Train: loss: 7.0762 - L1 loss: 0.0650 - cGan loss: 0.5718
+	Test: loss: 6.6792 - L1 loss: 0.0615 - cGan loss: 0.5267
+--- Discriminator ---
+	train_loss: 4.3967 - test_loss: 0.7711
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(6.4878, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 15/100] 
+--- Generator ---
+	Train: loss: 6.6767 - L1 loss: 0.0615 - cGan loss: 0.5277
+	Test: loss: 6.2252 - L1 loss: 0.0570 - cGan loss: 0.5272
+--- Discriminator ---
+	train_loss: 4.0154 - test_loss: 0.7668
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(6.2134, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 16/100] 
+--- Generator ---
+	Train: loss: 6.2230 - L1 loss: 0.0565 - cGan loss: 0.5722
+	Test: loss: 5.9413 - L1 loss: 0.0541 - cGan loss: 0.5304
+--- Discriminator ---
+	train_loss: 3.8885 - test_loss: 0.7598
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(5.8151, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 17/100] 
+--- Generator ---
+	Train: loss: 5.9238 - L1 loss: 0.0535 - cGan loss: 0.5729
+	Test: loss: 5.9022 - L1 loss: 0.0537 - cGan loss: 0.5331
+--- Discriminator ---
+	train_loss: 3.6824 - test_loss: 0.7545
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(5.4425, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 18/100] 
+--- Generator ---
+	Train: loss: 5.7611 - L1 loss: 0.0519 - cGan loss: 0.5745
+	Test: loss: 5.6764 - L1 loss: 0.0514 - cGan loss: 0.5370
+--- Discriminator ---
+	train_loss: 3.4895 - test_loss: 0.7493
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(5.1221, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 19/100] 
+--- Generator ---
+	Train: loss: 5.4938 - L1 loss: 0.0492 - cGan loss: 0.5779
+	Test: loss: 5.6082 - L1 loss: 0.0507 - cGan loss: 0.5402
+--- Discriminator ---
+	train_loss: 3.3230 - test_loss: 0.7452
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.7686, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 20/100] 
+--- Generator ---
+	Train: loss: 5.6089 - L1 loss: 0.0507 - cGan loss: 0.5438
+	Test: loss: 5.3609 - L1 loss: 0.0482 - cGan loss: 0.5440
+--- Discriminator ---
+	train_loss: 3.1295 - test_loss: 0.7417
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.5646, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 21/100] 
+--- Generator ---
+	Train: loss: 5.1777 - L1 loss: 0.0459 - cGan loss: 0.5840
+	Test: loss: 5.2973 - L1 loss: 0.0475 - cGan loss: 0.5473
+--- Discriminator ---
+	train_loss: 3.0346 - test_loss: 0.7386
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.3293, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 22/100] 
+--- Generator ---
+	Train: loss: 5.1396 - L1 loss: 0.0455 - cGan loss: 0.5852
+	Test: loss: 5.3105 - L1 loss: 0.0476 - cGan loss: 0.5520
+--- Discriminator ---
+	train_loss: 2.9130 - test_loss: 0.7352
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.0804, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 23/100] 
+--- Generator ---
+	Train: loss: 5.3264 - L1 loss: 0.0477 - cGan loss: 0.5566
+	Test: loss: 5.2318 - L1 loss: 0.0468 - cGan loss: 0.5559
+--- Discriminator ---
+	train_loss: 2.7753 - test_loss: 0.7328
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.9210, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 24/100] 
+--- Generator ---
+	Train: loss: 5.0204 - L1 loss: 0.0443 - cGan loss: 0.5925
+	Test: loss: 5.0249 - L1 loss: 0.0446 - cGan loss: 0.5608
+--- Discriminator ---
+	train_loss: 2.7014 - test_loss: 0.7302
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.7374, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 25/100] 
+--- Generator ---
+	Train: loss: 4.8317 - L1 loss: 0.0424 - cGan loss: 0.5967
+	Test: loss: 4.9707 - L1 loss: 0.0441 - cGan loss: 0.5650
+--- Discriminator ---
+	train_loss: 2.6063 - test_loss: 0.7278
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.5442, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 26/100] 
+--- Generator ---
+	Train: loss: 4.9624 - L1 loss: 0.0439 - cGan loss: 0.5696
+	Test: loss: 4.8152 - L1 loss: 0.0425 - cGan loss: 0.5698
+--- Discriminator ---
+	train_loss: 2.4998 - test_loss: 0.7258
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.4102, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 27/100] 
+--- Generator ---
+	Train: loss: 4.6377 - L1 loss: 0.0403 - cGan loss: 0.6052
+	Test: loss: 4.8898 - L1 loss: 0.0432 - cGan loss: 0.5744
+--- Discriminator ---
+	train_loss: 2.4371 - test_loss: 0.7237
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.2399, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 28/100] 
+--- Generator ---
+	Train: loss: 4.9049 - L1 loss: 0.0433 - cGan loss: 0.5790
+	Test: loss: 4.7913 - L1 loss: 0.0421 - cGan loss: 0.5788
+--- Discriminator ---
+	train_loss: 2.3435 - test_loss: 0.7222
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.1062, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 29/100] 
+--- Generator ---
+	Train: loss: 4.8051 - L1 loss: 0.0422 - cGan loss: 0.5833
+	Test: loss: 4.6843 - L1 loss: 0.0410 - cGan loss: 0.5834
+--- Discriminator ---
+	train_loss: 2.2755 - test_loss: 0.7209
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.9797, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 30/100] 
+--- Generator ---
+	Train: loss: 4.6931 - L1 loss: 0.0411 - cGan loss: 0.5878
+	Test: loss: 4.5442 - L1 loss: 0.0396 - cGan loss: 0.5881
+--- Discriminator ---
+	train_loss: 2.2108 - test_loss: 0.7193
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.9043, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 31/100] 
+--- Generator ---
+	Train: loss: 4.5017 - L1 loss: 0.0388 - cGan loss: 0.6202
+	Test: loss: 4.5001 - L1 loss: 0.0391 - cGan loss: 0.5921
+--- Discriminator ---
+	train_loss: 2.1772 - test_loss: 0.7182
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.7556, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 32/100] 
+--- Generator ---
+	Train: loss: 4.4893 - L1 loss: 0.0389 - cGan loss: 0.5965
+	Test: loss: 4.4602 - L1 loss: 0.0386 - cGan loss: 0.5962
+--- Discriminator ---
+	train_loss: 2.0958 - test_loss: 0.7173
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.6950, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 33/100] 
+--- Generator ---
+	Train: loss: 4.4764 - L1 loss: 0.0385 - cGan loss: 0.6271
+	Test: loss: 4.5639 - L1 loss: 0.0396 - cGan loss: 0.6001
+--- Discriminator ---
+	train_loss: 2.0696 - test_loss: 0.7162
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.5675, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 34/100] 
+--- Generator ---
+	Train: loss: 4.5822 - L1 loss: 0.0398 - cGan loss: 0.6039
+	Test: loss: 4.6857 - L1 loss: 0.0408 - cGan loss: 0.6040
+--- Discriminator ---
+	train_loss: 1.9999 - test_loss: 0.7152
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.5048, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 35/100] 
+--- Generator ---
+	Train: loss: 4.6384 - L1 loss: 0.0401 - cGan loss: 0.6330
+	Test: loss: 4.4030 - L1 loss: 0.0379 - cGan loss: 0.6080
+--- Discriminator ---
+	train_loss: 1.9722 - test_loss: 0.7142
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.4198, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 36/100] 
+--- Generator ---
+	Train: loss: 4.4194 - L1 loss: 0.0378 - cGan loss: 0.6364
+	Test: loss: 4.5144 - L1 loss: 0.0390 - cGan loss: 0.6111
+--- Discriminator ---
+	train_loss: 1.9283 - test_loss: 0.7135
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.3362, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 37/100] 
+--- Generator ---
+	Train: loss: 4.3486 - L1 loss: 0.0371 - cGan loss: 0.6381
+	Test: loss: 4.4310 - L1 loss: 0.0382 - cGan loss: 0.6146
+--- Discriminator ---
+	train_loss: 1.8854 - test_loss: 0.7127
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.2513, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 38/100] 
+--- Generator ---
+	Train: loss: 4.4559 - L1 loss: 0.0384 - cGan loss: 0.6178
+	Test: loss: 4.3798 - L1 loss: 0.0376 - cGan loss: 0.6178
+--- Discriminator ---
+	train_loss: 1.8384 - test_loss: 0.7118
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.1810, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 39/100] 
+--- Generator ---
+	Train: loss: 4.3841 - L1 loss: 0.0376 - cGan loss: 0.6216
+	Test: loss: 4.2949 - L1 loss: 0.0367 - cGan loss: 0.6212
+--- Discriminator ---
+	train_loss: 1.8020 - test_loss: 0.7111
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.1265, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 40/100] 
+--- Generator ---
+	Train: loss: 4.2815 - L1 loss: 0.0363 - cGan loss: 0.6478
+	Test: loss: 4.3378 - L1 loss: 0.0371 - cGan loss: 0.6239
+--- Discriminator ---
+	train_loss: 1.7775 - test_loss: 0.7107
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.0625, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 41/100] 
+--- Generator ---
+	Train: loss: 4.2857 - L1 loss: 0.0364 - cGan loss: 0.6492
+	Test: loss: 4.1986 - L1 loss: 0.0357 - cGan loss: 0.6269
+--- Discriminator ---
+	train_loss: 1.7449 - test_loss: 0.7099
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.0024, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 42/100] 
+--- Generator ---
+	Train: loss: 4.0752 - L1 loss: 0.0342 - cGan loss: 0.6520
+	Test: loss: 4.2001 - L1 loss: 0.0357 - cGan loss: 0.6295
+--- Discriminator ---
+	train_loss: 1.7137 - test_loss: 0.7095
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.9446, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 43/100] 
+--- Generator ---
+	Train: loss: 4.0330 - L1 loss: 0.0338 - cGan loss: 0.6540
+	Test: loss: 4.4032 - L1 loss: 0.0377 - cGan loss: 0.6321
+--- Discriminator ---
+	train_loss: 1.6838 - test_loss: 0.7087
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.8888, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 44/100] 
+--- Generator ---
+	Train: loss: 4.1702 - L1 loss: 0.0351 - cGan loss: 0.6557
+	Test: loss: 4.6931 - L1 loss: 0.0406 - cGan loss: 0.6345
+--- Discriminator ---
+	train_loss: 1.6554 - test_loss: 0.7084
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.8423, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 45/100] 
+--- Generator ---
+	Train: loss: 4.7037 - L1 loss: 0.0407 - cGan loss: 0.6369
+	Test: loss: 4.2645 - L1 loss: 0.0363 - cGan loss: 0.6371
+--- Discriminator ---
+	train_loss: 1.6295 - test_loss: 0.7078
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.7941, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 46/100] 
+--- Generator ---
+	Train: loss: 4.2879 - L1 loss: 0.0365 - cGan loss: 0.6396
+	Test: loss: 4.0426 - L1 loss: 0.0340 - cGan loss: 0.6396
+--- Discriminator ---
+	train_loss: 1.6049 - test_loss: 0.7074
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.7454, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 47/100] 
+--- Generator ---
+	Train: loss: 3.9307 - L1 loss: 0.0327 - cGan loss: 0.6622
+	Test: loss: 4.0179 - L1 loss: 0.0338 - cGan loss: 0.6423
+--- Discriminator ---
+	train_loss: 1.5817 - test_loss: 0.7067
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.7005, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 48/100] 
+--- Generator ---
+	Train: loss: 4.0352 - L1 loss: 0.0339 - cGan loss: 0.6445
+	Test: loss: 3.9317 - L1 loss: 0.0329 - cGan loss: 0.6444
+--- Discriminator ---
+	train_loss: 1.5569 - test_loss: 0.7063
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.6549, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 49/100] 
+--- Generator ---
+	Train: loss: 3.9408 - L1 loss: 0.0329 - cGan loss: 0.6467
+	Test: loss: 3.9412 - L1 loss: 0.0329 - cGan loss: 0.6464
+--- Discriminator ---
+	train_loss: 1.5337 - test_loss: 0.7061
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.6170, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 50/100] 
+--- Generator ---
+	Train: loss: 3.8526 - L1 loss: 0.0318 - cGan loss: 0.6677
+	Test: loss: 3.9621 - L1 loss: 0.0331 - cGan loss: 0.6486
+--- Discriminator ---
+	train_loss: 1.5164 - test_loss: 0.7055
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.5757, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 51/100] 
+--- Generator ---
+	Train: loss: 3.9701 - L1 loss: 0.0332 - cGan loss: 0.6505
+	Test: loss: 3.9559 - L1 loss: 0.0330 - cGan loss: 0.6512
+--- Discriminator ---
+	train_loss: 1.4935 - test_loss: 0.7049
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.5369, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 52/100] 
+--- Generator ---
+	Train: loss: 3.9240 - L1 loss: 0.0325 - cGan loss: 0.6708
+	Test: loss: 4.2307 - L1 loss: 0.0358 - cGan loss: 0.6527
+--- Discriminator ---
+	train_loss: 1.4756 - test_loss: 0.7046
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.5020, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 53/100] 
+--- Generator ---
+	Train: loss: 4.1323 - L1 loss: 0.0346 - cGan loss: 0.6725
+	Test: loss: 4.1046 - L1 loss: 0.0345 - cGan loss: 0.6548
+--- Discriminator ---
+	train_loss: 1.4574 - test_loss: 0.7041
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.4722, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 54/100] 
+--- Generator ---
+	Train: loss: 4.0991 - L1 loss: 0.0344 - cGan loss: 0.6564
+	Test: loss: 3.8773 - L1 loss: 0.0322 - cGan loss: 0.6564
+--- Discriminator ---
+	train_loss: 1.4403 - test_loss: 0.7040
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.4377, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 55/100] 
+--- Generator ---
+	Train: loss: 3.8650 - L1 loss: 0.0321 - cGan loss: 0.6579
+	Test: loss: 3.7528 - L1 loss: 0.0310 - cGan loss: 0.6577
+--- Discriminator ---
+	train_loss: 1.4230 - test_loss: 0.7038
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.4020, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 56/100] 
+--- Generator ---
+	Train: loss: 3.7831 - L1 loss: 0.0311 - cGan loss: 0.6767
+	Test: loss: 4.0796 - L1 loss: 0.0342 - cGan loss: 0.6592
+--- Discriminator ---
+	train_loss: 1.4065 - test_loss: 0.7035
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.3707, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 57/100] 
+--- Generator ---
+	Train: loss: 3.9208 - L1 loss: 0.0324 - cGan loss: 0.6771
+	Test: loss: 3.8185 - L1 loss: 0.0316 - cGan loss: 0.6608
+--- Discriminator ---
+	train_loss: 1.3909 - test_loss: 0.7031
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.3404, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 58/100] 
+--- Generator ---
+	Train: loss: 3.8189 - L1 loss: 0.0314 - cGan loss: 0.6787
+	Test: loss: 3.8909 - L1 loss: 0.0323 - cGan loss: 0.6616
+--- Discriminator ---
+	train_loss: 1.3749 - test_loss: 0.7031
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.3207, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 59/100] 
+--- Generator ---
+	Train: loss: 3.8953 - L1 loss: 0.0323 - cGan loss: 0.6631
+	Test: loss: 3.7779 - L1 loss: 0.0311 - cGan loss: 0.6632
+--- Discriminator ---
+	train_loss: 1.3634 - test_loss: 0.7027
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.2847, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 60/100] 
+--- Generator ---
+	Train: loss: 3.6906 - L1 loss: 0.0301 - cGan loss: 0.6807
+	Test: loss: 3.7042 - L1 loss: 0.0304 - cGan loss: 0.6641
+--- Discriminator ---
+	train_loss: 1.3464 - test_loss: 0.7027
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.2567, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 61/100] 
+--- Generator ---
+	Train: loss: 3.5725 - L1 loss: 0.0289 - cGan loss: 0.6814
+	Test: loss: 3.7751 - L1 loss: 0.0311 - cGan loss: 0.6654
+--- Discriminator ---
+	train_loss: 1.3321 - test_loss: 0.7023
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.2302, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 62/100] 
+--- Generator ---
+	Train: loss: 3.5661 - L1 loss: 0.0288 - cGan loss: 0.6822
+	Test: loss: 3.8511 - L1 loss: 0.0318 - cGan loss: 0.6664
+--- Discriminator ---
+	train_loss: 1.3185 - test_loss: 0.7021
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.2059, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 63/100] 
+--- Generator ---
+	Train: loss: 3.6662 - L1 loss: 0.0298 - cGan loss: 0.6825
+	Test: loss: 3.9730 - L1 loss: 0.0331 - cGan loss: 0.6672
+--- Discriminator ---
+	train_loss: 1.3061 - test_loss: 0.7020
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.1993, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 64/100] 
+--- Generator ---
+	Train: loss: 3.9740 - L1 loss: 0.0331 - cGan loss: 0.6684
+	Test: loss: 3.7590 - L1 loss: 0.0309 - cGan loss: 0.6682
+--- Discriminator ---
+	train_loss: 1.3016 - test_loss: 0.7017
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.1598, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 65/100] 
+--- Generator ---
+	Train: loss: 3.5512 - L1 loss: 0.0287 - cGan loss: 0.6840
+	Test: loss: 3.6812 - L1 loss: 0.0301 - cGan loss: 0.6693
+--- Discriminator ---
+	train_loss: 1.2826 - test_loss: 0.7015
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.1371, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 66/100] 
+--- Generator ---
+	Train: loss: 3.4995 - L1 loss: 0.0281 - cGan loss: 0.6846
+	Test: loss: 3.7475 - L1 loss: 0.0308 - cGan loss: 0.6699
+--- Discriminator ---
+	train_loss: 1.2710 - test_loss: 0.7015
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.1326, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 67/100] 
+--- Generator ---
+	Train: loss: 3.7460 - L1 loss: 0.0308 - cGan loss: 0.6709
+	Test: loss: 3.6412 - L1 loss: 0.0297 - cGan loss: 0.6712
+--- Discriminator ---
+	train_loss: 1.2678 - test_loss: 0.7012
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.0953, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 68/100] 
+--- Generator ---
+	Train: loss: 3.4304 - L1 loss: 0.0274 - cGan loss: 0.6860
+	Test: loss: 3.6111 - L1 loss: 0.0294 - cGan loss: 0.6719
+--- Discriminator ---
+	train_loss: 1.2497 - test_loss: 0.7010
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.0749, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 69/100] 
+--- Generator ---
+	Train: loss: 3.4098 - L1 loss: 0.0272 - cGan loss: 0.6865
+	Test: loss: 3.7071 - L1 loss: 0.0303 - cGan loss: 0.6727
+--- Discriminator ---
+	train_loss: 1.2393 - test_loss: 0.7009
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.0712, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 70/100] 
+--- Generator ---
+	Train: loss: 3.6869 - L1 loss: 0.0301 - cGan loss: 0.6733
+	Test: loss: 3.6338 - L1 loss: 0.0296 - cGan loss: 0.6738
+--- Discriminator ---
+	train_loss: 1.2366 - test_loss: 0.7005
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.0524, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 71/100] 
+--- Generator ---
+	Train: loss: 3.6117 - L1 loss: 0.0294 - cGan loss: 0.6746
+	Test: loss: 3.5113 - L1 loss: 0.0284 - cGan loss: 0.6744
+--- Discriminator ---
+	train_loss: 1.2268 - test_loss: 0.7005
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.0329, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 72/100] 
+--- Generator ---
+	Train: loss: 3.5294 - L1 loss: 0.0285 - cGan loss: 0.6754
+	Test: loss: 3.4283 - L1 loss: 0.0275 - cGan loss: 0.6752
+--- Discriminator ---
+	train_loss: 1.2169 - test_loss: 0.7004
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.0139, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 73/100] 
+--- Generator ---
+	Train: loss: 3.4608 - L1 loss: 0.0278 - cGan loss: 0.6762
+	Test: loss: 3.4560 - L1 loss: 0.0278 - cGan loss: 0.6761
+--- Discriminator ---
+	train_loss: 1.2073 - test_loss: 0.7002
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.9947, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 74/100] 
+--- Generator ---
+	Train: loss: 3.4792 - L1 loss: 0.0280 - cGan loss: 0.6772
+	Test: loss: 3.5582 - L1 loss: 0.0288 - cGan loss: 0.6776
+--- Discriminator ---
+	train_loss: 1.1975 - test_loss: 0.6998
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.9767, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 75/100] 
+--- Generator ---
+	Train: loss: 3.5467 - L1 loss: 0.0287 - cGan loss: 0.6785
+	Test: loss: 3.6049 - L1 loss: 0.0293 - cGan loss: 0.6780
+--- Discriminator ---
+	train_loss: 1.1881 - test_loss: 0.6998
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.9590, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 76/100] 
+--- Generator ---
+	Train: loss: 3.6000 - L1 loss: 0.0292 - cGan loss: 0.6788
+	Test: loss: 3.4641 - L1 loss: 0.0278 - cGan loss: 0.6791
+--- Discriminator ---
+	train_loss: 1.1793 - test_loss: 0.6995
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.9424, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 77/100] 
+--- Generator ---
+	Train: loss: 3.4602 - L1 loss: 0.0278 - cGan loss: 0.6802
+	Test: loss: 3.3759 - L1 loss: 0.0270 - cGan loss: 0.6796
+--- Discriminator ---
+	train_loss: 1.1705 - test_loss: 0.6995
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.9263, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 78/100] 
+--- Generator ---
+	Train: loss: 3.3965 - L1 loss: 0.0272 - cGan loss: 0.6802
+	Test: loss: 3.4061 - L1 loss: 0.0273 - cGan loss: 0.6808
+--- Discriminator ---
+	train_loss: 1.1627 - test_loss: 0.6991
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.9118, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 79/100] 
+--- Generator ---
+	Train: loss: 3.4192 - L1 loss: 0.0274 - cGan loss: 0.6813
+	Test: loss: 3.4508 - L1 loss: 0.0277 - cGan loss: 0.6813
+--- Discriminator ---
+	train_loss: 1.1551 - test_loss: 0.6991
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8956, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 80/100] 
+--- Generator ---
+	Train: loss: 3.5522 - L1 loss: 0.0286 - cGan loss: 0.6941
+	Test: loss: 3.5073 - L1 loss: 0.0283 - cGan loss: 0.6819
+--- Discriminator ---
+	train_loss: 1.1485 - test_loss: 0.6989
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8805, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 81/100] 
+--- Generator ---
+	Train: loss: 3.5896 - L1 loss: 0.0290 - cGan loss: 0.6942
+	Test: loss: 3.5585 - L1 loss: 0.0288 - cGan loss: 0.6818
+--- Discriminator ---
+	train_loss: 1.1406 - test_loss: 0.6989
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8695, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 82/100] 
+--- Generator ---
+	Train: loss: 3.5877 - L1 loss: 0.0291 - cGan loss: 0.6824
+	Test: loss: 3.4547 - L1 loss: 0.0277 - cGan loss: 0.6830
+--- Discriminator ---
+	train_loss: 1.1336 - test_loss: 0.6984
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8569, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 83/100] 
+--- Generator ---
+	Train: loss: 3.4740 - L1 loss: 0.0279 - cGan loss: 0.6831
+	Test: loss: 3.3800 - L1 loss: 0.0270 - cGan loss: 0.6828
+--- Discriminator ---
+	train_loss: 1.1271 - test_loss: 0.6987
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8409, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 84/100] 
+--- Generator ---
+	Train: loss: 3.5169 - L1 loss: 0.0282 - cGan loss: 0.6947
+	Test: loss: 3.3724 - L1 loss: 0.0269 - cGan loss: 0.6831
+--- Discriminator ---
+	train_loss: 1.1206 - test_loss: 0.6986
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8309, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 85/100] 
+--- Generator ---
+	Train: loss: 3.3496 - L1 loss: 0.0267 - cGan loss: 0.6837
+	Test: loss: 3.2839 - L1 loss: 0.0260 - cGan loss: 0.6835
+--- Discriminator ---
+	train_loss: 1.1139 - test_loss: 0.6985
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8178, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 86/100] 
+--- Generator ---
+	Train: loss: 3.2831 - L1 loss: 0.0260 - cGan loss: 0.6840
+	Test: loss: 3.2336 - L1 loss: 0.0255 - cGan loss: 0.6843
+--- Discriminator ---
+	train_loss: 1.1074 - test_loss: 0.6982
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.8062, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 87/100] 
+--- Generator ---
+	Train: loss: 3.2417 - L1 loss: 0.0256 - cGan loss: 0.6849
+	Test: loss: 3.2519 - L1 loss: 0.0257 - cGan loss: 0.6846
+--- Discriminator ---
+	train_loss: 1.1013 - test_loss: 0.6982
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7939, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 88/100] 
+--- Generator ---
+	Train: loss: 3.2387 - L1 loss: 0.0255 - cGan loss: 0.6849
+	Test: loss: 3.2239 - L1 loss: 0.0254 - cGan loss: 0.6852
+--- Discriminator ---
+	train_loss: 1.0953 - test_loss: 0.6980
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7827, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 89/100] 
+--- Generator ---
+	Train: loss: 3.2098 - L1 loss: 0.0252 - cGan loss: 0.6859
+	Test: loss: 3.2601 - L1 loss: 0.0257 - cGan loss: 0.6857
+--- Discriminator ---
+	train_loss: 1.0893 - test_loss: 0.6980
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7714, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 90/100] 
+--- Generator ---
+	Train: loss: 3.2555 - L1 loss: 0.0257 - cGan loss: 0.6861
+	Test: loss: 3.2067 - L1 loss: 0.0252 - cGan loss: 0.6859
+--- Discriminator ---
+	train_loss: 1.0837 - test_loss: 0.6980
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7625, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 91/100] 
+--- Generator ---
+	Train: loss: 3.3820 - L1 loss: 0.0268 - cGan loss: 0.6973
+	Test: loss: 3.1678 - L1 loss: 0.0248 - cGan loss: 0.6860
+--- Discriminator ---
+	train_loss: 1.0808 - test_loss: 0.6979
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7495, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 92/100] 
+--- Generator ---
+	Train: loss: 3.1587 - L1 loss: 0.0247 - cGan loss: 0.6863
+	Test: loss: 3.1765 - L1 loss: 0.0249 - cGan loss: 0.6867
+--- Discriminator ---
+	train_loss: 1.0727 - test_loss: 0.6976
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7409, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 93/100] 
+--- Generator ---
+	Train: loss: 3.3447 - L1 loss: 0.0265 - cGan loss: 0.6977
+	Test: loss: 3.2661 - L1 loss: 0.0258 - cGan loss: 0.6865
+--- Discriminator ---
+	train_loss: 1.0696 - test_loss: 0.6977
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7307, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 94/100] 
+--- Generator ---
+	Train: loss: 3.3737 - L1 loss: 0.0268 - cGan loss: 0.6971
+	Test: loss: 3.3762 - L1 loss: 0.0269 - cGan loss: 0.6870
+--- Discriminator ---
+	train_loss: 1.0646 - test_loss: 0.6974
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7213, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 95/100] 
+--- Generator ---
+	Train: loss: 3.3638 - L1 loss: 0.0268 - cGan loss: 0.6870
+	Test: loss: 3.2359 - L1 loss: 0.0255 - cGan loss: 0.6868
+--- Discriminator ---
+	train_loss: 1.0581 - test_loss: 0.6976
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7104, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 96/100] 
+--- Generator ---
+	Train: loss: 3.2885 - L1 loss: 0.0259 - cGan loss: 0.6968
+	Test: loss: 3.0918 - L1 loss: 0.0240 - cGan loss: 0.6868
+--- Discriminator ---
+	train_loss: 1.0543 - test_loss: 0.6976
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.7040, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 97/100] 
+--- Generator ---
+	Train: loss: 3.0773 - L1 loss: 0.0239 - cGan loss: 0.6872
+	Test: loss: 3.1335 - L1 loss: 0.0245 - cGan loss: 0.6875
+--- Discriminator ---
+	train_loss: 1.0496 - test_loss: 0.6972
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.6915, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 98/100] 
+--- Generator ---
+	Train: loss: 3.3506 - L1 loss: 0.0265 - cGan loss: 0.6971
+	Test: loss: 3.4213 - L1 loss: 0.0273 - cGan loss: 0.6869
+--- Discriminator ---
+	train_loss: 1.0445 - test_loss: 0.6975
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.6829, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 99/100] 
+--- Generator ---
+	Train: loss: 3.3817 - L1 loss: 0.0268 - cGan loss: 0.6971
+	Test: loss: 3.1666 - L1 loss: 0.0248 - cGan loss: 0.6875
+--- Discriminator ---
+	train_loss: 1.0400 - test_loss: 0.6972
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(0.6783, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 100/100] 
+--- Generator ---
+	Train: loss: 3.1569 - L1 loss: 0.0247 - cGan loss: 0.6877
+	Test: loss: 3.1559 - L1 loss: 0.0247 - cGan loss: 0.6876
+--- Discriminator ---
+	train_loss: 1.0364 - test_loss: 0.6972
+-------Start-------
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1431.6177, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 1/100] 
+--- Generator ---
+	Train: loss: 21.4065 - L1 loss: 0.2092 - cGan loss: 0.4906
+	Test: loss: 18.2861 - L1 loss: 0.1792 - cGan loss: 0.3698
+--- Discriminator ---
+	train_loss: 716.6564 - test_loss: 0.9803
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(535.5996, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 2/100] 
+--- Generator ---
+	Train: loss: 18.3042 - L1 loss: 0.1790 - cGan loss: 0.4010
+	Test: loss: 15.9951 - L1 loss: 0.1564 - cGan loss: 0.3588
+--- Discriminator ---
+	train_loss: 268.7825 - test_loss: 0.9651
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(228.2024, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 3/100] 
+--- Generator ---
+	Train: loss: 16.0625 - L1 loss: 0.1568 - cGan loss: 0.3867
+	Test: loss: 14.1500 - L1 loss: 0.1377 - cGan loss: 0.3846
+--- Discriminator ---
+	train_loss: 115.0704 - test_loss: 0.9220
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(110.3617, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 4/100] 
+--- Generator ---
+	Train: loss: 14.1707 - L1 loss: 0.1379 - cGan loss: 0.3844
+	Test: loss: 12.7872 - L1 loss: 0.1238 - cGan loss: 0.4084
+--- Discriminator ---
+	train_loss: 56.0984 - test_loss: 0.8764
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(62.7548, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 5/100] 
+--- Generator ---
+	Train: loss: 12.7573 - L1 loss: 0.1235 - cGan loss: 0.4089
+	Test: loss: 11.8137 - L1 loss: 0.1140 - cGan loss: 0.4184
+--- Discriminator ---
+	train_loss: 32.2618 - test_loss: 0.8570
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(40.7884, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 6/100] 
+--- Generator ---
+	Train: loss: 11.8281 - L1 loss: 0.1140 - cGan loss: 0.4322
+	Test: loss: 11.1223 - L1 loss: 0.1069 - cGan loss: 0.4306
+--- Discriminator ---
+	train_loss: 21.2578 - test_loss: 0.8428
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(29.2786, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 7/100] 
+--- Generator ---
+	Train: loss: 11.0944 - L1 loss: 0.1066 - cGan loss: 0.4364
+	Test: loss: 10.6708 - L1 loss: 0.1023 - cGan loss: 0.4378
+--- Discriminator ---
+	train_loss: 15.4863 - test_loss: 0.8310
+-------Start-------
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(972.6686, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 1/50] 
+--- Generator ---
+	Train: loss: 19.6316 - L1 loss: 0.1892 - cGan loss: 0.7127
+	Test: loss: 16.4662 - L1 loss: 0.1595 - cGan loss: 0.5134
+--- Discriminator ---
+	train_loss: 487.1668 - test_loss: 0.9331
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(344.5005, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 2/50] 
+--- Generator ---
+	Train: loss: 16.6277 - L1 loss: 0.1602 - cGan loss: 0.6034
+	Test: loss: 14.5982 - L1 loss: 0.1409 - cGan loss: 0.5117
+--- Discriminator ---
+	train_loss: 173.1770 - test_loss: 0.8842
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(144.6013, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 3/50] 
+--- Generator ---
+	Train: loss: 14.6915 - L1 loss: 0.1411 - cGan loss: 0.5813
+	Test: loss: 13.2399 - L1 loss: 0.1269 - cGan loss: 0.5512
+--- Discriminator ---
+	train_loss: 73.1863 - test_loss: 0.8361
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(70.6098, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 4/50] 
+--- Generator ---
+	Train: loss: 13.2495 - L1 loss: 0.1267 - cGan loss: 0.5800
+	Test: loss: 12.1961 - L1 loss: 0.1162 - cGan loss: 0.5796
+--- Discriminator ---
+	train_loss: 36.1505 - test_loss: 0.8059
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(41.2415, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 5/50] 
+--- Generator ---
+	Train: loss: 12.2889 - L1 loss: 0.1167 - cGan loss: 0.6154
+	Test: loss: 11.4263 - L1 loss: 0.1082 - cGan loss: 0.6025
+--- Discriminator ---
+	train_loss: 21.4347 - test_loss: 0.7840
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(27.5020, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 6/50] 
+--- Generator ---
+	Train: loss: 11.4306 - L1 loss: 0.1082 - cGan loss: 0.6118
+	Test: loss: 10.8823 - L1 loss: 0.1026 - cGan loss: 0.6178
+--- Discriminator ---
+	train_loss: 14.5360 - test_loss: 0.7711
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(20.4494, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 7/50] 
+--- Generator ---
+	Train: loss: 10.9000 - L1 loss: 0.1028 - cGan loss: 0.6201
+	Test: loss: 10.5054 - L1 loss: 0.0988 - cGan loss: 0.6236
+--- Discriminator ---
+	train_loss: 11.0003 - test_loss: 0.7635
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(16.2401, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 8/50] 
+--- Generator ---
+	Train: loss: 10.6058 - L1 loss: 0.0996 - cGan loss: 0.6463
+	Test: loss: 10.1529 - L1 loss: 0.0952 - cGan loss: 0.6362
+--- Discriminator ---
+	train_loss: 8.8944 - test_loss: 0.7544
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(13.4774, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 9/50] 
+--- Generator ---
+	Train: loss: 10.2713 - L1 loss: 0.0962 - cGan loss: 0.6538
+	Test: loss: 9.8954 - L1 loss: 0.0926 - cGan loss: 0.6393
+--- Discriminator ---
+	train_loss: 7.5104 - test_loss: 0.7503
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(11.4170, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 10/50] 
+--- Generator ---
+	Train: loss: 9.9207 - L1 loss: 0.0928 - cGan loss: 0.6428
+	Test: loss: 9.6918 - L1 loss: 0.0904 - cGan loss: 0.6470
+--- Discriminator ---
+	train_loss: 6.4644 - test_loss: 0.7450
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(10.0461, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 11/50] 
+--- Generator ---
+	Train: loss: 9.7053 - L1 loss: 0.0904 - cGan loss: 0.6682
+	Test: loss: 9.5032 - L1 loss: 0.0885 - cGan loss: 0.6502
+--- Discriminator ---
+	train_loss: 5.7825 - test_loss: 0.7420
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(8.8886, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 12/50] 
+--- Generator ---
+	Train: loss: 9.4934 - L1 loss: 0.0885 - cGan loss: 0.6460
+	Test: loss: 9.2575 - L1 loss: 0.0860 - cGan loss: 0.6534
+--- Discriminator ---
+	train_loss: 5.1892 - test_loss: 0.7391
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(7.9425, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 13/50] 
+--- Generator ---
+	Train: loss: 9.2498 - L1 loss: 0.0860 - cGan loss: 0.6502
+	Test: loss: 9.2575 - L1 loss: 0.0860 - cGan loss: 0.6578
+--- Discriminator ---
+	train_loss: 4.7112 - test_loss: 0.7357
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(7.2639, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 14/50] 
+--- Generator ---
+	Train: loss: 9.2437 - L1 loss: 0.0857 - cGan loss: 0.6729
+	Test: loss: 8.8959 - L1 loss: 0.0824 - cGan loss: 0.6571
+--- Discriminator ---
+	train_loss: 4.3751 - test_loss: 0.7351
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(6.5847, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 15/50] 
+--- Generator ---
+	Train: loss: 8.9132 - L1 loss: 0.0826 - cGan loss: 0.6533
+	Test: loss: 8.6709 - L1 loss: 0.0801 - cGan loss: 0.6619
+--- Discriminator ---
+	train_loss: 4.0281 - test_loss: 0.7320
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(6.1004, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 16/50] 
+--- Generator ---
+	Train: loss: 8.7595 - L1 loss: 0.0809 - cGan loss: 0.6666
+	Test: loss: 8.4885 - L1 loss: 0.0782 - cGan loss: 0.6640
+--- Discriminator ---
+	train_loss: 3.7881 - test_loss: 0.7301
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(5.6485, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 17/50] 
+--- Generator ---
+	Train: loss: 8.8116 - L1 loss: 0.0814 - cGan loss: 0.6766
+	Test: loss: 8.4114 - L1 loss: 0.0774 - cGan loss: 0.6671
+--- Discriminator ---
+	train_loss: 3.5630 - test_loss: 0.7281
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(5.2382, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 18/50] 
+--- Generator ---
+	Train: loss: 8.4424 - L1 loss: 0.0776 - cGan loss: 0.6791
+	Test: loss: 8.2248 - L1 loss: 0.0756 - cGan loss: 0.6678
+--- Discriminator ---
+	train_loss: 3.3561 - test_loss: 0.7266
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.8903, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 19/50] 
+--- Generator ---
+	Train: loss: 8.2252 - L1 loss: 0.0754 - cGan loss: 0.6809
+	Test: loss: 8.2260 - L1 loss: 0.0755 - cGan loss: 0.6716
+--- Discriminator ---
+	train_loss: 3.1770 - test_loss: 0.7245
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.5421, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 20/50] 
+--- Generator ---
+	Train: loss: 8.2016 - L1 loss: 0.0753 - cGan loss: 0.6727
+	Test: loss: 8.2975 - L1 loss: 0.0763 - cGan loss: 0.6695
+--- Discriminator ---
+	train_loss: 2.9956 - test_loss: 0.7248
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.2694, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 21/50] 
+--- Generator ---
+	Train: loss: 8.2140 - L1 loss: 0.0755 - cGan loss: 0.6635
+	Test: loss: 8.0655 - L1 loss: 0.0739 - cGan loss: 0.6753
+--- Discriminator ---
+	train_loss: 2.8617 - test_loss: 0.7216
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(4.0432, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 22/50] 
+--- Generator ---
+	Train: loss: 8.1132 - L1 loss: 0.0742 - cGan loss: 0.6901
+	Test: loss: 7.8500 - L1 loss: 0.0718 - cGan loss: 0.6744
+--- Discriminator ---
+	train_loss: 2.7499 - test_loss: 0.7211
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.7991, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 23/50] 
+--- Generator ---
+	Train: loss: 7.8304 - L1 loss: 0.0715 - cGan loss: 0.6797
+	Test: loss: 7.6290 - L1 loss: 0.0695 - cGan loss: 0.6764
+--- Discriminator ---
+	train_loss: 2.6247 - test_loss: 0.7195
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.5898, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 24/50] 
+--- Generator ---
+	Train: loss: 7.6977 - L1 loss: 0.0702 - cGan loss: 0.6809
+	Test: loss: 8.2051 - L1 loss: 0.0753 - cGan loss: 0.6754
+--- Discriminator ---
+	train_loss: 2.5169 - test_loss: 0.7200
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.3928, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 25/50] 
+--- Generator ---
+	Train: loss: 8.2102 - L1 loss: 0.0753 - cGan loss: 0.6767
+	Test: loss: 8.8220 - L1 loss: 0.0814 - cGan loss: 0.6802
+--- Discriminator ---
+	train_loss: 2.4164 - test_loss: 0.7161
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.2394, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 26/50] 
+--- Generator ---
+	Train: loss: 8.7497 - L1 loss: 0.0807 - cGan loss: 0.6840
+	Test: loss: 7.4427 - L1 loss: 0.0676 - cGan loss: 0.6785
+--- Discriminator ---
+	train_loss: 2.3393 - test_loss: 0.7172
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(3.0674, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 27/50] 
+--- Generator ---
+	Train: loss: 7.4657 - L1 loss: 0.0679 - cGan loss: 0.6793
+	Test: loss: 7.3432 - L1 loss: 0.0666 - cGan loss: 0.6798
+--- Discriminator ---
+	train_loss: 2.2510 - test_loss: 0.7155
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.9326, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 28/50] 
+--- Generator ---
+	Train: loss: 7.4244 - L1 loss: 0.0674 - cGan loss: 0.6858
+	Test: loss: 6.9208 - L1 loss: 0.0624 - cGan loss: 0.6809
+--- Discriminator ---
+	train_loss: 2.1836 - test_loss: 0.7146
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.8196, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 29/50] 
+--- Generator ---
+	Train: loss: 7.2883 - L1 loss: 0.0659 - cGan loss: 0.6949
+	Test: loss: 6.7609 - L1 loss: 0.0608 - cGan loss: 0.6817
+--- Discriminator ---
+	train_loss: 2.1293 - test_loss: 0.7136
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.6869, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 30/50] 
+--- Generator ---
+	Train: loss: 6.7235 - L1 loss: 0.0604 - cGan loss: 0.6844
+	Test: loss: 6.5679 - L1 loss: 0.0589 - cGan loss: 0.6821
+--- Discriminator ---
+	train_loss: 2.0604 - test_loss: 0.7134
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.5812, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 31/50] 
+--- Generator ---
+	Train: loss: 6.5774 - L1 loss: 0.0589 - cGan loss: 0.6916
+	Test: loss: 6.6133 - L1 loss: 0.0593 - cGan loss: 0.6834
+--- Discriminator ---
+	train_loss: 2.0063 - test_loss: 0.7121
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.4769, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 32/50] 
+--- Generator ---
+	Train: loss: 6.5787 - L1 loss: 0.0589 - cGan loss: 0.6923
+	Test: loss: 6.6311 - L1 loss: 0.0595 - cGan loss: 0.6822
+--- Discriminator ---
+	train_loss: 1.9528 - test_loss: 0.7126
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.3679, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 33/50] 
+--- Generator ---
+	Train: loss: 6.5793 - L1 loss: 0.0590 - cGan loss: 0.6823
+	Test: loss: 6.9936 - L1 loss: 0.0631 - cGan loss: 0.6859
+--- Discriminator ---
+	train_loss: 1.8974 - test_loss: 0.7102
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.2899, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 34/50] 
+--- Generator ---
+	Train: loss: 6.8519 - L1 loss: 0.0616 - cGan loss: 0.6921
+	Test: loss: 6.3150 - L1 loss: 0.0563 - cGan loss: 0.6848
+--- Discriminator ---
+	train_loss: 1.8588 - test_loss: 0.7106
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.2026, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 35/50] 
+--- Generator ---
+	Train: loss: 6.1654 - L1 loss: 0.0547 - cGan loss: 0.6927
+	Test: loss: 6.3049 - L1 loss: 0.0562 - cGan loss: 0.6857
+--- Discriminator ---
+	train_loss: 1.8138 - test_loss: 0.7100
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.1144, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 36/50] 
+--- Generator ---
+	Train: loss: 6.3750 - L1 loss: 0.0569 - cGan loss: 0.6891
+	Test: loss: 6.2419 - L1 loss: 0.0555 - cGan loss: 0.6869
+--- Discriminator ---
+	train_loss: 1.7683 - test_loss: 0.7088
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(2.0467, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 37/50] 
+--- Generator ---
+	Train: loss: 6.2185 - L1 loss: 0.0552 - cGan loss: 0.6952
+	Test: loss: 6.1727 - L1 loss: 0.0549 - cGan loss: 0.6862
+--- Discriminator ---
+	train_loss: 1.7330 - test_loss: 0.7093
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.9634, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 38/50] 
+--- Generator ---
+	Train: loss: 6.1596 - L1 loss: 0.0548 - cGan loss: 0.6820
+	Test: loss: 5.8435 - L1 loss: 0.0516 - cGan loss: 0.6869
+--- Discriminator ---
+	train_loss: 1.6911 - test_loss: 0.7084
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.9056, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 39/50] 
+--- Generator ---
+	Train: loss: 5.9030 - L1 loss: 0.0522 - cGan loss: 0.6876
+	Test: loss: 6.2409 - L1 loss: 0.0555 - cGan loss: 0.6888
+--- Discriminator ---
+	train_loss: 1.6611 - test_loss: 0.7075
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.8438, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 40/50] 
+--- Generator ---
+	Train: loss: 6.3691 - L1 loss: 0.0568 - cGan loss: 0.6905
+	Test: loss: 6.2832 - L1 loss: 0.0559 - cGan loss: 0.6896
+--- Discriminator ---
+	train_loss: 1.6310 - test_loss: 0.7066
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.7826, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 41/50] 
+--- Generator ---
+	Train: loss: 6.5457 - L1 loss: 0.0586 - cGan loss: 0.6880
+	Test: loss: 6.0819 - L1 loss: 0.0539 - cGan loss: 0.6883
+--- Discriminator ---
+	train_loss: 1.5998 - test_loss: 0.7075
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.7373, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 42/50] 
+--- Generator ---
+	Train: loss: 6.1894 - L1 loss: 0.0549 - cGan loss: 0.6957
+	Test: loss: 5.9124 - L1 loss: 0.0522 - cGan loss: 0.6910
+--- Discriminator ---
+	train_loss: 1.5769 - test_loss: 0.7057
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.6834, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 43/50] 
+--- Generator ---
+	Train: loss: 5.8376 - L1 loss: 0.0514 - cGan loss: 0.6980
+	Test: loss: 5.6451 - L1 loss: 0.0496 - cGan loss: 0.6892
+--- Discriminator ---
+	train_loss: 1.5480 - test_loss: 0.7063
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.6389, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 44/50] 
+--- Generator ---
+	Train: loss: 5.8287 - L1 loss: 0.0513 - cGan loss: 0.6991
+	Test: loss: 5.6179 - L1 loss: 0.0493 - cGan loss: 0.6900
+--- Discriminator ---
+	train_loss: 1.5276 - test_loss: 0.7058
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.5785, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 45/50] 
+--- Generator ---
+	Train: loss: 5.8088 - L1 loss: 0.0512 - cGan loss: 0.6893
+	Test: loss: 5.4054 - L1 loss: 0.0472 - cGan loss: 0.6901
+--- Discriminator ---
+	train_loss: 1.4961 - test_loss: 0.7055
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.5271, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 46/50] 
+--- Generator ---
+	Train: loss: 5.4176 - L1 loss: 0.0473 - cGan loss: 0.6861
+	Test: loss: 5.2826 - L1 loss: 0.0459 - cGan loss: 0.6907
+--- Discriminator ---
+	train_loss: 1.4691 - test_loss: 0.7049
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.5056, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 47/50] 
+--- Generator ---
+	Train: loss: 5.4720 - L1 loss: 0.0477 - cGan loss: 0.6992
+	Test: loss: 5.3737 - L1 loss: 0.0468 - cGan loss: 0.6909
+--- Discriminator ---
+	train_loss: 1.4599 - test_loss: 0.7047
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.4642, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 48/50] 
+--- Generator ---
+	Train: loss: 5.4512 - L1 loss: 0.0475 - cGan loss: 0.6990
+	Test: loss: 5.4403 - L1 loss: 0.0475 - cGan loss: 0.6919
+--- Discriminator ---
+	train_loss: 1.4391 - test_loss: 0.7038
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.4106, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 49/50] 
+--- Generator ---
+	Train: loss: 5.4751 - L1 loss: 0.0479 - cGan loss: 0.6876
+	Test: loss: 5.3547 - L1 loss: 0.0466 - cGan loss: 0.6908
+--- Discriminator ---
+	train_loss: 1.4094 - test_loss: 0.7044
+Plop - before discriminator_steP
+Plop - before discriminator_loss
+Plop - beg
+++++++++++++++R1 LOSS : tensor(1.3812, grad_fn=<AddBackward0>)
+Plop - beg
+[Epoch 50/50] 
+--- Generator ---
+	Train: loss: 5.4276 - L1 loss: 0.0473 - cGan loss: 0.6969
+	Test: loss: 5.1545 - L1 loss: 0.0446 - cGan loss: 0.6922
+--- Discriminator ---
+	train_loss: 1.3953 - test_loss: 0.7033
+-------Start-------
++++ R1 loss in training : tensor(1401.4270, grad_fn=<AddBackward0>)
+[Epoch 1/10] 
+--- Generator ---
+	Train: loss: 19.6554 - L1 loss: 0.1868 - cGan loss: 0.9763
+	Test: loss: 17.0023 - L1 loss: 0.1622 - cGan loss: 0.7777
+--- Discriminator ---
+	train_loss: 701.5791 - test_loss: 0.9188
+-------Start-------
++++ R1 loss in training : tensor(1064.6858, grad_fn=<AddBackward0>)
+[Epoch 1/10] 
+--- Generator ---
+	Train: loss: 22.0921 - L1 loss: 0.2131 - cGan loss: 0.7825
+	Test: loss: 18.6037 - L1 loss: 0.1801 - cGan loss: 0.5942
+--- Discriminator ---
+	train_loss: 533.1570 - test_loss: 0.9353
++++ R1 loss in training : tensor(358.6010, grad_fn=<AddBackward0>)
+[Epoch 2/10] 
+--- Generator ---
+	Train: loss: 18.6668 - L1 loss: 0.1798 - cGan loss: 0.6823
+	Test: loss: 16.4645 - L1 loss: 0.1584 - cGan loss: 0.6238
+--- Discriminator ---
+	train_loss: 180.2493 - test_loss: 0.9105
++++ R1 loss in training : tensor(143.6157, grad_fn=<AddBackward0>)
+[Epoch 3/10] 
+--- Generator ---
+	Train: loss: 16.4324 - L1 loss: 0.1578 - cGan loss: 0.6536
+	Test: loss: 14.6783 - L1 loss: 0.1403 - cGan loss: 0.6510
+--- Discriminator ---
+	train_loss: 72.7215 - test_loss: 0.8809
++++ R1 loss in training : tensor(71.2573, grad_fn=<AddBackward0>)
+[Epoch 4/10] 
+--- Generator ---
+	Train: loss: 14.6827 - L1 loss: 0.1401 - cGan loss: 0.6697
+	Test: loss: 13.2494 - L1 loss: 0.1257 - cGan loss: 0.6781
+--- Discriminator ---
+	train_loss: 36.4988 - test_loss: 0.8426
++++ R1 loss in training : tensor(42.2240, grad_fn=<AddBackward0>)
+[Epoch 5/10] 
+--- Generator ---
+	Train: loss: 13.2842 - L1 loss: 0.1259 - cGan loss: 0.6971
+	Test: loss: 12.1636 - L1 loss: 0.1147 - cGan loss: 0.6971
+--- Discriminator ---
+	train_loss: 21.9467 - test_loss: 0.8189
++++ R1 loss in training : tensor(28.2789, grad_fn=<AddBackward0>)
+[Epoch 6/10] 
+--- Generator ---
+	Train: loss: 12.1705 - L1 loss: 0.1146 - cGan loss: 0.7088
+	Test: loss: 11.4521 - L1 loss: 0.1074 - cGan loss: 0.7126
+--- Discriminator ---
+	train_loss: 14.9553 - test_loss: 0.8044
++++ R1 loss in training : tensor(21.2136, grad_fn=<AddBackward0>)
+[Epoch 7/10] 
+--- Generator ---
+	Train: loss: 11.4436 - L1 loss: 0.1072 - cGan loss: 0.7198
+	Test: loss: 10.9799 - L1 loss: 0.1026 - cGan loss: 0.7188
+--- Discriminator ---
+	train_loss: 11.4067 - test_loss: 0.7926
++++ R1 loss in training : tensor(16.9658, grad_fn=<AddBackward0>)
+[Epoch 8/10] 
+--- Generator ---
+	Train: loss: 10.9948 - L1 loss: 0.1028 - cGan loss: 0.7198
+	Test: loss: 10.5203 - L1 loss: 0.0980 - cGan loss: 0.7246
+--- Discriminator ---
+	train_loss: 9.2771 - test_loss: 0.7854
++++ R1 loss in training : tensor(14.2184, grad_fn=<AddBackward0>)
+[Epoch 9/10] 
+--- Generator ---
+	Train: loss: 10.5304 - L1 loss: 0.0981 - cGan loss: 0.7246
+	Test: loss: 10.0852 - L1 loss: 0.0936 - cGan loss: 0.7268
+--- Discriminator ---
+	train_loss: 7.8958 - test_loss: 0.7763
++++ R1 loss in training : tensor(12.2825, grad_fn=<AddBackward0>)
+[Epoch 10/10] 
+--- Generator ---
+	Train: loss: 10.1629 - L1 loss: 0.0943 - cGan loss: 0.7313
+	Test: loss: 9.8367 - L1 loss: 0.0911 - cGan loss: 0.7286
+--- Discriminator ---
+	train_loss: 6.9134 - test_loss: 0.7713
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+-------Start-------
++++ R1 loss in training : tensor(1145.7538, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 22.4052 - L1 loss: 0.2123 - cGan loss: 1.1797
+	Test: loss: 18.8961 - L1 loss: 0.1806 - cGan loss: 0.8314
+--- Discriminator ---
+	train_loss: 573.7608 - test_loss: 0.9778
++++ R1 loss in training : tensor(390.6939, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 18.9940 - L1 loss: 0.1803 - cGan loss: 0.9659
+	Test: loss: 16.6863 - L1 loss: 0.1584 - cGan loss: 0.8430
+--- Discriminator ---
+	train_loss: 196.3497 - test_loss: 0.9890
++++ R1 loss in training : tensor(156.8336, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.8300 - L1 loss: 0.1586 - cGan loss: 0.9672
+	Test: loss: 14.8117 - L1 loss: 0.1390 - cGan loss: 0.9074
+--- Discriminator ---
+	train_loss: 79.4133 - test_loss: 0.9768
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+-------Start-------
++++ R1 loss in training : tensor(1374.5051, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 20.8624 - L1 loss: 0.2005 - cGan loss: 0.8119
+	Test: loss: 17.8513 - L1 loss: 0.1727 - cGan loss: 0.5789
+--- Discriminator ---
+	train_loss: 688.0896 - test_loss: 0.9412
++++ R1 loss in training : tensor(521.5716, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 17.9094 - L1 loss: 0.1729 - cGan loss: 0.6233
+	Test: loss: 15.8675 - L1 loss: 0.1532 - cGan loss: 0.5460
+--- Discriminator ---
+	train_loss: 261.7390 - test_loss: 0.9326
++++ R1 loss in training : tensor(227.9698, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 15.9172 - L1 loss: 0.1529 - cGan loss: 0.6288
+	Test: loss: 14.2716 - L1 loss: 0.1370 - cGan loss: 0.5751
+--- Discriminator ---
+	train_loss: 114.9170 - test_loss: 0.8892
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+-------Start-------
++++ R1 loss in training : tensor(1230.9814, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 20.9339 - L1 loss: 0.1972 - cGan loss: 1.2096
+	Test: loss: 18.0182 - L1 loss: 0.1707 - cGan loss: 0.9463
+--- Discriminator ---
+	train_loss: 616.3523 - test_loss: 0.9502
++++ R1 loss in training : tensor(425.7638, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 18.0209 - L1 loss: 0.1703 - cGan loss: 0.9954
+	Test: loss: 16.1216 - L1 loss: 0.1515 - cGan loss: 0.9739
+--- Discriminator ---
+	train_loss: 213.8405 - test_loss: 0.9167
++++ R1 loss in training : tensor(176.3895, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.0994 - L1 loss: 0.1509 - cGan loss: 1.0044
+	Test: loss: 14.5234 - L1 loss: 0.1352 - cGan loss: 1.0061
+--- Discriminator ---
+	train_loss: 89.1200 - test_loss: 0.8896
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+-------Start-------
++++ R1 loss in training : tensor(1242.4834, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 21.7843 - L1 loss: 0.2084 - cGan loss: 0.9461
+	Test: loss: 18.3206 - L1 loss: 0.1770 - cGan loss: 0.6241
+--- Discriminator ---
+	train_loss: 622.0627 - test_loss: 0.9379
++++ R1 loss in training : tensor(416.6836, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 18.5172 - L1 loss: 0.1773 - cGan loss: 0.7822
+	Test: loss: 16.3764 - L1 loss: 0.1573 - cGan loss: 0.6431
+--- Discriminator ---
+	train_loss: 209.2710 - test_loss: 0.9222
++++ R1 loss in training : tensor(170.7737, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.4402 - L1 loss: 0.1571 - cGan loss: 0.7292
+	Test: loss: 14.7658 - L1 loss: 0.1405 - cGan loss: 0.7167
+--- Discriminator ---
+	train_loss: 86.3182 - test_loss: 0.8787
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+-------Start-------
++++ R1 loss in training : tensor(1259.3027, grad_fn=<AddBackward0>)
+[Epoch 1/3] 
+--- Generator ---
+	Train: loss: 22.5915 - L1 loss: 0.2199 - cGan loss: 0.6045
+	Test: loss: 19.1677 - L1 loss: 0.1875 - cGan loss: 0.4185
+--- Discriminator ---
+	train_loss: 630.5524 - test_loss: 1.0301
++++ R1 loss in training : tensor(450.6362, grad_fn=<AddBackward0>)
+[Epoch 2/3] 
+--- Generator ---
+	Train: loss: 19.2704 - L1 loss: 0.1877 - cGan loss: 0.4971
+	Test: loss: 16.9620 - L1 loss: 0.1649 - cGan loss: 0.4679
+--- Discriminator ---
+	train_loss: 226.3283 - test_loss: 0.9638
++++ R1 loss in training : tensor(190.7327, grad_fn=<AddBackward0>)
+[Epoch 3/3] 
+--- Generator ---
+	Train: loss: 16.9567 - L1 loss: 0.1646 - cGan loss: 0.4977
+	Test: loss: 15.1919 - L1 loss: 0.1468 - cGan loss: 0.5073
+--- Discriminator ---
+	train_loss: 96.3330 - test_loss: 0.9210
+a shape : torch.Size([8, 256, 256])
+b shape :  torch.Size([8, 256, 256])
+preds[i+1].shape torch.Size([8, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 8, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+torch.Size([2, 8, 256, 256])
+a shape : torch.Size([8, 256, 256])
+tensor(1.3489)
+b shape :  torch.Size([8, 256, 256])
+tensor(10.8189)
+524288
+[-127.  -116.8 -106.6  -96.4  -86.2  -76.   -65.8  -55.6  -45.4  -35.2
+  -25.   -14.8   -4.6    5.6   15.8   26.    36.2   46.4   56.6   66.8
+   77.    87.2   97.4  107.6  117.8  128. ]
+[2476 9744 3745 1403  980 1775 1204 3051 1487 1406 1058 1564 5973  920
+ 1130 1545 1435 1390 1186  967  935 1316 1063  901 1074]
+[0.0047226  0.01858521 0.00714302 0.00267601 0.0018692  0.00338554
+ 0.00229645 0.00581932 0.00283623 0.00268173 0.00201797 0.00298309
+ 0.01139259 0.00175476 0.0021553  0.00294685 0.00273705 0.00265121
+ 0.00226212 0.00184441 0.00178337 0.00251007 0.00202751 0.00171852
+ 0.00204849]
+a shape : torch.Size([640, 256, 256])
+b shape :  torch.Size([640, 256, 256])
+Predictions are not computed !
+0
+a shape : torch.Size([64, 256, 256])
+b shape :  torch.Size([64, 256, 256])
+preds[i+1].shape torch.Size([64, 2, 256, 256])
+Predictions of histogrammer are done and preds shape = torch.Size([2, 64, 256, 256])
+i for hists_a  0
+i for hists_a  1
+Histograms of histogrammer are done
+2
+torch.Size([2, 64, 256, 256])
+a shape : torch.Size([64, 256, 256])
+tensor(1.6978)
+b shape :  torch.Size([64, 256, 256])
+tensor(5.9592)
+4194304
+[-127.  -116.8 -106.6  -96.4  -86.2  -76.   -65.8  -55.6  -45.4  -35.2
+  -25.   -14.8   -4.6    5.6   15.8   26.    36.2   46.4   56.6   66.8
+   77.    87.2   97.4  107.6  117.8  128. ]
+[ 28014  24507  24014  13500  14338  13748  13355  21245  17029  16540
+  10380  15021 577358  12402  10362  22563  15866  18434  11835  14012
+  18478  14980  15384  20070  20785]
+[0.00667906 0.00584292 0.00572538 0.00321865 0.00341845 0.00327778
+ 0.00318408 0.0050652  0.00406003 0.00394344 0.00247478 0.00358129
+ 0.13765287 0.00295687 0.00247049 0.00537944 0.00378275 0.00439501
+ 0.00282168 0.00334072 0.0044055  0.00357151 0.00366783 0.00478506
+ 0.00495553]
+torch.Size([64, 2, 256, 256])
+a shape : torch.Size([2, 256, 256])
+tensor(15.0742)
+b shape :  torch.Size([2, 256, 256])
+tensor(10.2972)
+131072
+[-127.  -116.8 -106.6  -96.4  -86.2  -76.   -65.8  -55.6  -45.4  -35.2
+  -25.   -14.8   -4.6    5.6   15.8   26.    36.2   46.4   56.6   66.8
+   77.    87.2   97.4  107.6  117.8  128. ]
+[227 255 243 228 261 284 262 311 256 298 296 241 354 329 370 352 405 378
+ 381 466 380 454 476 443 413]
+[5.41210175e-05 6.07967377e-05 5.79357147e-05 5.43594360e-05
+ 6.22272491e-05 6.77108765e-05 6.24656677e-05 7.41481781e-05
+ 6.10351562e-05 7.10487366e-05 7.05718994e-05 5.74588776e-05
+ 8.44001770e-05 7.84397125e-05 8.82148743e-05 8.39233398e-05
+ 9.65595245e-05 9.01222229e-05 9.08374786e-05 1.11103058e-04
+ 9.05990601e-05 1.08242035e-04 1.13487244e-04 1.05619431e-04
+ 9.84668732e-05]
