@@ -114,6 +114,7 @@ class CocoLab_cpu(data.Dataset):
 
         folder_name = "val{}".format(version)
         self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))[:4]
+        #self.data_paths = [glob(os.path.join(root_dir, folder_name, "*.jpg"))[1]]
         # if train:
         #     self.data_paths = [self.data_paths[1]]
         # else:
