@@ -8,6 +8,8 @@ from python.utils.images import *
 from python.train.trainer import *
 from python.models.utils import init_weights
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 SEED = 42
 torch.cuda.manual_seed(SEED)
 torch.cuda.manual_seed_all(SEED)
@@ -21,6 +23,7 @@ parser.add_argument('--dataset', required=True)
 parser.add_argument('--version', required=True) 
 parser.add_argument('--generator', default="generator") 
 parser.add_argument('--discriminator', default="discriminator") 
+parser.add_argument('--load_generator')
 parser.add_argument('--plot', default="plot") 
 args = parser.parse_args()
 
@@ -33,10 +36,16 @@ if __name__ == "__main__":
     test_loader = data.DataLoader(dataset_test, batch_size=4, shuffle=True, num_workers=4)
 
     print("\rSetup the networks...", end="\r")
+        
     generator = UNet(1, 2).to(device)
     discriminator = PatchGAN(3).to(device)
 
-    generator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
+    if args.load_generator:
+        generator.load_state_dict(torch.load(args.load_generator, map_location=device))
+
+    else:
+        generator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
+        
     discriminator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
 
 
