@@ -106,7 +106,7 @@ class GanTrain(Trainer):
         self.test_gan_avg_loss = []
 
         if self.reg_R1:
-            self.r1_loss = R1Loss(gamma=1)
+            self.r1_loss = R1Loss(gamma=self.gamma_2)
 
     def _set_requires_grad(self, model:nn.Module, requires_grad:bool):
         for param in model.parameters():
@@ -142,11 +142,9 @@ class GanTrain(Trainer):
         #Compute the loss when samples are real images
         loss_over_real_img = 0
         if self.reg_R1 and train:
-            
             real_ab.requires_grad_()
             pred_D_real = self.discriminator(L, real_ab)
-            R1 = R1Loss(gamma=self.gamma_2) 
-            loss_over_real_img += R1(pred_D_real, real_ab)
+            loss_over_real_img += self.r1_loss(pred_D_real, real_ab)
 
         else:
             pred_D_real = self.discriminator(L, real_ab)

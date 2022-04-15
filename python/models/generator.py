@@ -70,7 +70,7 @@ class Down(nn.Module):
         if relu:
             down += [nn.LeakyReLU(0.2, True)]
 
-        down += [nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding)]
+        down += [nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding, bias=False)]
 
         if batchnorm:
             down += [nn.BatchNorm2d(out_channels)]
@@ -89,16 +89,16 @@ class Up(nn.Module):
     """
        Decoder block that upsample the input by a factor of 2
     """
-    def __init__(self, in_channels:int, out_channels:int, kernel_size:int=4, stride:int=2, padding:int=1, dropout:bool=False, batchnorm:bool=True, bias:bool=True) -> None:
+    def __init__(self, in_channels:int, out_channels:int, kernel_size:int=4, stride:int=2, padding:int=1, dropout:bool=False, batchnorm:bool=True, bias:bool=False) -> None:
         super().__init__()
         up = [nn.ReLU(True), 
-              nn.ConvTranspose2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding)]
+              nn.ConvTranspose2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding,bias=bias)]
 
         if batchnorm:
             up += [nn.BatchNorm2d(out_channels)]
 
         if dropout:
-            up += [nn.Dropout2d(p=0.2)]
+            up += [nn.Dropout2d(p=0.5)]
 
         self.up = nn.Sequential(*up)
 
