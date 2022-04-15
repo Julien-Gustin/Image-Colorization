@@ -14,6 +14,8 @@ SEED = 42
 torch.cuda.manual_seed(SEED)
 torch.cuda.manual_seed_all(SEED)
 np.random.seed(SEED)
+#
+#
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--R1', action="store_true") 

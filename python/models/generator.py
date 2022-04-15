@@ -26,7 +26,7 @@ class UNet(nn.Module):
         inner_module = UNetModule(inner_module, 128, 256, 256+256, 128) # 32x32 -> 64x64
         inner_module = UNetModule(inner_module, 64, 128, 128+128, 64) # 64x64 -> 128x128
 
-        last = UNetModule(inner_module, self.in_channels, 64, 64+64, 2, relu=False, batchnorm_down=False, batchnorm_up=False, last=True) # 128x128 -> 256x256
+        last = UNetModule(inner_module, self.in_channels, 64, 64+64, self.out_channels, relu=False, batchnorm_down=False, batchnorm_up=False, last=True) # 128x128 -> 256x256
         self.model = nn.Sequential(last, nn.Tanh()) # 256x256
 
     def forward(self, x):
