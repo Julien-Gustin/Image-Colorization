@@ -20,6 +20,8 @@ np.random.seed(SEED)
 parser = argparse.ArgumentParser()
 parser.add_argument('--R1', action="store_true") 
 parser.add_argument('--pretrain', action="store_true") 
+parser.add_argument('--real_label', type=int, default=1.0)
+parser.add_argument('--fake_label', type=int, default=0.0)
 parser.add_argument('--epochs', required=True, type=int) 
 parser.add_argument('--dataset', required=True) 
 parser.add_argument('--version', required=True) 
@@ -59,7 +61,7 @@ if __name__ == "__main__":
         trainer.train(args.epochs, generator_file=args.generator, file_name_plot=args.plot)
 
     else:
-        trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1)
+        trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label)
         trainer.train(args.epochs, generator_file=args.generator, discriminator_file=args.discriminator, file_name_plot=args.plot)
 
     trainer.make_plot(args.plot)

@@ -85,10 +85,10 @@ class Pretrain(Trainer):
 
 
 class GanTrain(Trainer):   
-    def __init__(self, generator:nn.Module, discriminator:nn.Module, test_loader:DataLoader, train_loader:DataLoader, reg_R1:bool=False, learning_rate_g:float=0.0002, learning_rate_d:float=0.0002, betas_g:tuple=(0.5, 0.999), betas_d:tuple=(0.5, 0.999), gamma_1:float=100, gamma_2:float=1) -> None:
+    def __init__(self, generator:nn.Module, discriminator:nn.Module, test_loader:DataLoader, train_loader:DataLoader, reg_R1:bool=False, learning_rate_g:float=0.0002, learning_rate_d:float=0.0002, betas_g:tuple=(0.5, 0.999), betas_d:tuple=(0.5, 0.999), gamma_1:float=100, gamma_2:float=1, real_label=1.0, fake_label=0.0) -> None:
         super().__init__(generator, test_loader, train_loader, learning_rate_g, betas_g)
         self.discriminator = discriminator
-        self.cgan_loss = cGANLoss()
+        self.cgan_loss = cGANLoss(real_label=real_label, fake_label=fake_label)
 
         self.optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=learning_rate_d, betas=betas_d)
 
