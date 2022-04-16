@@ -1,4 +1,4 @@
-from python.piqaa.piqaa import PSNR, SSIM, LPIPS # https://github.com/francois-rozet/piqa
+from piqa import PSNR, SSIM, LPIPS # https://github.com/francois-rozet/piqa
 from python.utils.images import *
 
 import torch

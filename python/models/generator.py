@@ -92,7 +92,7 @@ class Up(nn.Module):
     def __init__(self, in_channels:int, out_channels:int, kernel_size:int=4, stride:int=2, padding:int=1, dropout:bool=False, batchnorm:bool=True, bias:bool=False) -> None:
         super().__init__()
         up = [nn.ReLU(True), 
-              nn.ConvTranspose2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding,bias=bias)]
+              nn.ConvTranspose2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding, bias=bias)]
 
         if batchnorm:
             up += [nn.BatchNorm2d(out_channels)]

@@ -14,6 +14,14 @@ def tensor_to_pil(labs:torch.Tensor):
     """
        Transform tensors using lab colorspace to a RGB PIL image
     """
+    images = tensor_lab_to_rgb(labs)
+    
+    for i in range(len(images)):
+        images[i] = Image.fromarray(images[i])
+
+    return images
+
+def tensor_lab_to_rgb(labs:torch.Tensor):
     images = []
     labs[:, [0]] = (labs[:, [0]] + 1)*50
     labs[:, [1, 2]] = labs[:, [1, 2]]*110
@@ -21,7 +29,8 @@ def tensor_to_pil(labs:torch.Tensor):
     for lab in labs:
         pil_lab = np.array(lab.permute(1, 2, 0))
         arr_lab = np.around((color.lab2rgb(pil_lab) * 255)).astype("uint8")
-        images.append(Image.fromarray(arr_lab))
+        images.append(arr_lab)
+
     return images
 
 def show_images(img):
