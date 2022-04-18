@@ -180,7 +180,7 @@ class GanTrain(Trainer):
         return d_losses, g_losses
 
 
-    def train(self, nb_epochs:int, generator_path:str=None, discriminator_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True):
+    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True):
         len_train = len(self.train_loader)
         len_test = len(self.test_loader)
         self.g_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "test": torch.zeros((nb_epochs, 3))}
@@ -225,14 +225,16 @@ class GanTrain(Trainer):
                                 '\tTrain: loss: {:.4f} - '.format(self.d_losses_avg["train"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["train"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["train"][epoch][2]) +
                                 '\n\tTest: loss: {:.4f} - '.format(self.d_losses_avg["test"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["test"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["test"][epoch][2]))
 
-                if figures_path is not None:
-                    self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
-                    
-                if generator_path is not None:
-                    torch.save(self.generator.state_dict(), generator_path + "generator")
+                # if figures_path is not None:
+            if (epoch+1) % 5 == 0:
+                self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
+                torch.save(self.generator.state_dict(), models_path + "generator_{}".format(epoch+1))
+                torch.save(self.discriminator.state_dict(), models_path + "discriminator_{}".format(epoch+1))
 
-                if discriminator_path is not None:
-                    torch.save(self.discriminator.state_dict(), discriminator_path + "discriminator")
+        torch.save(self.g_losses_avg["train"], logs_path + "g_losses_avg_train.pt")
+        torch.save(self.g_losses_avg["test"], logs_path + "g_losses_avg_test.pt")
+        torch.save(self.d_losses_avg["train"], logs_path + "d_losses_avg_train.pt")
+        torch.save(self.d_losses_avg["test"], logs_path + "d_losses_avg_test.pt")
 
     # Generator losses
     # Discriminateur losses

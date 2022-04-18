@@ -42,8 +42,10 @@ if __name__ == "__main__":
     
     discriminator = PatchGAN(3).to(device)
 
-    os.mkdir("figures/{}".format(args.folders_name))
-    os.mkdir("saved_models/{}".format(args.folders_name))
+    os.mkdir("saves/{}".format(args.folders_name))
+    os.mkdir("saves/{}/figures".format(args.folders_name))
+    os.mkdir("saves/{}/saved_models".format(args.folders_name))
+    os.mkdir("saves/{}/logs".format(args.folders_name))
 
     if args.load_generator:
         generator = UNet(1, 2, stochastic=False).to(device)
@@ -59,11 +61,11 @@ if __name__ == "__main__":
 
     if args.pretrain:
         trainer = Pretrain(generator, test_loader, train_loader)
-        trainer.train(args.epochs, generator_path="saved_models/{}/".format(args.folders_name), figures_path="figures/{}/".format(args.folders_name))
+        trainer.train(args.epochs, generator_path="saves/{}/saved_models/".format(args.folders_name), figures_path="saves/{}/logs/".format(args.folders_name))
 
     else:
         trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight)
-        trainer.train(args.epochs, generator_path="saved_models/{}/".format(args.folders_name), discriminator_path="saved_models/{}/".format(args.folders_name), figures_path="figures/{}/".format(args.folders_name))
+        trainer.train(args.epochs, models_path="saves/{}/saved_models/".format(args.folders_name), logs_path="saves/{}/logs/".format(args.folders_name), figures_path="saves/{}/figures/".format(args.folders_name))
 
     # TODO
     # trainer.make_plot("figures/{}/".format(args.folders_name))
