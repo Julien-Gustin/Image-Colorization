@@ -5,6 +5,8 @@ from python.utils.images import *
 from .loss import cGANLoss, R1Loss
 from torch.utils.data import DataLoader
 
+import os 
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # https://arxiv.org/pdf/1803.05400.pdf train + explication
@@ -19,7 +21,7 @@ class Trainer():
         self.optimizer_G = torch.optim.Adam(generator.parameters(), lr=learning_rate, betas=betas)
 
     def plot_samples(self, file_name:str=None):
-        multi_plot(self.test_loader, self.generator, "figures/{}.png".format(file_name), columns=4)
+        multi_plot(self.test_loader, self.generator, file_name + ".png", columns=4)
     
 
 class Pretrain(Trainer):
@@ -28,7 +30,7 @@ class Pretrain(Trainer):
         self.train_avg_loss = []
         self.test_avg_loss = []
 
-    def train(self, nb_epochs:int, file_name_plot:str=None, start:int=0, generator_file:str=None, verbose:bool=True):
+    def train(self, nb_epochs:int, figures_path:str=None, start:int=0, generator_path:str=None, verbose:bool=True):
         self.generator.train()
 
         for epoch in range(start, nb_epochs):
@@ -66,13 +68,13 @@ class Pretrain(Trainer):
                             'train_loss: {:.4f} - '.format(self.train_avg_loss[-1]) +
                             'test_loss: {:.4f}'.format(self.test_avg_loss[-1]))
 
-                if file_name_plot is not None:
-                    self.plot_samples(file_name_plot + "_epoch_{}".format(epoch+1))
+                if figures_path is not None:
+                    self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
                 
-                if generator_file is not None:
-                    torch.save(self.generator.state_dict(), "saved_models/{}".format(generator_file))
+                if generator_path is not None:
+                    torch.save(self.generator.state_dict(), generator_path + "generator")
 
-    def make_plot(self, prefix:str):
+    def make_plot(self, path:str):
         plt.figure(figsize=(16, 6))
         plt.title('Generator L1 loss')
         plt.plot(self.train_avg_loss)
@@ -81,7 +83,7 @@ class Pretrain(Trainer):
         plt.legend(['Train', 'Test'])
         plt.xlabel('Epoch')
         plt.ylabel('Loss (L1)')
-        plt.savefig("figures/{}_pretrain_Generator.png".format(prefix))
+        plt.savefig(path + "pretrain_Generator.png")
 
 
 class GanTrain(Trainer):   
@@ -96,15 +98,6 @@ class GanTrain(Trainer):
         self.gamma_2 = gamma_2
         self.reg_R1 = reg_R1
 
-        self.train_g_avg_loss = []
-        self.train_d_avg_loss = []
-        self.test_g_avg_loss = []
-        self.test_d_avg_loss = []
-        self.train_l1_avg_loss = []
-        self.test_l1_avg_loss = []
-        self.train_gan_avg_loss = []
-        self.test_gan_avg_loss = []
-
         if self.reg_R1:
             self.r1_loss = R1Loss(gamma=self.gamma_2)
 
@@ -112,7 +105,7 @@ class GanTrain(Trainer):
         for param in model.parameters():
             param.requires_grad = requires_grad 
 
-    def _generator_loss(self, L:torch.Tensor, reel_ab:torch.Tensor, fake_ab):
+    def _generator_loss(self, L:torch.Tensor, reel_ab:torch.Tensor, fake_ab, train:bool=True):
         """ Compute the loss of the generator according to a weighted sum of L1 loss and GAN loss """
         discriminator_confidence = self.discriminator(L, fake_ab)
 
@@ -120,6 +113,9 @@ class GanTrain(Trainer):
         gan_loss = self.cgan_loss(discriminator_confidence, True) # trick
 
         loss = L1_loss * self.gamma_1 + gan_loss
+
+        if not train:
+            return loss.detach().to("cpu"), L1_loss, gan_loss.detach().to("cpu")
 
         return loss, L1_loss, gan_loss
 
@@ -131,7 +127,7 @@ class GanTrain(Trainer):
         loss.backward()
         self.optimizer_G.step()
 
-        return loss, L1_loss, gan_loss
+        return loss.detach().to("cpu"), L1_loss.detach().to("cpu"), gan_loss.detach().to("cpu")
 
     def generate_fake_samples(self, L:torch.Tensor): # is it used?
         with torch.no_grad():
@@ -140,110 +136,111 @@ class GanTrain(Trainer):
     
     def _discriminator_loss(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor, train:bool=True):
         #Compute the loss when samples are real images
-        loss_over_real_img = 0
+        penalization = 0
         if self.reg_R1 and train:
             real_ab.requires_grad_()
             pred_D_real = self.discriminator(L, real_ab)
-            loss_over_real_img += self.r1_loss(pred_D_real, real_ab)
+            penalization = self.r1_loss(pred_D_real, real_ab)
 
         else:
             pred_D_real = self.discriminator(L, real_ab)
         
-        loss_over_real_img += self.cgan_loss(pred_D_real, True)
+        loss_over_real_img = self.cgan_loss(pred_D_real, True)
         
         #Compute the loss when samples are fake images
         pred_D_fake = self.discriminator(L, fake_ab)
         loss_over_fake_img = self.cgan_loss(pred_D_fake, False)
+
+        gan_loss = (loss_over_real_img + loss_over_fake_img)/2
+
+        if not train:
+            return (gan_loss + penalization).detach().to("cpu"), penalization, gan_loss.detach().to("cpu")
         
-        loss = (loss_over_real_img + loss_over_fake_img)/2
-        
-        return loss
+        return gan_loss + penalization, penalization, gan_loss
 
     def _discriminator_step(self, L:torch.Tensor, real_ab:torch.Tensor, fake_ab:torch.Tensor):
-        loss = self._discriminator_loss(L, real_ab, fake_ab)
+        (loss, penalization, gan_loss) = self._discriminator_loss(L, real_ab, fake_ab)
         
         self.optimizer_D.zero_grad()
         loss.backward()
         self.optimizer_D.step()
         
-        return loss 
+        return loss.detach().to("cpu"), penalization, gan_loss.detach().to("cpu")
         
     def _step(self, L:nn.Module, reel_ab:nn.Module):
         #generate ab outputs from the generator
         fake_ab = self.generator(L)
 
         self._set_requires_grad(self.discriminator, True)
-        d_loss = self._discriminator_step(L, reel_ab, fake_ab.detach())
+        d_losses = self._discriminator_step(L, reel_ab, fake_ab.detach())
 
         self._set_requires_grad(self.discriminator, False)
-        g_loss, L1_loss, gan_loss = self._generator_step(L, reel_ab, fake_ab)
+        g_losses = self._generator_step(L, reel_ab, fake_ab)
 
-        return d_loss.detach(), (g_loss.detach(), L1_loss.detach(), gan_loss.detach())
+        return d_losses, g_losses
 
 
-    def train(self, nb_epochs:int, generator_file:str=None, discriminator_file:str=None, file_name_plot:str=None, start:int=0, verbose:bool=True):
+    def train(self, nb_epochs:int, generator_path:str=None, discriminator_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True):
+        len_train = len(self.train_loader)
+        len_test = len(self.test_loader)
+        self.g_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "test": torch.zeros((nb_epochs, 3))}
+        self.d_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "test": torch.zeros((nb_epochs, 3))}
         for epoch in range(start, nb_epochs):
-            train_g_losses = []
-            train_d_losses = []
-            test_g_losses = []
-            test_d_losses = []
-            train_L1_loss = []
-            test_L1_loss = []
-            train_gan_loss = []
-            test_gan_loss = []
+            g_losses_mem = {"train": torch.zeros((len_train, 3)), "test": torch.zeros((len_test, 3))}
+            d_losses_mem = {"train": torch.zeros((len_train, 3)), "test": torch.zeros((len_test, 3))}
             
-            for L, ab in self.train_loader:
+            for i, (L, ab) in enumerate(self.train_loader):
                 L = L.to(device)
                 ab = ab.to(device)
 
-                d_loss, (g_loss, L1_loss, gan_loss) = self._step(L, ab)
+                d_losses, g_losses = self._step(L, ab)
 
-                train_g_losses.append(g_loss.detach().to("cpu"))
-                train_d_losses.append(d_loss.detach().to("cpu"))  
-                train_L1_loss.append(L1_loss.detach().to("cpu"))
-                train_gan_loss.append(gan_loss.detach().to("cpu"))
+                d_losses_mem["train"][i] = torch.Tensor(d_losses)
+                g_losses_mem["train"][i] = torch.Tensor(g_losses)
+                break
 
             with torch.no_grad():   
                 # Do not set .eval()
-                for L, ab in self.test_loader:
+                for i, (L, ab) in enumerate(self.test_loader):
                     L = L.to(device)
                     ab = ab.to(device)
                     fake_ab = self.generator(L)
-                    (g_loss, L1_loss, gan_loss) = self._generator_loss(L, ab, fake_ab)
-                    d_loss = self._discriminator_loss(L, ab, fake_ab, train=False)
                     
-                    test_g_losses.append(g_loss.detach().to("cpu"))
-                    test_d_losses.append(d_loss.detach().to("cpu"))
-                    test_L1_loss.append(L1_loss.detach().to("cpu"))
-                    test_gan_loss.append(gan_loss.detach().to("cpu"))
+                    g_losses = self._generator_loss(L, ab, fake_ab, train=False)
+                    d_losses = self._discriminator_loss(L, ab, fake_ab, train=False)
 
-                self.train_g_avg_loss.append(torch.mean(torch.Tensor(train_g_losses)).to("cpu"))
-                self.train_d_avg_loss.append(torch.mean(torch.Tensor(train_d_losses)).to("cpu"))
-                self.test_g_avg_loss.append(torch.mean(torch.Tensor(test_g_losses)).to("cpu"))
-                self.test_d_avg_loss.append(torch.mean(torch.Tensor(test_d_losses)).to("cpu"))
-                self.train_l1_avg_loss.append(torch.mean(torch.Tensor(train_L1_loss)).to("cpu")) 
-                self.test_l1_avg_loss.append(torch.mean(torch.Tensor(test_L1_loss)).to("cpu"))
-                self.train_gan_avg_loss.append(torch.mean(torch.Tensor(train_gan_loss)).to("cpu"))
-                self.test_gan_avg_loss.append(torch.mean(torch.Tensor(test_gan_loss)).to("cpu"))
+                    d_losses_mem["test"][i] = torch.Tensor(d_losses)
+                    g_losses_mem["test"][i] = torch.Tensor(g_losses)
+                    break
+
+                self.d_losses_avg["train"][epoch] = torch.mean(d_losses_mem["train"], 0)
+                self.g_losses_avg["train"][epoch] = torch.mean(g_losses_mem["train"], 0)
+
+                self.d_losses_avg["test"][epoch] = torch.mean(d_losses_mem["test"], 0)
+                self.g_losses_avg["test"][epoch] = torch.mean(g_losses_mem["test"], 0)
 
                 if verbose:
                     print('[Epoch {}/{}] '.format(epoch+1, nb_epochs) + "\n--- Generator ---\n" +
-                                '\tTrain: loss: {:.4f} - '.format(self.train_g_avg_loss[-1]) +'L1 loss: {:.4F} - '.format(self.train_l1_avg_loss[-1]) +'cGan loss: {:.4F}'.format(self.train_gan_avg_loss[-1]) +
-                                '\n\tTest: loss: {:.4f} - '.format(self.test_g_avg_loss[-1]) +'L1 loss: {:.4F} - '.format(self.test_l1_avg_loss[-1]) +'cGan loss: {:.4F}'.format(self.test_gan_avg_loss[-1]) +       
+                                '\tTrain: loss: {:.4f} - '.format(self.g_losses_avg["train"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["train"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["train"][epoch][2]) +
+                                '\n\tTest: loss: {:.4f} - '.format(self.g_losses_avg["test"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["test"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["test"][epoch][2]) +       
                                 "\n--- Discriminator ---\n" +
-                                '\ttrain_loss: {:.4f} - '.format(self.train_d_avg_loss[-1]) +
-                                'test_loss: {:.4f}'.format(self.test_d_avg_loss[-1]))
+                                '\tTrain: loss: {:.4f} - '.format(self.d_losses_avg["train"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["train"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["train"][epoch][2]) +
+                                '\n\tTest: loss: {:.4f} - '.format(self.d_losses_avg["test"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["test"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["test"][epoch][2]))
 
-                if file_name_plot is not None:
-                    self.plot_samples(file_name_plot + "_epoch_{}".format(epoch+1))
+                if figures_path is not None:
+                    self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
                     
-                if generator_file is not None:
-                    torch.save(self.generator.state_dict(), "saved_models/{}".format(generator_file))
+                if generator_path is not None:
+                    torch.save(self.generator.state_dict(), generator_path + "generator")
 
-                if discriminator_file is not None:
-                    torch.save(self.discriminator.state_dict(), "saved_models/{}".format(discriminator_file))
+                if discriminator_path is not None:
+                    torch.save(self.discriminator.state_dict(), discriminator_path + "discriminator")
 
-    def make_plot(self, prefix:str):
+    # Generator losses
+    # Discriminateur losses
+    # GvsD train/test
+    def make_plot(self, path:str):
+
         plt.figure(figsize=(16, 6))
         plt.title('Generator losses')
         plt.plot(self.train_g_avg_loss)
@@ -252,7 +249,7 @@ class GanTrain(Trainer):
         plt.legend(['Train', 'Test'])
         plt.xlabel('Epoch')
         plt.ylabel('Loss')
-        plt.savefig("figures/{}_generator_losses.png".format(prefix))
+        plt.savefig(path + "generator_losses.png")
 
         plt.figure(figsize=(16, 6))
         plt.title('Discriminator losses')
@@ -262,7 +259,7 @@ class GanTrain(Trainer):
         plt.legend(['Train', 'Test'])
         plt.xlabel('Epoch')
         plt.ylabel('Loss')
-        plt.savefig("figures/{}_discriminator_losses.png".format(prefix))
+        plt.savefig(path + "discriminator_losses.png")
 
         plt.figure(figsize=(16, 6))
         plt.title('Generator - cGan loss')
@@ -272,7 +269,7 @@ class GanTrain(Trainer):
         plt.legend(['Train', 'Test'])
         plt.xlabel('Epoch')
         plt.ylabel('Loss')
-        plt.savefig("figures/{}_generator_cGan.png".format(prefix))
+        plt.savefig(path + "generator_cGan.png")
 
         plt.figure(figsize=(16, 6))
         plt.title('Generator vs Discriminator - cGan loss')
@@ -282,7 +279,7 @@ class GanTrain(Trainer):
         plt.legend(['Generator', 'Discriminator'])
         plt.xlabel('Epoch')
         plt.ylabel('Loss')
-        plt.savefig("figures/{}_generator_vs_discriminator.png".format(prefix))
+        plt.savefig(path + "generator_vs_discriminator.png")
 
         plt.figure(figsize=(16, 6))
         plt.title('Generator test losses')
@@ -292,4 +289,4 @@ class GanTrain(Trainer):
         plt.legend(['L1', 'cGan loss'])
         plt.xlabel('Epoch')
         plt.ylabel('Loss')
-        plt.savefig("figures/{}_Generator_testlosses.png".format(prefix))
+        plt.savefig(path + "Generator_testlosses.png")

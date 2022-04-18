@@ -14,8 +14,7 @@ SEED = 42
 torch.cuda.manual_seed(SEED)
 torch.cuda.manual_seed_all(SEED)
 np.random.seed(SEED)
-#
-#
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--R1', action="store_true") 
@@ -25,24 +24,26 @@ parser.add_argument('--fake_label', type=int, default=0.0)
 parser.add_argument('--epochs', required=True, type=int) 
 parser.add_argument('--dataset', required=True) 
 parser.add_argument('--version', required=True) 
-parser.add_argument('--generator', default="generator") 
-parser.add_argument('--discriminator', default="discriminator") 
 parser.add_argument('--load_generator')
-parser.add_argument('--plot', default="plot") 
+parser.add_argument('--L1_weight', type=int, default=100)
+parser.add_argument('--folders_name', required=True) 
 args = parser.parse_args()
 
 if __name__ == "__main__":
     print("\rLoading the dataset...", end="\r")
-    dataset_train = CocoLab(args.dataset, version=args.version, size=256, train=True)
+    dataset_train = CocoLab(args.dataset, split="train", version=args.version, size=256)
     train_loader = data.DataLoader(dataset_train, batch_size=4, shuffle=True, num_workers=4)
 
-    dataset_test = CocoLab(args.dataset, version=args.version, size=256, train=False)
+    dataset_test = CocoLab(args.dataset, split="test", version=args.version, size=256)
     test_loader = data.DataLoader(dataset_test, batch_size=4, shuffle=True, num_workers=4)
 
     print("\rSetup the networks...", end="\r")
         
     
     discriminator = PatchGAN(3).to(device)
+
+    os.mkdir("figures/{}".format(args.folders_name))
+    os.mkdir("saved_models/{}".format(args.folders_name))
 
     if args.load_generator:
         generator = UNet(1, 2, stochastic=False).to(device)
@@ -54,14 +55,15 @@ if __name__ == "__main__":
 
     discriminator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
 
-
     print("\rTraining !                    \n")
+
     if args.pretrain:
         trainer = Pretrain(generator, test_loader, train_loader)
-        trainer.train(args.epochs, generator_file=args.generator, file_name_plot=args.plot)
+        trainer.train(args.epochs, generator_path="saved_models/{}/".format(args.folders_name), figures_path="figures/{}/".format(args.folders_name))
 
     else:
-        trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label)
-        trainer.train(args.epochs, generator_file=args.generator, discriminator_file=args.discriminator, file_name_plot=args.plot)
+        trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight)
+        trainer.train(args.epochs, generator_path="saved_models/{}/".format(args.folders_name), discriminator_path="saved_models/{}/".format(args.folders_name), figures_path="figures/{}/".format(args.folders_name))
 
-    trainer.make_plot(args.plot)
+    # TODO
+    # trainer.make_plot("figures/{}/".format(args.folders_name))
