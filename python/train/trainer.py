@@ -197,7 +197,6 @@ class GanTrain(Trainer):
 
                 d_losses_mem["train"][i] = torch.Tensor(d_losses)
                 g_losses_mem["train"][i] = torch.Tensor(g_losses)
-                break
 
             with torch.no_grad():   
                 # Do not set .eval()
@@ -211,7 +210,6 @@ class GanTrain(Trainer):
 
                     d_losses_mem["test"][i] = torch.Tensor(d_losses)
                     g_losses_mem["test"][i] = torch.Tensor(g_losses)
-                    break
 
                 self.d_losses_avg["train"][epoch] = torch.mean(d_losses_mem["train"], 0)
                 self.g_losses_avg["train"][epoch] = torch.mean(g_losses_mem["train"], 0)
