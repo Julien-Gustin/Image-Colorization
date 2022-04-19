@@ -183,7 +183,7 @@ class GanTrain(Trainer):
         torch.save(self.discriminator.state_dict(), path + "discriminator_{}".format(epoch+1))
 
 
-    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=-1):
+    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=3):
         len_train = len(self.train_loader)
         len_test = len(self.test_loader)
         evalutation = Evalutation()
