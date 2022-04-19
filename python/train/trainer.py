@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+from python.eval.evaluation import Evalutation
 from python.utils.images import *
 from .loss import cGANLoss, R1Loss
 from torch.utils.data import DataLoader
@@ -167,10 +168,8 @@ class GanTrain(Trainer):
         
         return loss.detach().to("cpu"), penalization, gan_loss.detach().to("cpu")
         
-    def _step(self, L:nn.Module, reel_ab:nn.Module):
+    def _step(self, L:torch.Tensor, reel_ab:torch.Tensor, fake_ab:torch.Tensor):
         #generate ab outputs from the generator
-        fake_ab = self.generator(L)
-
         self._set_requires_grad(self.discriminator, True)
         d_losses = self._discriminator_step(L, reel_ab, fake_ab.detach())
 
@@ -179,24 +178,41 @@ class GanTrain(Trainer):
 
         return d_losses, g_losses
 
+    def _save_models(self, path, epoch):
+        torch.save(self.generator.state_dict(), path + "generator_{}".format(epoch+1))
+        torch.save(self.discriminator.state_dict(), path + "discriminator_{}".format(epoch+1))
 
-    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True):
+
+    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=-1):
         len_train = len(self.train_loader)
         len_test = len(self.test_loader)
-        self.g_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "test": torch.zeros((nb_epochs, 3))}
-        self.d_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "test": torch.zeros((nb_epochs, 3))}
+        evalutation = Evalutation()
+
+        # early stopping based on https://pythonguides.com/pytorch-early-stopping/
+        last_L1_loss = 1e3
+        patience = early_stopping
+        trigger_times = 0
+
+        self.g_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
+        self.d_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
+        self.evaluation_avg = {"train": torch.zeros((nb_epochs, 2)), "val": torch.zeros(nb_epochs, 2)}
+
         for epoch in range(start, nb_epochs):
-            g_losses_mem = {"train": torch.zeros((len_train, 3)), "test": torch.zeros((len_test, 3))}
-            d_losses_mem = {"train": torch.zeros((len_train, 3)), "test": torch.zeros((len_test, 3))}
+            evaluation = {"train": torch.zeros((len_train, 2)), "val": torch.zeros((len_test, 2))}
+            g_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
+            d_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
             
             for i, (L, ab) in enumerate(self.train_loader):
                 L = L.to(device)
                 ab = ab.to(device)
+                fake_ab = self.generator(L)
 
-                d_losses, g_losses = self._step(L, ab)
-
+                d_losses, g_losses = self._step(L, ab, fake_ab)
                 d_losses_mem["train"][i] = torch.Tensor(d_losses)
                 g_losses_mem["train"][i] = torch.Tensor(g_losses)
+
+                with torch.no_grad():
+                    evaluation["train"][i] = evalutation.eval(L, ab, fake_ab)
 
             with torch.no_grad():   
                 # Do not set .eval()
@@ -208,37 +224,60 @@ class GanTrain(Trainer):
                     g_losses = self._generator_loss(L, ab, fake_ab, train=False)
                     d_losses = self._discriminator_loss(L, ab, fake_ab, train=False)
 
-                    d_losses_mem["test"][i] = torch.Tensor(d_losses)
-                    g_losses_mem["test"][i] = torch.Tensor(g_losses)
+                    d_losses_mem["val"][i] = torch.Tensor(d_losses)
+                    g_losses_mem["val"][i] = torch.Tensor(g_losses)
+                    evaluation["val"][i] = evalutation.eval(L, ab, fake_ab)
+
+                self.evaluation_avg["train"][epoch] = torch.mean(evaluation["train"], 0)
+                self.evaluation_avg["val"][epoch] = torch.mean(evaluation["val"], 0)
 
                 self.d_losses_avg["train"][epoch] = torch.mean(d_losses_mem["train"], 0)
                 self.g_losses_avg["train"][epoch] = torch.mean(g_losses_mem["train"], 0)
 
-                self.d_losses_avg["test"][epoch] = torch.mean(d_losses_mem["test"], 0)
-                self.g_losses_avg["test"][epoch] = torch.mean(g_losses_mem["test"], 0)
+                self.d_losses_avg["val"][epoch] = torch.mean(d_losses_mem["val"], 0)
+                self.g_losses_avg["val"][epoch] = torch.mean(g_losses_mem["val"], 0)
+
+                if self.g_losses_avg["val"][epoch][1] > last_L1_loss:
+                    trigger_times += 1
+                    print('Trigger Times:', trigger_times)
+
+                    if trigger_times >= patience:
+                        print('Early stopping!')
+                        self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
+                        self._save_models(models_path, epoch)
+                        break
+
+                else:
+                    trigger_times = 0
+
+                last_L1_loss = self.g_losses_avg["val"][epoch][1]
 
                 if verbose:
                     print('[Epoch {}/{}] '.format(epoch+1, nb_epochs) + "\n--- Generator ---\n" +
                                 '\tTrain: loss: {:.4f} - '.format(self.g_losses_avg["train"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["train"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["train"][epoch][2]) +
-                                '\n\tTest: loss: {:.4f} - '.format(self.g_losses_avg["test"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["test"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["test"][epoch][2]) +       
+                                '\n\tTest: loss: {:.4f} - '.format(self.g_losses_avg["val"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["val"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["val"][epoch][2]) +       
                                 "\n--- Discriminator ---\n" +
                                 '\tTrain: loss: {:.4f} - '.format(self.d_losses_avg["train"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["train"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["train"][epoch][2]) +
-                                '\n\tTest: loss: {:.4f} - '.format(self.d_losses_avg["test"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["test"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["test"][epoch][2]))
+                                '\n\tTest: loss: {:.4f} - '.format(self.d_losses_avg["val"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["val"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["val"][epoch][2]) +
+                                '\n--- Metrics ---\n' + 
+                                '\tTrain: SSIM: {:.4f} - PSNR: {:.4f}'.format(self.evaluation_avg["train"][epoch][0], self.evaluation_avg["train"][epoch][1]) + 
+                                '\n\tTest: SSIM: {:.4f} - PSNR: {:.4f}'.format(self.evaluation_avg["val"][epoch][0], self.evaluation_avg["val"][epoch][1]))
 
                 # if figures_path is not None:
             if (epoch+1) % 5 == 0:
                 self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
-                torch.save(self.generator.state_dict(), models_path + "generator_{}".format(epoch+1))
-                torch.save(self.discriminator.state_dict(), models_path + "discriminator_{}".format(epoch+1))
+                self._save_models(models_path, epoch)
 
         torch.save(self.g_losses_avg["train"], logs_path + "g_losses_avg_train.pt")
-        torch.save(self.g_losses_avg["test"], logs_path + "g_losses_avg_test.pt")
+        torch.save(self.g_losses_avg["val"], logs_path + "g_losses_avg_val.pt")
         torch.save(self.d_losses_avg["train"], logs_path + "d_losses_avg_train.pt")
-        torch.save(self.d_losses_avg["test"], logs_path + "d_losses_avg_test.pt")
+        torch.save(self.d_losses_avg["val"], logs_path + "d_losses_avg_val.pt")
+        torch.save(self.evaluation_avg["train"], logs_path + "evaluations_avg_train.pt")
+        torch.save(self.evaluation_avg["val"], logs_path + "evaluations_avg_val.pt")
 
     # Generator losses
     # Discriminateur losses
-    # GvsD train/test
+    # GvsD train/val
     def make_plot(self, path:str):
 
         plt.figure(figsize=(16, 6))
@@ -282,7 +321,7 @@ class GanTrain(Trainer):
         plt.savefig(path + "generator_vs_discriminator.png")
 
         plt.figure(figsize=(16, 6))
-        plt.title('Generator test losses')
+        plt.title('Generator val losses')
         plt.plot(self.test_l1_avg_loss)
         plt.plot(self.test_gan_avg_loss)
         plt.grid()
