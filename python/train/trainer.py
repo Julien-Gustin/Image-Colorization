@@ -212,7 +212,8 @@ class GanTrain(Trainer):
                 g_losses_mem["train"][i] = torch.Tensor(g_losses)
 
                 with torch.no_grad():
-                    evaluation["train"][i] = evalutation.eval(L, ab, fake_ab)
+                    evaluation["train"][i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
+
 
             with torch.no_grad():   
                 # Do not set .eval()
