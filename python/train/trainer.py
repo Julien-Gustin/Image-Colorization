@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import copy
 
 from python.eval.evaluation import Evalutation
 from python.utils.images import *
@@ -189,9 +190,11 @@ class GanTrain(Trainer):
         evalutation = Evalutation()
 
         # early stopping based on https://pythonguides.com/pytorch-early-stopping/
-        last_L1_loss = 1e3
-        patience = early_stopping
-        trigger_times = 0
+        n_epochs_stop = 6
+        epochs_no_improve = 0
+        early_stop = False
+        min_val_loss = np.Inf
+        best_model = None
 
         self.g_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
         self.d_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
@@ -238,20 +241,23 @@ class GanTrain(Trainer):
                 self.d_losses_avg["val"][epoch] = torch.mean(d_losses_mem["val"], 0)
                 self.g_losses_avg["val"][epoch] = torch.mean(g_losses_mem["val"], 0)
 
-                if self.g_losses_avg["val"][epoch][1] > last_L1_loss:
-                    trigger_times += 1
-                    print('Trigger Times:', trigger_times)
-
-                    if trigger_times >= patience:
-                        print('Early stopping!')
-                        self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
-                        self._save_models(models_path, epoch)
-                        break
+                # === Early stopping === https://pythonguides.com/pytorch-early-stopping/
+                if self.g_losses_avg["val"][epoch][1] < min_val_loss:
+                    epochs_no_improve = 0
+                    min_val_loss = self.g_losses_avg["val"][epoch][1]
+                    best_generator = copy.deepcopy(self.generator)
 
                 else:
-                    trigger_times = 0
+                    epochs_no_improve += 1
+                    print('No improve {}/{}:'.format(epochs_no_improve, n_epochs_stop))
 
-                last_L1_loss = self.g_losses_avg["val"][epoch][1]
+                if epochs_no_improve >= n_epochs_stop:
+                    print('Early stopping!')
+                    self.generator = best_generator
+                    self.plot_samples(figures_path + "best")
+                    self._save_models(models_path, epoch)
+                    break
+                # === End Early stopping ===
 
                 if verbose:
                     print('[Epoch {}/{}] '.format(epoch+1, nb_epochs) + "\n--- Generator ---\n" +
