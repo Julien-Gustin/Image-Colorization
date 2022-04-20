@@ -192,16 +192,14 @@ class GanTrain(Trainer):
         # early stopping based on https://pythonguides.com/pytorch-early-stopping/
         n_epochs_stop = 6
         epochs_no_improve = 0
-        early_stop = False
         min_val_loss = np.Inf
-        best_model = None
+        best_generator = None
 
         self.g_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
         self.d_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
-        self.evaluation_avg = {"train": torch.zeros((nb_epochs, 2)), "val": torch.zeros(nb_epochs, 2)}
+        self.evaluation_avg = torch.zeros(nb_epochs, 2)
 
         for epoch in range(start, nb_epochs):
-            evaluation = {"train": torch.zeros((len_train, 2)), "val": torch.zeros((len_test, 2))}
             g_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
             d_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
             
@@ -214,11 +212,8 @@ class GanTrain(Trainer):
                 d_losses_mem["train"][i] = torch.Tensor(d_losses)
                 g_losses_mem["train"][i] = torch.Tensor(g_losses)
 
-                with torch.no_grad():
-                    evaluation["train"][i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
-
-
             with torch.no_grad():   
+                evaluation_val = torch.zeros((len_test, 2))
                 # Do not set .eval()
                 for i, (L, ab) in enumerate(self.test_loader):
                     L = L.to(device)
@@ -230,11 +225,10 @@ class GanTrain(Trainer):
 
                     d_losses_mem["val"][i] = torch.Tensor(d_losses)
                     g_losses_mem["val"][i] = torch.Tensor(g_losses)
-                    evaluation["val"][i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
+                    evaluation_val[i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
 
-                self.evaluation_avg["train"][epoch] = torch.mean(evaluation["train"], 0)
-                self.evaluation_avg["val"][epoch] = torch.mean(evaluation["val"], 0)
 
+                self.evaluation_avg[epoch] = torch.mean(evaluation_val, 0) 
                 self.d_losses_avg["train"][epoch] = torch.mean(d_losses_mem["train"], 0)
                 self.g_losses_avg["train"][epoch] = torch.mean(g_losses_mem["train"], 0)
 
@@ -262,13 +256,12 @@ class GanTrain(Trainer):
                 if verbose:
                     print('[Epoch {}/{}] '.format(epoch+1, nb_epochs) + "\n--- Generator ---\n" +
                                 '\tTrain: loss: {:.4f} - '.format(self.g_losses_avg["train"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["train"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["train"][epoch][2]) +
-                                '\n\tTest: loss: {:.4f} - '.format(self.g_losses_avg["val"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["val"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["val"][epoch][2]) +       
+                                '\n\Val: loss: {:.4f} - '.format(self.g_losses_avg["val"][epoch][0]) +'L1 loss: {:.4F} - '.format(self.g_losses_avg["val"][epoch][1]) +'cGan loss: {:.4F}'.format(self.g_losses_avg["val"][epoch][2]) +       
                                 "\n--- Discriminator ---\n" +
                                 '\tTrain: loss: {:.4f} - '.format(self.d_losses_avg["train"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["train"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["train"][epoch][2]) +
-                                '\n\tTest: loss: {:.4f} - '.format(self.d_losses_avg["val"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["val"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["val"][epoch][2]) +
+                                '\n\Val: loss: {:.4f} - '.format(self.d_losses_avg["val"][epoch][0]) + "R1: {:.4F} - ".format(self.d_losses_avg["val"][epoch][1]) + "cGan loss: {:.4F}".format(self.d_losses_avg["val"][epoch][2]) +
                                 '\n--- Metrics ---\n' + 
-                                '\tTrain: SSIM: {:.4f} - PSNR: {:.4f}'.format(self.evaluation_avg["train"][epoch][0], self.evaluation_avg["train"][epoch][1]) + 
-                                '\n\tTest: SSIM: {:.4f} - PSNR: {:.4f}'.format(self.evaluation_avg["val"][epoch][0], self.evaluation_avg["val"][epoch][1]))
+                                '\Val: SSIM: {:.4f} - PSNR: {:.4f}'.format(self.evaluation_avg[epoch][0], self.evaluation_avg[epoch][1]))
 
                 # if figures_path is not None:
             if (epoch+1) % 5 == 0:
@@ -279,8 +272,7 @@ class GanTrain(Trainer):
         torch.save(self.g_losses_avg["val"], logs_path + "g_losses_avg_val.pt")
         torch.save(self.d_losses_avg["train"], logs_path + "d_losses_avg_train.pt")
         torch.save(self.d_losses_avg["val"], logs_path + "d_losses_avg_val.pt")
-        torch.save(self.evaluation_avg["train"], logs_path + "evaluations_avg_train.pt")
-        torch.save(self.evaluation_avg["val"], logs_path + "evaluations_avg_val.pt")
+        torch.save(self.evaluation_avg, logs_path + "evaluations_avg_val.pt")
 
     # Generator losses
     # Discriminateur losses
