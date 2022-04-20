@@ -227,7 +227,7 @@ class GanTrain(Trainer):
 
                     d_losses_mem["val"][i] = torch.Tensor(d_losses)
                     g_losses_mem["val"][i] = torch.Tensor(g_losses)
-                    evaluation["val"][i] = evalutation.eval(L, ab, fake_ab)
+                    evaluation["val"][i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
 
                 self.evaluation_avg["train"][epoch] = torch.mean(evaluation["train"], 0)
                 self.evaluation_avg["val"][epoch] = torch.mean(evaluation["val"], 0)
