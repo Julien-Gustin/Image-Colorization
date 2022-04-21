@@ -7,6 +7,9 @@ from python.models.discriminator import PatchGAN
 from python.utils.images import *
 from python.train.trainer import *
 from python.models.utils import init_weights
+from torchvision.models.resnet import resnet18
+from fastai.vision.models.unet import DynamicUnet
+from fastai.vision.learner import create_body
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -14,7 +17,6 @@ SEED = 42
 torch.cuda.manual_seed(SEED)
 torch.cuda.manual_seed_all(SEED)
 np.random.seed(SEED)
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--R1', action="store_true") 
@@ -51,6 +53,10 @@ if __name__ == "__main__":
         generator = UNet(1, 2, stochastic=False).to(device)
         generator.load_state_dict(torch.load(args.load_generator, map_location=device))
 
+    elif args.pretrain:
+        resnet_body = create_body(resnet18, pretrained=True, n_in=1, cut=-2)
+        generator = DynamicUnet(resnet_body, 2, (256, 256)).to(device)
+
     else:
         generator = UNet(1, 2).to(device)
         generator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
@@ -59,13 +65,8 @@ if __name__ == "__main__":
 
     print("\rTraining !                    \n")
 
-    if args.pretrain:
-        trainer = Pretrain(generator, test_loader, train_loader)
-        trainer.train(args.epochs, generator_path="saves/{}/saved_models/".format(args.folders_name), figures_path="saves/{}/logs/".format(args.folders_name))
-
-    else:
-        trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight)
-        trainer.train(args.epochs, models_path="saves/{}/saved_models/".format(args.folders_name), logs_path="saves/{}/logs/".format(args.folders_name), figures_path="saves/{}/figures/".format(args.folders_name))
+    trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight)
+    trainer.train(args.epochs, models_path="saves/{}/saved_models/".format(args.folders_name), logs_path="saves/{}/logs/".format(args.folders_name), figures_path="saves/{}/figures/".format(args.folders_name))
 
     # TODO
     # trainer.make_plot("figures/{}/".format(args.folders_name))
