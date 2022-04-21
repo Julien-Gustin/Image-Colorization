@@ -168,7 +168,7 @@ class GanTrain(Trainer):
                         z = torch.randn(L.size()) 
                         L_z = torch.cat((L, z), 1)
                         fake_ab = self.generator(L_z)
-                        
+
                     else:
                         fake_ab = self.generator(L)
                     
