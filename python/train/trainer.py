@@ -122,13 +122,13 @@ class GanTrain(Trainer):
         torch.save(self.discriminator.state_dict(), path + "discriminator_{}".format(epoch))
 
 
-    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=3):
+    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=6, noise=False):
         len_train = len(self.train_loader)
         len_test = len(self.test_loader)
         evalutation = Evalutation()
 
         # early stopping based on https://pythonguides.com/pytorch-early-stopping/
-        n_epochs_stop = 6
+        n_epochs_stop = early_stopping
         epochs_no_improve = 0
         min_val_loss = np.Inf
         best_generator = None
@@ -144,7 +144,14 @@ class GanTrain(Trainer):
             for i, (L, ab) in enumerate(self.train_loader):
                 L = L.to(device)
                 ab = ab.to(device)
-                fake_ab = self.generator(L)
+
+                if noise:
+                    z = torch.randn(L.size()) 
+                    L_z = torch.cat((L, z), 1)
+                    fake_ab = self.generator(L_z)
+
+                else:
+                    fake_ab = self.generator(L)
 
                 d_losses, g_losses = self._step(L, ab, fake_ab)
                 d_losses_mem["train"][i] = torch.Tensor(d_losses)
@@ -156,7 +163,14 @@ class GanTrain(Trainer):
                 for i, (L, ab) in enumerate(self.test_loader):
                     L = L.to(device)
                     ab = ab.to(device)
-                    fake_ab = self.generator(L)
+
+                    if noise:
+                        z = torch.randn(L.size()) 
+                        L_z = torch.cat((L, z), 1)
+                        fake_ab = self.generator(L_z)
+                        
+                    else:
+                        fake_ab = self.generator(L)
                     
                     g_losses = self._generator_loss(L, ab, fake_ab, train=False)
                     d_losses = self._discriminator_loss(L, ab, fake_ab, train=False)
@@ -183,7 +197,7 @@ class GanTrain(Trainer):
                     epochs_no_improve += 1
                     print('No improve {}/{}:'.format(epochs_no_improve, n_epochs_stop))
 
-                if epochs_no_improve >= n_epochs_stop:
+                if epochs_no_improve >= n_epochs_stop or epoch == nb_epochs-1:
                     print('Early stopping!')
                     self.generator = best_generator
                     self.plot_samples(figures_path + "best_{}".format(epoch+1-n_epochs_stop))

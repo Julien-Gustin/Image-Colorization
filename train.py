@@ -13,11 +13,6 @@ from fastai.vision.learner import create_body
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-SEED = 42
-torch.cuda.manual_seed(SEED)
-torch.cuda.manual_seed_all(SEED)
-np.random.seed(SEED)
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--R1', action="store_true") 
 parser.add_argument('--pretrain', action="store_true") 
@@ -29,7 +24,12 @@ parser.add_argument('--version', required=True)
 parser.add_argument('--load_generator')
 parser.add_argument('--L1_weight', type=int, default=100)
 parser.add_argument('--folders_name', required=True) 
+parser.add_argument('--seed', type=int, default=42) 
 args = parser.parse_args()
+
+torch.cuda.manual_seed(args.seed)
+torch.cuda.manual_seed_all(args.seed)
+np.random.seed(args.seed)
 
 if __name__ == "__main__":
     print("\rLoading the dataset...", end="\r")
@@ -55,7 +55,9 @@ if __name__ == "__main__":
 
     elif args.pretrain:
         resnet_body = create_body(resnet18, pretrained=True, n_in=1, cut=-2)
-        generator = DynamicUnet(resnet_body, 2, (256, 256)).to(device)
+        generator = DynamicUnet(resnet_body, 2, (256, 256), y_range=(-1, 1)).to(device)
+        for param in resnet_body.parameters():
+            param.requires_grad = False
 
     else:
         generator = UNet(1, 2).to(device)
