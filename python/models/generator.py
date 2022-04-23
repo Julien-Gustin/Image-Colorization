@@ -18,10 +18,10 @@ class UNet(nn.Module):
         self.in_channels = in_channels
         self.out_channels = out_channels
 
-        inner_module = UNetModule(None, 512, 512, 512, 512, batchnorm_down=False) # 1x1 -> 2x2 - bottleneck
+        inner_module = UNetModule(None, 512, 512, 512, 512, batchnorm_down=False, dropout=stochastic) # 1x1 -> 2x2 - bottleneck
         inner_module = UNetModule(inner_module, 512, 512, 512+512, 512, dropout=stochastic) # 2x2 -> 4x4
         inner_module = UNetModule(inner_module, 512, 512, 512+512, 512, dropout=stochastic) # 4x4 -> 8x8
-        inner_module = UNetModule(inner_module, 512, 512, 512+512, 512, dropout=stochastic) # 8x8 -> 16x16
+        inner_module = UNetModule(inner_module, 512, 512, 512+512, 512) # 8x8 -> 16x16
         inner_module = UNetModule(inner_module, 256, 512, 512+512, 256) # 16x16 -> 32x32
         inner_module = UNetModule(inner_module, 128, 256, 256+256, 128) # 32x32 -> 64x64
         inner_module = UNetModule(inner_module, 64, 128, 128+128, 64) # 64x64 -> 128x128

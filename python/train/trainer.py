@@ -22,21 +22,21 @@ class Trainer():
 
         self.optimizer_G = torch.optim.Adam(generator.parameters(), lr=learning_rate, betas=betas)
 
-    def plot_samples(self, file_name:str=None):
-        multi_plot(self.test_loader, self.generator, file_name + ".png", columns=4)
+    def plot_samples(self, file_name:str=None, noise:bool=False):
+        multi_plot(self.test_loader, self.generator, file_name + ".png", columns=4, noise=noise)
 
 
 class GanTrain(Trainer):   
-    def __init__(self, generator:nn.Module, discriminator:nn.Module, test_loader:DataLoader, train_loader:DataLoader, reg_R1:bool=False, learning_rate_g:float=0.0002, learning_rate_d:float=0.0002, betas_g:tuple=(0.5, 0.999), betas_d:tuple=(0.5, 0.999), gamma_1:float=100, gamma_2:float=1, real_label=1.0, fake_label=0.0) -> None:
+    def __init__(self, generator:nn.Module, discriminator:nn.Module, test_loader:DataLoader, train_loader:DataLoader, reg_R1:bool=False, learning_rate_g:float=0.0002, learning_rate_d:float=0.0002, betas_g:tuple=(0.5, 0.999), betas_d:tuple=(0.5, 0.999), gamma_1:float=100, gamma_2:float=1, real_label=1.0, fake_label=0.0, gan_weight=1) -> None:
         super().__init__(generator, test_loader, train_loader, learning_rate_g, betas_g)
         self.discriminator = discriminator
         self.cgan_loss = cGANLoss(real_label=real_label, fake_label=fake_label)
 
         self.optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=learning_rate_d, betas=betas_d)
-
         self.gamma_1 = gamma_1
         self.gamma_2 = gamma_2
         self.reg_R1 = reg_R1
+        self.gan_weight = gan_weight
 
         if self.reg_R1:
             self.r1_loss = R1Loss(gamma=self.gamma_2)
@@ -52,7 +52,7 @@ class GanTrain(Trainer):
         L1_loss = self.L1_loss(fake_ab, reel_ab)
         gan_loss = self.cgan_loss(discriminator_confidence, True) # trick
 
-        loss = L1_loss * self.gamma_1 + gan_loss
+        loss = L1_loss * self.gamma_1 + gan_loss * self.gan_weight
 
         if not train:
             return loss.detach().to("cpu"), L1_loss, gan_loss.detach().to("cpu")
@@ -122,7 +122,7 @@ class GanTrain(Trainer):
         torch.save(self.discriminator.state_dict(), path + "discriminator_{}".format(epoch))
 
 
-    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=6, noise=False):
+    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=4, noise:bool=False):
         len_train = len(self.train_loader)
         len_test = len(self.test_loader)
         evalutation = Evalutation()
@@ -137,6 +137,9 @@ class GanTrain(Trainer):
         self.d_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
         self.evaluation_avg = torch.zeros(nb_epochs, 2)
 
+        self.generator.train()
+        self.discriminator.train()
+
         for epoch in range(start, nb_epochs):
             g_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
             d_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
@@ -146,7 +149,7 @@ class GanTrain(Trainer):
                 ab = ab.to(device)
 
                 if noise:
-                    z = torch.randn(L.size()) 
+                    z = torch.randn(L.size()).to(device)
                     L_z = torch.cat((L, z), 1)
                     fake_ab = self.generator(L_z)
 
@@ -155,7 +158,7 @@ class GanTrain(Trainer):
 
                 d_losses, g_losses = self._step(L, ab, fake_ab)
                 d_losses_mem["train"][i] = torch.Tensor(d_losses)
-                g_losses_mem["train"][i] = torch.Tensor(g_losses)
+                g_losses_mem["train"][i] = torch.Tensor(g_losses)   
 
             with torch.no_grad():   
                 evaluation_val = torch.zeros((len_test, 2))
@@ -165,10 +168,10 @@ class GanTrain(Trainer):
                     ab = ab.to(device)
 
                     if noise:
-                        z = torch.randn(L.size()) 
+                        z = torch.randn(L.size()).to(device)
                         L_z = torch.cat((L, z), 1)
                         fake_ab = self.generator(L_z)
-                        
+
                     else:
                         fake_ab = self.generator(L)
                     
@@ -178,8 +181,7 @@ class GanTrain(Trainer):
                     d_losses_mem["val"][i] = torch.Tensor(d_losses)
                     g_losses_mem["val"][i] = torch.Tensor(g_losses)
                     evaluation_val[i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
-
-
+                
                 self.evaluation_avg[epoch] = torch.mean(evaluation_val, 0) 
                 self.d_losses_avg["train"][epoch] = torch.mean(d_losses_mem["train"], 0)
                 self.g_losses_avg["train"][epoch] = torch.mean(g_losses_mem["train"], 0)
@@ -188,7 +190,7 @@ class GanTrain(Trainer):
                 self.g_losses_avg["val"][epoch] = torch.mean(g_losses_mem["val"], 0)
 
                 # === Early stopping === https://pythonguides.com/pytorch-early-stopping/
-                if self.g_losses_avg["val"][epoch][1] < min_val_loss:
+                if self.g_losses_avg["val"][epoch][1] < min_val_loss or self.gamma_1 == 0.0:  # deal with only gan train
                     epochs_no_improve = 0
                     min_val_loss = self.g_losses_avg["val"][epoch][1]
                     best_generator = copy.deepcopy(self.generator)
@@ -197,12 +199,6 @@ class GanTrain(Trainer):
                     epochs_no_improve += 1
                     print('No improve {}/{}:'.format(epochs_no_improve, n_epochs_stop))
 
-                if epochs_no_improve >= n_epochs_stop or epoch == nb_epochs-1:
-                    print('Early stopping!')
-                    self.generator = best_generator
-                    self.plot_samples(figures_path + "best_{}".format(epoch+1-n_epochs_stop))
-                    self._save_models(models_path, "best_{}".format(epoch+1-n_epochs_stop))
-                    break
                 # === End Early stopping ===
 
                 if verbose:
@@ -215,11 +211,17 @@ class GanTrain(Trainer):
                                 '\n--- Metrics ---\n' + 
                                 '\tVal: SSIM: {:.4f} - PSNR: {:.4f}'.format(self.evaluation_avg[epoch][0], self.evaluation_avg[epoch][1]))
 
-                # if figures_path is not None:
+                if epochs_no_improve >= n_epochs_stop:
+                    print('Early stopping!')
+                    break
+
             if (epoch+1) % 5 == 0:
-                self.plot_samples(figures_path + "epoch_{}".format(epoch+1))
+                self.plot_samples(figures_path + "epoch_{}".format(epoch+1), noise=noise)
                 self._save_models(models_path, epoch+1)
 
+        self.generator = best_generator
+        self.plot_samples(figures_path + "best_{}".format(epoch+1-n_epochs_stop))
+        self._save_models(models_path, "best_{}".format(epoch+1-n_epochs_stop))
         torch.save(self.g_losses_avg["train"], logs_path + "g_losses_avg_train.pt")
         torch.save(self.g_losses_avg["val"], logs_path + "g_losses_avg_val.pt")
         torch.save(self.d_losses_avg["train"], logs_path + "d_losses_avg_train.pt")

@@ -37,7 +37,7 @@ def show_images(img):
     plt.imshow(transforms.functional.to_pil_image(img))
     plt.show()
 
-def multi_plot(loader, generator, file_name=None, columns=4):
+def multi_plot(loader, generator, file_name=None, columns=4, noise=False):
     L, real_ab = next(iter(loader))
 
     real_Lab = torch.concat((L, real_ab), 1)
@@ -46,7 +46,14 @@ def multi_plot(loader, generator, file_name=None, columns=4):
     gray_Lab = torch.concat((L, real_ab*0), 1)
     gray_img = tensor_to_pil(torch.Tensor(gray_Lab))
 
-    fake_ab = generator(L.to(device)).detach().to("cpu")
+    if noise:
+        z = torch.randn(L.size())
+        L_z = torch.cat((L, z), 1)
+        fake_ab = generator(L_z.to(device)).detach().to("cpu")
+
+    else:
+        fake_ab = generator(L.to(device)).detach().to("cpu")
+
     fake_Lab = torch.cat([L, fake_ab], axis=1)
     fake_img_L1 = tensor_to_pil(fake_Lab)
 

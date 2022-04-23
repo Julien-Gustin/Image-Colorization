@@ -19,12 +19,14 @@ parser.add_argument('--pretrain', action="store_true")
 parser.add_argument('--real_label', type=float, default=1.0)
 parser.add_argument('--fake_label', type=float, default=0.0)
 parser.add_argument('--epochs', required=True, type=int) 
+parser.add_argument('--early_stopping', type=int, default=6) 
 parser.add_argument('--dataset', required=True) 
 parser.add_argument('--version', required=True) 
 parser.add_argument('--load_generator')
-parser.add_argument('--L1_weight', type=int, default=100)
+parser.add_argument('--L1_weight', type=float, default=100)
 parser.add_argument('--folders_name', required=True) 
 parser.add_argument('--seed', type=int, default=42) 
+parser.add_argument('--only_L1', action="store_true") 
 args = parser.parse_args()
 
 torch.cuda.manual_seed(args.seed)
@@ -49,26 +51,36 @@ if __name__ == "__main__":
     os.mkdir("saves/{}/saved_models".format(args.folders_name))
     os.mkdir("saves/{}/logs".format(args.folders_name))
 
+    noise = False
+
     if args.load_generator:
         generator = UNet(1, 2, stochastic=False).to(device)
         generator.load_state_dict(torch.load(args.load_generator, map_location=device))
 
     elif args.pretrain:
-        resnet_body = create_body(resnet18, pretrained=True, n_in=1, cut=-2)
-        generator = DynamicUnet(resnet_body, 2, (256, 256), y_range=(-1, 1)).to(device)
+        resnet_body = create_body(resnet18, pretrained=True, n_in=2, cut=-2)
+        
         for param in resnet_body.parameters():
             param.requires_grad = False
 
+        generator = DynamicUnet(resnet_body, 2, (256, 256), y_range=(-1, 1)).to(device)
+
+        noise = True
+
     else:
-        generator = UNet(1, 2).to(device)
+        if args.only_L1:
+            generator = UNet(1, 2, stochastic=False).to(device)
+
+        else:
+            generator = UNet(1, 2, stochastic=True).to(device)
         generator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
 
     discriminator.apply(init_weights) # init weights with a gaussian distribution centered at 0, and std=0.02
 
     print("\rTraining !                    \n")
 
-    trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight)
-    trainer.train(args.epochs, models_path="saves/{}/saved_models/".format(args.folders_name), logs_path="saves/{}/logs/".format(args.folders_name), figures_path="saves/{}/figures/".format(args.folders_name))
+    trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight, gan_weight= 0 if args.only_L1 else 1)
+    trainer.train(args.epochs, models_path="saves/{}/saved_models/".format(args.folders_name), noise=noise, logs_path="saves/{}/logs/".format(args.folders_name), figures_path="saves/{}/figures/".format(args.folders_name), early_stopping=args.early_stopping)
 
     # TODO
     # trainer.make_plot("figures/{}/".format(args.folders_name))
