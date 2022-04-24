@@ -6,14 +6,13 @@ import numpy as np
 sns.set(rc={'figure.figsize':(11.7,8.27)})
 
 class Plotter():
-    def __init__(self, file_name:str, early_stop:int, patience:int=6):
-        n_epoch = min(early_stop+patience, 30)
+    def __init__(self, file_name:str, early_stop:int):
 
-        self.d_losses_train = np.array(torch.load(file_name + "d_losses_avg_train.pt")[:n_epoch])
-        self.d_losses_val = np.array(torch.load(file_name + "d_losses_avg_val.pt")[:n_epoch])
-        self.evaluations_val = np.array(torch.load(file_name + "evaluations_avg_val.pt")[:n_epoch])
-        self.g_losses_train = np.array(torch.load(file_name + "g_losses_avg_train.pt")[:n_epoch])
-        self.g_losses_val = np.array(torch.load(file_name + "g_losses_avg_val.pt")[:n_epoch])
+        self.d_losses_train = np.array(torch.load(file_name + "d_losses_avg_train.pt"))
+        self.d_losses_val = np.array(torch.load(file_name + "d_losses_avg_val.pt"))
+        self.evaluations_val = np.array(torch.load(file_name + "evaluations_avg_val.pt"))
+        self.g_losses_train = np.array(torch.load(file_name + "g_losses_avg_train.pt"))
+        self.g_losses_val = np.array(torch.load(file_name + "g_losses_avg_val.pt"))
 
         self.early_stop = early_stop
 
