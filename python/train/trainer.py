@@ -122,7 +122,7 @@ class GanTrain(Trainer):
         torch.save(self.discriminator.state_dict(), path + "discriminator_{}".format(epoch))
 
 
-    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=4, noise:bool=False):
+    def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=3, noise:bool=False):
         len_train = len(self.train_loader)
         len_test = len(self.test_loader)
         evalutation = Evalutation()
@@ -132,6 +132,7 @@ class GanTrain(Trainer):
         epochs_no_improve = 0
         min_val_loss = np.Inf
         best_generator = None
+        best_epoch = 0
 
         self.g_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
         self.d_losses_avg = {"train": torch.zeros((nb_epochs, 3)), "val": torch.zeros((nb_epochs, 3))}
@@ -159,6 +160,7 @@ class GanTrain(Trainer):
                 d_losses, g_losses = self._step(L, ab, fake_ab)
                 d_losses_mem["train"][i] = torch.Tensor(d_losses)
                 g_losses_mem["train"][i] = torch.Tensor(g_losses)   
+                break
 
             with torch.no_grad():   
                 evaluation_val = torch.zeros((len_test, 2))
@@ -181,7 +183,7 @@ class GanTrain(Trainer):
                     d_losses_mem["val"][i] = torch.Tensor(d_losses)
                     g_losses_mem["val"][i] = torch.Tensor(g_losses)
                     evaluation_val[i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
-                
+
                 self.evaluation_avg[epoch] = torch.mean(evaluation_val, 0) 
                 self.d_losses_avg["train"][epoch] = torch.mean(d_losses_mem["train"], 0)
                 self.g_losses_avg["train"][epoch] = torch.mean(g_losses_mem["train"], 0)
@@ -194,6 +196,7 @@ class GanTrain(Trainer):
                     epochs_no_improve = 0
                     min_val_loss = self.g_losses_avg["val"][epoch][1]
                     best_generator = copy.deepcopy(self.generator)
+                    best_epoch = epoch
 
                 else:
                     epochs_no_improve += 1
@@ -213,72 +216,16 @@ class GanTrain(Trainer):
 
                 if epochs_no_improve >= n_epochs_stop:
                     print('Early stopping!')
-                    break
 
             if (epoch+1) % 5 == 0:
                 self.plot_samples(figures_path + "epoch_{}".format(epoch+1), noise=noise)
                 self._save_models(models_path, epoch+1)
 
         self.generator = best_generator
-        self.plot_samples(figures_path + "best_{}".format(epoch+1-n_epochs_stop))
-        self._save_models(models_path, "best_{}".format(epoch+1-n_epochs_stop))
-        torch.save(self.g_losses_avg["train"], logs_path + "g_losses_avg_train.pt")
-        torch.save(self.g_losses_avg["val"], logs_path + "g_losses_avg_val.pt")
-        torch.save(self.d_losses_avg["train"], logs_path + "d_losses_avg_train.pt")
-        torch.save(self.d_losses_avg["val"], logs_path + "d_losses_avg_val.pt")
-        torch.save(self.evaluation_avg, logs_path + "evaluations_avg_val.pt")
-
-    # Generator losses
-    # Discriminateur losses
-    # GvsD train/val
-    def make_plot(self, path:str):
-
-        plt.figure(figsize=(16, 6))
-        plt.title('Generator losses')
-        plt.plot(self.train_g_avg_loss)
-        plt.plot(self.test_g_avg_loss)
-        plt.grid()
-        plt.legend(['Train', 'Test'])
-        plt.xlabel('Epoch')
-        plt.ylabel('Loss')
-        plt.savefig(path + "generator_losses.png")
-
-        plt.figure(figsize=(16, 6))
-        plt.title('Discriminator losses')
-        plt.plot(self.train_d_avg_loss)
-        plt.plot(self.test_d_avg_loss)
-        plt.grid()
-        plt.legend(['Train', 'Test'])
-        plt.xlabel('Epoch')
-        plt.ylabel('Loss')
-        plt.savefig(path + "discriminator_losses.png")
-
-        plt.figure(figsize=(16, 6))
-        plt.title('Generator - cGan loss')
-        plt.plot(self.train_gan_avg_loss)
-        plt.plot(self.test_gan_avg_loss)
-        plt.grid()
-        plt.legend(['Train', 'Test'])
-        plt.xlabel('Epoch')
-        plt.ylabel('Loss')
-        plt.savefig(path + "generator_cGan.png")
-
-        plt.figure(figsize=(16, 6))
-        plt.title('Generator vs Discriminator - cGan loss')
-        plt.plot(self.test_gan_avg_loss)
-        plt.plot(self.test_d_avg_loss)
-        plt.grid()
-        plt.legend(['Generator', 'Discriminator'])
-        plt.xlabel('Epoch')
-        plt.ylabel('Loss')
-        plt.savefig(path + "generator_vs_discriminator.png")
-
-        plt.figure(figsize=(16, 6))
-        plt.title('Generator val losses')
-        plt.plot(self.test_l1_avg_loss)
-        plt.plot(self.test_gan_avg_loss)
-        plt.grid()
-        plt.legend(['L1', 'cGan loss'])
-        plt.xlabel('Epoch')
-        plt.ylabel('Loss')
-        plt.savefig(path + "Generator_testlosses.png")
+        self.plot_samples(figures_path + "best_{}".format(best_epoch+1), noise=noise)
+        self._save_models(models_path, "best_{}".format(best_epoch+1))
+        torch.save(self.g_losses_avg["train"][:epoch+1], logs_path + "g_losses_avg_train.pt")
+        torch.save(self.g_losses_avg["val"][:epoch+1], logs_path + "g_losses_avg_val.pt")
+        torch.save(self.d_losses_avg["train"][:epoch+1], logs_path + "d_losses_avg_train.pt")
+        torch.save(self.d_losses_avg["val"][:epoch+1], logs_path + "d_losses_avg_val.pt")
+        torch.save(self.evaluation_avg[:epoch+1], logs_path + "evaluations_avg_val.pt")

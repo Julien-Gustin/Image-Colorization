@@ -19,7 +19,7 @@ parser.add_argument('--pretrain', action="store_true")
 parser.add_argument('--real_label', type=float, default=1.0)
 parser.add_argument('--fake_label', type=float, default=0.0)
 parser.add_argument('--epochs', required=True, type=int) 
-parser.add_argument('--early_stopping', type=int, default=6) 
+parser.add_argument('--early_stopping', type=int, default=3) 
 parser.add_argument('--dataset', required=True) 
 parser.add_argument('--version', required=True) 
 parser.add_argument('--load_generator')
@@ -81,6 +81,3 @@ if __name__ == "__main__":
 
     trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight, gan_weight= 0 if args.only_L1 else 1)
     trainer.train(args.epochs, models_path="saves/{}/saved_models/".format(args.folders_name), noise=noise, logs_path="saves/{}/logs/".format(args.folders_name), figures_path="saves/{}/figures/".format(args.folders_name), early_stopping=args.early_stopping)
-
-    # TODO
-    # trainer.make_plot("figures/{}/".format(args.folders_name))

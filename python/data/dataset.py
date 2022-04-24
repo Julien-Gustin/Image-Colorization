@@ -42,7 +42,6 @@ class CocoLab(data.Dataset):
             im = im.convert('RGB')
 
         rgb_im = self.transform(im)
-        # could be interesting to use network in double instead
         lab_im = transforms.ToTensor()(color.rgb2lab(rgb_im).astype(np.float32)) # transform
         
         # Should we normalize between [-1, 1]
