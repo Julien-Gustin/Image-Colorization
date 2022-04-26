@@ -9,18 +9,26 @@ from glob import glob
 
 class CocoLab(data.Dataset):
     """Coco dataset using L*a*b colorspace"""
-    def __init__(self, root_dir:str, split:str, version:str="2017", size:int=256):
+    def __init__(self, root_dir:str, splits, version:str="2017", size:int=256, train:bool=False):
         """Initializes a dataset containing colored images."""
         super().__init__()
 
-        if split == "train": # data augmentation?
+        if train: # data augmentation
             self.transform = transforms.Compose([transforms.Resize((size, size)), transforms.RandomHorizontalFlip()])
 
         else:
             self.transform = transforms.Compose([transforms.Resize((size, size))])
 
-        folder_name = "{}{}".format(split, version)
-        self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))
+        if isinstance(splits, list):
+            self.data_paths = []
+            for split in splits:
+                folder_name = "{}{}".format(split, version)
+                self.data_paths += glob(os.path.join(root_dir, folder_name, "*.jpg"))
+
+        else:
+            split = splits
+            folder_name = "{}{}".format(split, version)
+            self.data_paths = glob(os.path.join(root_dir, folder_name, "*.jpg"))
 
     def __len__(self):
         """Returns the size of the dataset."""

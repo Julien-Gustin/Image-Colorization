@@ -125,6 +125,7 @@ class GanTrain(Trainer):
     def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=3, noise:bool=False):
         len_train = len(self.train_loader)
         len_test = len(self.test_loader)
+        print(len_train)
         evalutation = Evalutation()
 
         # early stopping based on https://pythonguides.com/pytorch-early-stopping/
@@ -160,7 +161,6 @@ class GanTrain(Trainer):
                 d_losses, g_losses = self._step(L, ab, fake_ab)
                 d_losses_mem["train"][i] = torch.Tensor(d_losses)
                 g_losses_mem["train"][i] = torch.Tensor(g_losses)   
-                break
 
             with torch.no_grad():   
                 evaluation_val = torch.zeros((len_test, 2))
@@ -216,6 +216,7 @@ class GanTrain(Trainer):
 
                 if epochs_no_improve >= n_epochs_stop:
                     print('Early stopping!')
+                    break
 
             if (epoch+1) % 5 == 0:
                 self.plot_samples(figures_path + "epoch_{}".format(epoch+1), noise=noise)

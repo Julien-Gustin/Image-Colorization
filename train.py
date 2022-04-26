@@ -35,10 +35,10 @@ np.random.seed(args.seed)
 
 if __name__ == "__main__":
     print("\rLoading the dataset...", end="\r")
-    dataset_train = CocoLab(args.dataset, split="train", version=args.version, size=256)
+    dataset_train = CocoLab(args.dataset, splits=["train", "unlabeled"], version=args.version, size=256, train=True)
     train_loader = data.DataLoader(dataset_train, batch_size=4, shuffle=True, num_workers=4)
 
-    dataset_test = CocoLab(args.dataset, split="val", version=args.version, size=256)
+    dataset_test = CocoLab(args.dataset, splits="val", version=args.version, size=256, train=False)
     test_loader = data.DataLoader(dataset_test, batch_size=4, shuffle=True, num_workers=4)
 
     print("\rSetup the networks...", end="\r")
