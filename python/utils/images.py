@@ -37,7 +37,7 @@ def show_images(img):
     plt.imshow(transforms.functional.to_pil_image(img))
     plt.show()
 
-def multi_plot(loader, generator, file_name=None, columns=4, noise=False):
+def multi_plot(loader, generator, file_name=None, rows=4, noise=False):
     L, real_ab = next(iter(loader))
 
     real_Lab = torch.concat((L, real_ab), 1)
@@ -59,12 +59,37 @@ def multi_plot(loader, generator, file_name=None, columns=4, noise=False):
 
     imgs = real_img + gray_img + fake_img_L1
 
-    plt.figure(figsize=(30,20))
-    for i, img in enumerate(imgs):
-        ax = plt.subplot(int(len(imgs) / columns + 1), columns, i + 1)
+    plt.figure(figsize=(20,35))
+    i = 1
+    for j, _ in enumerate(real_img):
+
+        ax = plt.subplot(rows+1, int(len(imgs) / rows + 1), i)
         ax.axes.xaxis.set_visible(False)
         ax.axes.yaxis.set_visible(False)
-        plt.imshow(img)
+        # if j == 0:
+        #     plt.title("Ground truth",  fontsize=20)
+
+        plt.imshow(real_img[j])
+
+        i += 1
+        
+        ax = plt.subplot(rows+1, int(len(imgs) / rows + 1), i)
+        ax.axes.xaxis.set_visible(False)
+        ax.axes.yaxis.set_visible(False)
+        plt.imshow(gray_img[j])
+        # if j == 0:
+        #     plt.title("Greyscale images", fontsize=20)
+        
+        i += 1
+
+        ax = plt.subplot(rows+1, int(len(imgs) / rows + 1), i)
+        ax.axes.xaxis.set_visible(False)
+        ax.axes.yaxis.set_visible(False)
+        # if j == 0:
+        #     plt.title("Generated images", fontsize=20)
+        plt.imshow(fake_img_L1[j])
+        
+        i += 1
 
     if file_name is not None:
         plt.savefig(file_name)

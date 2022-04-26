@@ -4,6 +4,8 @@ from python.utils.images import *
 
 import torch
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 class Evalutation():
     def __init__(self, verbose:bool=True) -> None:
         self.metrics = []   
@@ -14,11 +16,12 @@ class Evalutation():
 
     
     def eval(self, L, ab_pred, ab_target):
-        real_Lab = torch.concat((L, ab_target), 1)
-        real_RGB = torch.Tensor(tensor_lab_to_rgb(torch.Tensor(real_Lab))).permute(0, 3, 1, 2)
+        real_Lab = torch.concat((L, ab_target), 1).detach().to("cpu")
+        real_RGB = torch.Tensor(tensor_lab_to_rgb(torch.Tensor(real_Lab))).permute(0, 3, 1, 2).to(device)
 
-        fake_Lab = torch.cat([L, ab_pred], 1)
-        fake_RGB = torch.Tensor(tensor_lab_to_rgb(fake_Lab)).permute(0, 3, 1, 2)
+        fake_Lab = torch.cat([L, ab_pred], 1).detach().to("cpu")
+        fake_RGB = torch.Tensor(tensor_lab_to_rgb(fake_Lab)).permute(0, 3, 1, 2).to(device)
+
         with torch.no_grad():
             ssim = self.SSIM(fake_RGB, real_RGB)
             psnr = self.PSNR(fake_RGB, real_RGB)
@@ -30,4 +33,4 @@ class Evalutation():
                 print("  {}: {:.4f}".format(metric_name, metric))
                 print("-"*20)
 
-        return torch.tensor([ssim, psnr])
+        return torch.tensor([ssim, psnr]).detach().to("cpu")

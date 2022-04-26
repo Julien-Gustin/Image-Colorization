@@ -131,7 +131,8 @@ class GanTrain(Trainer):
         # early stopping based on https://pythonguides.com/pytorch-early-stopping/
         n_epochs_stop = early_stopping
         epochs_no_improve = 0
-        min_val_loss = np.Inf
+        # min_val_loss = np.Inf
+        max_ssim = 0
         best_generator = None
         best_epoch = 0
 
@@ -182,7 +183,7 @@ class GanTrain(Trainer):
 
                     d_losses_mem["val"][i] = torch.Tensor(d_losses)
                     g_losses_mem["val"][i] = torch.Tensor(g_losses)
-                    evaluation_val[i] = evalutation.eval(L.detach().to("cpu"), ab.detach().to("cpu"), fake_ab.detach().to("cpu"))
+                    evaluation_val[i] = evalutation.eval(L, ab, fake_ab)
 
                 self.evaluation_avg[epoch] = torch.mean(evaluation_val, 0) 
                 self.d_losses_avg["train"][epoch] = torch.mean(d_losses_mem["train"], 0)
@@ -191,16 +192,28 @@ class GanTrain(Trainer):
                 self.d_losses_avg["val"][epoch] = torch.mean(d_losses_mem["val"], 0)
                 self.g_losses_avg["val"][epoch] = torch.mean(g_losses_mem["val"], 0)
 
-                # === Early stopping === https://pythonguides.com/pytorch-early-stopping/
-                if self.g_losses_avg["val"][epoch][1] < min_val_loss or self.gamma_1 == 0.0:  # deal with only gan train
-                    epochs_no_improve = 0
-                    min_val_loss = self.g_losses_avg["val"][epoch][1]
-                    best_generator = copy.deepcopy(self.generator)
-                    best_epoch = epoch
+                if early_stopping != -1:
+
+                    if self.evaluation_avg[epoch][0] > max_ssim:
+                        epochs_no_improve = 0
+                        max_ssim = self.evaluation_avg[epoch][0]
+                        best_generator = copy.deepcopy(self.generator)
+                        best_epoch = epoch
+
+                    # === Early stopping === https://pythonguides.com/pytorch-early-stopping/
+                    # elif self.g_losses_avg["val"][epoch][1] < min_val_loss or self.gamma_1 == 0.0 or early_stopping == -1:  # deal with only gan train
+                    #     epochs_no_improve = 0
+                    #     min_val_loss = self.g_losses_avg["val"][epoch][1]
+                    #     best_generator = copy.deepcopy(self.generator)
+                    #     best_epoch = epoch
+
+                    else:
+                        epochs_no_improve += 1
+                        print('No improve {}/{}:'.format(epochs_no_improve, n_epochs_stop))
 
                 else:
-                    epochs_no_improve += 1
-                    print('No improve {}/{}:'.format(epochs_no_improve, n_epochs_stop))
+                    best_generator = copy.deepcopy(self.generator)
+                    best_epoch = epoch
 
                 # === End Early stopping ===
 
