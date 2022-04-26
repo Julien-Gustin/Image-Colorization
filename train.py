@@ -59,10 +59,6 @@ if __name__ == "__main__":
 
     elif args.pretrain:
         resnet_body = create_body(resnet18, pretrained=True, n_in=2, cut=-2)
-        
-        for param in resnet_body.parameters():
-            param.requires_grad = False
-
         generator = DynamicUnet(resnet_body, 2, (256, 256), y_range=(-1, 1)).to(device)
 
         noise = True
