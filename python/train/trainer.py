@@ -192,6 +192,8 @@ class GanTrain(Trainer):
                 self.d_losses_avg["val"][epoch] = torch.mean(d_losses_mem["val"], 0)
                 self.g_losses_avg["val"][epoch] = torch.mean(g_losses_mem["val"], 0)
 
+                # === Early stopping ===
+
                 if early_stopping != -1:
 
                     if self.evaluation_avg[epoch][0] > max_ssim:
@@ -199,13 +201,6 @@ class GanTrain(Trainer):
                         max_ssim = self.evaluation_avg[epoch][0]
                         best_generator = copy.deepcopy(self.generator)
                         best_epoch = epoch
-
-                    # === Early stopping === https://pythonguides.com/pytorch-early-stopping/
-                    # elif self.g_losses_avg["val"][epoch][1] < min_val_loss or self.gamma_1 == 0.0 or early_stopping == -1:  # deal with only gan train
-                    #     epochs_no_improve = 0
-                    #     min_val_loss = self.g_losses_avg["val"][epoch][1]
-                    #     best_generator = copy.deepcopy(self.generator)
-                    #     best_epoch = epoch
 
                     else:
                         epochs_no_improve += 1
@@ -227,7 +222,7 @@ class GanTrain(Trainer):
                                 '\n--- Metrics ---\n' + 
                                 '\tVal: SSIM: {:.4f} - PSNR: {:.4f}'.format(self.evaluation_avg[epoch][0], self.evaluation_avg[epoch][1]))
 
-                if epochs_no_improve >= n_epochs_stop:
+                if epochs_no_improve >= n_epochs_stop and early_stopping != -1:
                     print('Early stopping!')
                     break
 

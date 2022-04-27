@@ -11,8 +11,8 @@ class Evalutation():
         self.metrics = []   
         self.verbose = verbose
 
-        self.SSIM = SSIM(value_range=256)
-        self.PSNR = PSNR(value_range=256)
+        self.SSIM = SSIM(value_range=256).to(device)
+        self.PSNR = PSNR(value_range=256).to(device)
 
     
     def eval(self, L, ab_pred, ab_target):
