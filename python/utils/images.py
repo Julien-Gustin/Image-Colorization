@@ -170,3 +170,49 @@ def plot_turing(loader, generator, file_name=None, rows=1, fake=False):
 
     if file_name is not None:
         plt.savefig(file_name)
+
+def plot_turing2(loader, generator, file_name=None, rows=1, fake=False):
+    L, real_ab = next(iter(loader))
+
+    real_Lab = torch.concat((L, real_ab), 1)
+    real_img = tensor_to_pil(torch.Tensor(real_Lab))
+
+    gray_Lab = torch.concat((L, real_ab*0), 1)
+    gray_img = tensor_to_pil(torch.Tensor(gray_Lab))
+
+    z = torch.randn(L.size())
+    L_z = torch.cat((L, z), 1)
+
+    fake_ab = generator(L_z.to(device)).detach().to("cpu")
+
+    fake_Lab = torch.cat([L, fake_ab], axis=1)
+    fake_img_L1 = tensor_to_pil(fake_Lab)
+
+    plt.figure(figsize=(20,35))
+
+    i = 1
+    for j, _ in enumerate(real_img):
+        ax = plt.subplot(rows+1, 2, i)
+        ax.axes.xaxis.set_visible(False)
+        ax.axes.yaxis.set_visible(False)
+        plt.imshow(gray_img[j])
+        
+        i += 1
+
+        if fake:
+            ax = plt.subplot(rows+1, 2, i)
+            ax.axes.xaxis.set_visible(False)
+            ax.axes.yaxis.set_visible(False)
+            plt.imshow(fake_img_L1[j])
+
+
+        else:
+            ax = plt.subplot(rows+1, 2, i)
+            ax.axes.xaxis.set_visible(False)
+            ax.axes.yaxis.set_visible(False)
+            plt.imshow(real_img[j])
+        
+        i += 1
+
+    if file_name is not None:
+        plt.savefig(file_name)
