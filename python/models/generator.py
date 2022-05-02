@@ -1,12 +1,14 @@
 import torch 
 import torch.nn as nn
-# Useful links:
 
-#https://arxiv.org/pdf/1502.03167.pdf
-#https://arxiv.org/pdf/1505.04597.pdf
-#https://arxiv.org/pdf/1611.07004.pdf
-#https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/003efc4c8819de47ff11b5a0af7ba09aee7f5fc1/models/networks.py#L436
-#https://madebyollin.github.io/convnet-calculator/ - Using kernel=4, stride=2, padding=1 allow to divide by two at each layer
+# Useful sources and inspiration:
+
+# https://arxiv.org/pdf/1502.03167.pdf
+# https://arxiv.org/pdf/1505.04597.pdf
+# https://arxiv.org/pdf/1611.07004.pdf
+# https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/003efc4c8819de47ff11b5a0af7ba09aee7f5fc1/models/networks.py#L436
+# https://madebyollin.github.io/convnet-calculator/ - Using kernel=4, stride=2, padding=1 allow to divide by two at each layer
+# https://github.com/phillipi/pix2pix/blob/master/models.lua
 
 class UNet(nn.Module):
     """
@@ -80,11 +82,6 @@ class Down(nn.Module):
     def forward(self, x:torch.Tensor):
         return self.down(x)
 
-
-# https://discuss.pytorch.org/t/torch-nn-convtranspose2d-vs-torch-nn-upsample/30574
-# Choisir entre ?
-# Upsampling = interpolation
-# ConvTranspose = trainable kernels
 class Up(nn.Module):    
     """
        Decoder block that upsample the input by a factor of 2

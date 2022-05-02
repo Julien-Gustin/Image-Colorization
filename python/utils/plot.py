@@ -2,6 +2,7 @@ import torch
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+from matplotlib.ticker import MaxNLocator
 
 sns.set(rc={'figure.figsize':(11.7,8.27)})
 
@@ -22,6 +23,7 @@ class Plotter():
         gan_D_loss_train = self.d_losses_train[:,2]
         gan_G_loss_train = self.g_losses_train[:,2]
         my_plot = sns.lineplot(data=[gan_D_loss_train, gan_G_loss_train, gan_D_loss_val, gan_G_loss_val], palette=['royalblue', 'orange', 'royalblue', 'orange'])
+        my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("-")
         my_plot.lines[2].set_linestyle("--")
@@ -37,6 +39,7 @@ class Plotter():
         L1_loss_train = self.g_losses_train[:,1]
         L1_loss_val = self.g_losses_val[:,1]
         my_plot = sns.lineplot(data=[L1_loss_train, L1_loss_val], palette=['orange',  'orange'])
+        my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("--")
         my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
@@ -50,6 +53,7 @@ class Plotter():
         ssim = self.evaluations_val[:,0]
         psnr = self.evaluations_val[:,1]
         my_plot = sns.lineplot(data=[ssim], palette=['purple'])
+        my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
         my_plot_2 = my_plot.twinx()
         sns.lineplot(data=[psnr], palette=['salmon'], ax=my_plot_2)
         my_plot_2.set_ylabel('PSNR')
@@ -68,6 +72,7 @@ class Plotter():
         G_loss_train = self.g_losses_train[:,0]
         G_loss_val = self.g_losses_val[:,0]
         my_plot = sns.lineplot(data=[G_loss_train, G_loss_val], palette=['orange',  'orange'])
+        my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("--")
         my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
@@ -86,6 +91,7 @@ class Plotter():
             D_loss_train = self.d_losses_train[:,2]
             D_loss_val = self.d_losses_val[:,2]
         my_plot = sns.lineplot(data=[D_loss_train, D_loss_val], palette=['royalblue',  'royalblue'])
+        my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("--")
         my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')

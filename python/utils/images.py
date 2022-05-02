@@ -59,7 +59,7 @@ def multi_plot(loader, generator, file_name=None, columns=4, noise=False):
 
     imgs = real_img + gray_img + fake_img_L1
 
-    plt.figure(figsize=(30,20))
+    plt.figure(figsize=(30,15))
     for i, img in enumerate(imgs):
         ax = plt.subplot(int(len(imgs) / columns + 1), columns, i + 1)
         ax.axes.xaxis.set_visible(False)

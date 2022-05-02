@@ -24,6 +24,7 @@ parser.add_argument('--dataset', required=True)
 parser.add_argument('--version', required=True) 
 parser.add_argument('--load_generator')
 parser.add_argument('--L1_weight', type=float, default=100)
+parser.add_argument('--gamma_2', type=float, default=1)
 parser.add_argument('--folders_name', required=True) 
 parser.add_argument('--seed', type=int, default=42) 
 parser.add_argument('--only_L1', action="store_true") 
@@ -75,5 +76,5 @@ if __name__ == "__main__":
 
     print("\rTraining !                    \n")
 
-    trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight, gan_weight= 0 if args.only_L1 else 1)
+    trainer = GanTrain(generator, discriminator, test_loader, train_loader, reg_R1=args.R1, real_label=args.real_label, fake_label=args.fake_label, gamma_1=args.L1_weight, gan_weight= 0 if args.only_L1 else 1, gamma_2=args.gamma_2)
     trainer.train(args.epochs, models_path="saves/{}/saved_models/".format(args.folders_name), noise=noise, logs_path="saves/{}/logs/".format(args.folders_name), figures_path="saves/{}/figures/".format(args.folders_name), early_stopping=args.early_stopping)
