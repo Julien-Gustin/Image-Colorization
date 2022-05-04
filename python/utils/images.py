@@ -128,6 +128,46 @@ def multi_plot_rows(loader, generator, file_name=None, rows=4, noise=False, disp
     if file_name is not None:
         plt.savefig(file_name)
 
+def multi_plot_generators(loader, generators, labels):
+    L, real_ab = next(iter(loader))
+
+    real_Lab = torch.concat((L, real_ab), 1)
+    real_img = tensor_to_pil(torch.Tensor(real_Lab))
+
+    gray_Lab = torch.concat((L, real_ab*0), 1)
+    gray_img = tensor_to_pil(torch.Tensor(gray_Lab))
+
+    fig, axs = plt.subplots(len(L), len(generators)+2, figsize=((len(generators)+2)*3, len(L)*3))
+    # fig.suptitle('Sharing x per column, y per row')
+
+    fake_imgs = []
+
+    for generator in generators:
+        fake_ab = generator(L.to(device)).detach().to("cpu")
+        fake_Lab = torch.cat([L, fake_ab], axis=1)
+        fake_imgs.append(tensor_to_pil(fake_Lab))
+
+    print(axs)
+
+
+    axs[0][0].set_title("Ground truth",  fontsize=20)
+    axs[0][1].set_title("Greyscale",  fontsize=20)
+    for j in range(len(generators)):
+        axs[0][2+j].set_title(labels[j],  fontsize=20)
+
+    for i in range(len(axs)):
+        axs[i][0].imshow(real_img[i])
+        axs[i][1].imshow(gray_img[i])
+        axs[i][0].axes.xaxis.set_visible(False)
+        axs[i][0].axes.yaxis.set_visible(False)
+        axs[i][1].axes.xaxis.set_visible(False)
+        axs[i][1].axes.yaxis.set_visible(False)
+        for j in range(len(generators)):
+            axs[i][2+j].imshow(fake_imgs[j][i])
+            axs[i][2+j].axes.xaxis.set_visible(False)
+            axs[i][2+j].axes.yaxis.set_visible(False)
+
+
 def plot_turing(loader, generator, file_name=None, rows=1, fake=False):
     L, real_ab = next(iter(loader))
 
