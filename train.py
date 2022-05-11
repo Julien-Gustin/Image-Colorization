@@ -14,18 +14,20 @@ from fastai.vision.learner import create_body
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--R1', action="store_true") 
-parser.add_argument('--pretrain', action="store_true") 
-parser.add_argument('--real_label', type=float, default=1.0)
+parser.add_argument('--R1', action="store_true")  # Use R1 trick
+parser.add_argument('--pretrain', action="store_true")  # Use pretrain model
+# One side label smoothing trick
+parser.add_argument('--real_label', type=float, default=1.0) 
 parser.add_argument('--fake_label', type=float, default=0.0)
-parser.add_argument('--epochs', required=True, type=int) 
-parser.add_argument('--early_stopping', type=int, default=-1) 
-parser.add_argument('--dataset', required=True) 
-parser.add_argument('--version', required=True) 
-parser.add_argument('--load_generator')
-parser.add_argument('--L1_weight', type=float, default=100)
-parser.add_argument('--gamma_2', type=float, default=1)
-parser.add_argument('--folders_name', required=True) 
+parser.add_argument('--epochs', required=True, type=int) # N° of epoch to perform
+parser.add_argument('--early_stopping', type=int, default=-1)  # Apply early stopping on SSIM with a patience of `early_stopping`
+parser.add_argument('--dataset', required=True)  # The dataset used ex: "data/Coco"
+parser.add_argument('--version', required=True)  # Version of Coco ex: 2017
+parser.add_argument('--load_generator') 
+# Hyperparameters 
+parser.add_argument('--L1_weight', type=float, default=100) # Lambda
+parser.add_argument('--gamma_2', type=float, default=1) # Gamma
+parser.add_argument('--folders_name', required=True) # save the figures/data and model in the file `folders_name`
 parser.add_argument('--seed', type=int, default=42) 
 parser.add_argument('--only_L1', action="store_true") 
 args = parser.parse_args()
