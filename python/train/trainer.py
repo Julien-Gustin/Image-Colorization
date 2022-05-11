@@ -14,21 +14,21 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # https://arxiv.org/pdf/1803.05400.pdf train + explication
 # https://arxiv.org/pdf/1406.2661.pdf (train GAN)
 class Trainer():
-    def __init__(self, generator:nn.Module, test_loader:DataLoader, train_loader:DataLoader, learning_rate:float, betas:tuple) -> None:
+    def __init__(self, generator:nn.Module, val_loader:DataLoader, train_loader:DataLoader, learning_rate:float, betas:tuple) -> None:
         self.generator = generator
         self.L1_loss = nn.L1Loss()
-        self.test_loader = test_loader
+        self.val_loader = val_loader
         self.train_loader = train_loader
 
         self.optimizer_G = torch.optim.Adam(generator.parameters(), lr=learning_rate, betas=betas)
 
     def plot_samples(self, file_name:str=None, noise:bool=False):
-        multi_plot(self.test_loader, self.generator, file_name + ".png", columns=4, noise=noise)
+        multi_plot(self.val_loader, self.generator, file_name + ".png", columns=4, noise=noise)
 
 
 class GanTrain(Trainer):   
-    def __init__(self, generator:nn.Module, discriminator:nn.Module, test_loader:DataLoader, train_loader:DataLoader, reg_R1:bool=False, learning_rate_g:float=0.0002, learning_rate_d:float=0.0002, betas_g:tuple=(0.5, 0.999), betas_d:tuple=(0.5, 0.999), gamma_1:float=100, gamma_2:float=1, real_label=1.0, fake_label=0.0, gan_weight=1) -> None:
-        super().__init__(generator, test_loader, train_loader, learning_rate_g, betas_g)
+    def __init__(self, generator:nn.Module, discriminator:nn.Module, val_loader:DataLoader, train_loader:DataLoader, reg_R1:bool=False, learning_rate_g:float=0.0002, learning_rate_d:float=0.0002, betas_g:tuple=(0.5, 0.999), betas_d:tuple=(0.5, 0.999), gamma_1:float=100, gamma_2:float=1, real_label=1.0, fake_label=0.0, gan_weight=1) -> None:
+        super().__init__(generator, val_loader, train_loader, learning_rate_g, betas_g)
         self.discriminator = discriminator
         self.cgan_loss = cGANLoss(real_label=real_label, fake_label=fake_label)
 
@@ -124,7 +124,7 @@ class GanTrain(Trainer):
 
     def train(self, nb_epochs:int, models_path:str=None, logs_path:str=None, figures_path:str=None, start:int=0, verbose:bool=True, early_stopping:int=3, noise:bool=False):
         len_train = len(self.train_loader)
-        len_test = len(self.test_loader)
+        len_val = len(self.val_loader)
         print(len_train)
         evalutation = Evalutation()
 
@@ -144,8 +144,8 @@ class GanTrain(Trainer):
         self.discriminator.train()
 
         for epoch in range(start, nb_epochs):
-            g_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
-            d_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_test, 3))}
+            g_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_val, 3))}
+            d_losses_mem = {"train": torch.zeros((len_train, 3)), "val": torch.zeros((len_val, 3))}
             
             for i, (L, ab) in enumerate(self.train_loader):
                 L = L.to(device)
@@ -164,9 +164,9 @@ class GanTrain(Trainer):
                 g_losses_mem["train"][i] = torch.Tensor(g_losses)   
 
             with torch.no_grad():   
-                evaluation_val = torch.zeros((len_test, 2))
+                evaluation_val = torch.zeros((len_val, 2))
                 # Do not set .eval()
-                for i, (L, ab) in enumerate(self.test_loader):
+                for i, (L, ab) in enumerate(self.val_loader):
                     L = L.to(device)
                     ab = ab.to(device)
 

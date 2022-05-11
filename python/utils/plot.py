@@ -30,7 +30,8 @@ class Plotter():
         my_plot.lines[3].set_linestyle("--")
         my_plot.set_xlabel('Epochs')
         my_plot.set_ylabel('Loss')
-        my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
+        if self.early_stop != -1:
+            my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
         plt.legend(labels=["Discriminator train", "Generator train", "Discriminator val", "Generator val"])
         plt.title('Training and Validation cGan loss')
         plt.show()
@@ -42,7 +43,8 @@ class Plotter():
         my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("--")
-        my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
+        if self.early_stop != -1:
+            my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
         my_plot.set_xlabel('Epochs')
         my_plot.set_ylabel('Loss')
         plt.legend(labels=["L1 train", "L1 val"])
@@ -62,7 +64,8 @@ class Plotter():
 
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("--")
-        my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
+        if self.early_stop != -1:
+            my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
         my_plot.set_xlabel('Epochs')
         my_plot.set_ylabel('SSIM')
         plt.title('SSIM and PSNR of the validation set')
@@ -75,7 +78,8 @@ class Plotter():
         my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("--")
-        my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
+        if self.early_stop != -1:
+            my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
         my_plot.set_xlabel('Epochs')
         my_plot.set_ylabel('$\gamma$ * L1 + cGan Loss')
         plt.legend(labels=["train", "val"])
@@ -83,20 +87,28 @@ class Plotter():
         plt.show()
 
     def discriminant_loss_plot(self, R1=False):
-        if R1:
-            D_loss_train = self.d_losses_train[:,0]
-            D_loss_val = self.d_losses_val[:,0]
+        R1_val = self.d_losses_train[:,1]
+        D_loss_train = self.d_losses_train[:,2]
+        D_loss_val = self.d_losses_val[:,2]
 
-        else:
-            D_loss_train = self.d_losses_train[:,2]
-            D_loss_val = self.d_losses_val[:,2]
         my_plot = sns.lineplot(data=[D_loss_train, D_loss_val], palette=['royalblue',  'royalblue'])
         my_plot.xaxis.set_major_locator(MaxNLocator(integer=True))
+        if R1:
+            my_plot_2 = my_plot.twinx()
+
         my_plot.lines[0].set_linestyle("-")
         my_plot.lines[1].set_linestyle("--")
-        my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
+
+        if self.early_stop != -1:
+            my_plot.axvline(x=self.early_stop,color='red',linestyle='-.')
         my_plot.set_xlabel('Epochs')
-        my_plot.set_ylabel('Loss')
-        plt.legend(labels=["train", "val"])
+        my_plot.set_ylabel('cGan loss')
+
+        if R1:
+            my_plot_2.set_ylabel('R1')
+            sns.lineplot(data=[R1_val], palette=['salmon'], ax=my_plot_2)
+            my_plot_2.legend(labels=["R1"], loc='upper right')
+
+        my_plot.legend(labels=["train", "val"], loc='upper left')
         plt.title('Training and Validation loss of the Discriminant')
         plt.show()
