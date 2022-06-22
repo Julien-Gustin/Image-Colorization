@@ -24,3 +24,5 @@ More informations concerning the implementation and method on the [report](repor
     <img src="https://github.com/Julien-Gustin/Image-Colorization/blob/main/figures/car.png?raw=true" />
       <img src="https://github.com/Julien-Gustin/Image-Colorization/blob/main/figures/pretrain.png?raw=true" />
 </p>
+### Authors 
+By Julien Gustin, Joachim Houyon and Lucas Michel
