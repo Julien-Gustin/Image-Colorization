@@ -21,4 +21,6 @@ More information concerning the implementation and method on the [report](report
 
 <p align="center">
   <img src="https://github.com/Julien-Gustin/Deep-Learning/blob/main/figures/sky.png?raw=true" />
+    <img src="https://github.com/Julien-Gustin/Deep-Learning/blob/main/figures/car.png?raw=true" />
+      <img src="https://github.com/Julien-Gustin/Deep-Learning/blob/main/figures/pretrain.png?raw=true" />
 </p>
