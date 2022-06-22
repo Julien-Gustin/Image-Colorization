@@ -9,9 +9,11 @@ Given a grayscale image, we want to automatically colorize it without any user i
 More information concerning the implementation and method on the [report](report.pdf).
 
 
-### Reproductibility
+## Reproductibility
 
-1. Download the dataset ```bash
-./data/Coco/dl_data.sh```
-2. 
+1. Download the dataset ```./data/Coco/dl_data.sh```
+2. python3 ```py train.py --epochs 6 --dataset "data/Coco" --version "2017" --folder_name "output" [--R1]```
+   - \[--R1\] To enable the R1 regularization or not
+   - Other parameters are available and explained in [train.py](train.py)
 
+## Results
