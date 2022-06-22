@@ -6,7 +6,7 @@ Given a grayscale image, we want to automatically colorize it without any user i
 
 ## Implementation & method
 
-More informations concerning the implementation and method on the [report](report.pdf).
+More informations concerning the implementation and method in the [report](report.pdf).
 
 
 ## Reproductibility
