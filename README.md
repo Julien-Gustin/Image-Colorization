@@ -12,8 +12,8 @@ More information concerning the implementation and method on the [report](report
 ## Reproductibility
 
 1. Download the dataset ```./data/Coco/dl_data.sh```
-2. python3 
-   ```py train.py --epochs 6 --dataset "data/Coco" --version "2017" --folder_name "output" [--R1]```
+2. Launch the training 
+   - ```python train.py --epochs 6 --dataset "data/Coco" --version "2017" --folder_name "output" [--R1]```
    - \[--R1\] To enable the R1 regularization or not
    - Other parameters are available and explained in [train.py](train.py)
 
