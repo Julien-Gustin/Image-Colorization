@@ -20,7 +20,7 @@ More informations concerning the implementation and method on the [report](repor
 ## Results
 
 <p align="center">
-  <img src="https://github.com/Julien-Gustin/Deep-Learning/blob/main/figures/sky.png?raw=true" />
-    <img src="https://github.com/Julien-Gustin/Deep-Learning/blob/main/figures/car.png?raw=true" />
-      <img src="https://github.com/Julien-Gustin/Deep-Learning/blob/main/figures/pretrain.png?raw=true" />
+  <img src="https://github.com/Julien-Gustin/Image-Colorization/blob/main/figures/sky.png?raw=true" />
+    <img src="https://github.com/Julien-Gustin/Image-Colorization/blob/main/figures/car.png?raw=true" />
+      <img src="https://github.com/Julien-Gustin/Image-Colorization/blob/main/figures/pretrain.png?raw=true" />
 </p>
